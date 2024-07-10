@@ -1,0 +1,28 @@
+.snippetInput {
+  width: 90%;
+  max-width: 600px;
+  resize: none;
+  height: 300px;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.snippetInput:focus {
+  outline: none;
+}
+
+.snippetOutputWrapper {
+  width: 90%;
+  max-width: 800px;
+}
+
+.snippetOutput {
+  padding: 1rem;
+
+  white-space: pre-wrap;
+  word-wrap: break-word; /* Wrap long words */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}

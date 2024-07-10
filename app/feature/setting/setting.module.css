@@ -1,0 +1,57 @@
+/* setting.module.css */
+.container {
+  padding: 1rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.container div {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.181);
+}
+
+.container label {
+  font-weight: bold;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  width: 30%;
+}
+
+.container input[type='text'] {
+  width: 60%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.container select {
+  width: 60%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.container input[type='color'] {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+}
+
+.colorsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+}
+
+.container p {
+  margin-left: 1rem;
+}
+
+.input:focus {
+  outline: none;
+}
