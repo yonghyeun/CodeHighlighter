@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.0.1",
     "@reduxjs/toolkit": "^2.2.6",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-redux": "^9.1.2"
+    "react-redux": "^9.1.2",
+    "rehype-pretty-code": "^0.13.2",
+    "rehype-stringify": "^10.0.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "remark-rehype": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",

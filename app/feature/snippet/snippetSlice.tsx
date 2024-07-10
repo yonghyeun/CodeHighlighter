@@ -5,7 +5,17 @@ export type InitalCode = {
 };
 
 const initialState = {
-  text: '',
+  text: `import React from 'react';
+
+type Props = {
+  message: string;
+};
+
+const SimpleComponent: React.FC<Props> = ({ message }) => {
+  return <div>{message}</div>;
+};
+
+export default SimpleComponent;`,
 } satisfies InitalCode as InitalCode;
 
 const snippetSlice = createSlice({

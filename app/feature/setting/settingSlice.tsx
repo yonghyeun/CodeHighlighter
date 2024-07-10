@@ -4,6 +4,9 @@ import { getLocalStorageValue } from './utils';
 export type SettingInitalState = {
   language: string;
   title: string;
+  addLineNumber: string;
+  removeLineNumber: string;
+  pointLineNumber: string;
   showLineNumbers: string;
   addLineColor: string;
   removeLineColor: string;
@@ -19,13 +22,25 @@ type ChangeSettingPayload = {
 const initialState = {
   showLineNumbers: '1',
   title: '',
-  language: getLocalStorageValue('language', 'tsx'),
-  addLineColor: getLocalStorageValue('addColor', '#d4fcbc'),
-  removeLineColor: getLocalStorageValue('removeColor', '#f8d7da'),
-  pointingColor: getLocalStorageValue('pointingColor', '#d1ecf1'),
-  theme: getLocalStorageValue('theme', 'matrial-darker-theme'),
-  /* 추가로 다른 타입들의 값이 추가 될 수 있다. */
+  addLineNumber: '',
+  removeLineNumber: '',
+  pointLineNumber: '',
+  language: 'tsx',
+  addLineColor: '#48a64b',
+  removeLineColor: '#a67b7b',
+  pointingColor: '#dadcf1',
+  theme: 'material-theme-darker',
 } satisfies SettingInitalState as SettingInitalState;
+
+const itemstoStoreLocal = [
+  'language',
+  'addLineColor',
+  'removeLineColor',
+  'pointingColor',
+  'theme',
+];
+
+const cssValue = ['addLineColor', 'removeLineColor', 'pointingColor'];
 
 const settingSlice = createSlice({
   name: 'setting',
@@ -35,8 +50,12 @@ const settingSlice = createSlice({
       const { key, value } = action.payload;
       state[key] = value;
 
-      if (key !== 'showLineNumbers' && key !== 'title') {
+      if (itemstoStoreLocal.includes(key)) {
         localStorage.setItem(key, value);
+      }
+
+      if (cssValue.includes(key)) {
+        document.documentElement.style.setProperty(`--${key}`, value);
       }
     },
   },
