@@ -19,10 +19,25 @@
 
 .snippetOutput {
   padding: 1rem;
-
   white-space: pre-wrap;
-  word-wrap: break-word; /* Wrap long words */
+  word-wrap: break-word;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #f9f9f9;
+}
+
+.snippetOutput pre {
+  border-radius: 8px;
+}
+
+.snippetOutput span[data-highlighted-line-id='add'] {
+  background-color: var(--addLineColor);
+}
+
+.snippetOutput span[data-highlighted-line-id='remove'] {
+  background-color: var(--removeLineColor);
+}
+
+.snippetOutput span[data-highlighted-line-id='pointing'] {
+  background-color: var(--pointingColor);
 }

@@ -1,9 +1,10 @@
-import { useAppDispatch } from '@/hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { changeText } from './snippetSlice';
 
 import styles from './snippet.module.css';
 
 const SnippetInput = () => {
+  const { text: snippetInput } = useAppSelector((state) => state.snippet);
   const dispatch = useAppDispatch();
 
   const handleCodeInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -11,7 +12,11 @@ const SnippetInput = () => {
   };
 
   return (
-    <textarea className={styles.snippetInput} onChange={handleCodeInput} />
+    <textarea
+      className={styles.snippetInput}
+      onChange={handleCodeInput}
+      defaultValue={snippetInput}
+    />
   );
 };
 
