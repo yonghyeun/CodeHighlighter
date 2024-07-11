@@ -46,8 +46,6 @@ export const preprocessMarkdown = (
     pointLineNumber,
   );
 
-  console.log(relatvieAdd);
-
   return `\`\`\`${language} {${relatvieAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing  showLineNumbers{${showLineNumbers}}\n${
     title ? `// ${title}\n` : ''
   }${text}\n\`\`\``;
