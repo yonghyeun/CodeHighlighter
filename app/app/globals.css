@@ -10,13 +10,14 @@
 }
 
 :root {
-  --addLineColor: #48a64b;
-  --removeLineColor: #a67b7b;
-  --pointingColor: #717281;
+  --addLineColor: #2f502f;
+  --removeLineColor: #331919;
+  --pointingColor: #646682;
 }
 
 body {
   font-family: 'body-font', sans-serif;
+  color: #eee;
 }
 
 /* snippetOutput 관련 CSS 속성 */
@@ -33,7 +34,7 @@ body {
 pre {
   overflow-x: scroll;
   padding: 1rem 0rem;
-  min-width: 800px;
+  min-width: 390px;
 }
 
 pre::-webkit-scrollbar {
@@ -63,4 +64,33 @@ code {
 .lineWrapper > span[data-line] {
   display: flex;
   flex-grow: 1;
+}
+
+.output::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(30, 41, 59);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #6b8ce3, #a1c4fd);
+  border-radius: 10px;
+  border: 3px solid rgb(30, 41, 59);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #4a6fc1, #7eaffc);
+}
+
+a {
+  text-decoration: none;
+  text-decoration-line: none;
 }

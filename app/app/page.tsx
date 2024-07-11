@@ -2,6 +2,7 @@
 
 import SnippetInput from '@/feature/snippet/snippetInput';
 import Logo from '@/components/Logo';
+import Introduction from '@/components/Introduce';
 
 import SnippetOutput from '@/feature/snippet/snipptOutput';
 import SettingBox from '@/feature/setting/settingBox';
@@ -15,8 +16,8 @@ export default function Home() {
   return (
     <main className='flex md:flex-col h-screen'>
       <Provider store={store}>
-        <section className='flex flex-col flex-1 bg-gray-100'>
-          <div className='flex flex-col items-center pt-5 h-full gap-5  overflow-y-scroll'>
+        <section className='flex flex-col flex-1 bg-slate-950 md:bg-black-100 '>
+          <div className='flex flex-col items-center pt-5 h-full gap-5  overflow-y-scroll output'>
             <h1 className='inline'>
               <Logo />
             </h1>
@@ -26,10 +27,11 @@ export default function Home() {
                 <DownLoadButton />
               </div>
               <SnippetOutput />
+              <Introduction />
             </section>
           </div>
         </section>
-        <section className='flex-1 bg-gray-100'>
+        <section className='flex-1 bg-slate-950'>
           <div className='flex flex-col gap-5 pt-5 h-full justify-center items-center'>
             <SnippetInput />
             <SettingBox />

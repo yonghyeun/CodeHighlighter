@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getLocalStorageValue } from './utils';
 
 export type SettingInitalState = {
   language: string;
@@ -26,10 +25,10 @@ const initialState = {
   removeLineNumber: '',
   pointLineNumber: '',
   language: 'tsx',
-  addLineColor: '#48a64b',
-  removeLineColor: '#a67b7b',
-  pointingColor: '#dadcf1',
-  theme: 'material-theme-darker',
+  addLineColor: '#2f502f',
+  removeLineColor: '#331919',
+  pointingColor: '#646682',
+  theme: 'dracula',
 } satisfies SettingInitalState as SettingInitalState;
 
 const itemstoStoreLocal = [
