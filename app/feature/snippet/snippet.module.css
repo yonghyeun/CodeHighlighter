@@ -1,11 +1,13 @@
 .snippetInput {
   width: 90%;
-  max-width: 600px;
+  min-width: 390px;
   resize: none;
   height: 300px;
   padding: 1rem;
   border-radius: 4px;
-  background-color: #f9f9f9;
+  background-color: rgb(30 41 59);
+  font-weight: 500;
+  color: #eee;
 }
 
 .snippetInput:focus {
@@ -14,7 +16,7 @@
 
 .snippetOutputWrapper {
   width: 90%;
-  max-width: 800px;
+  min-width: 390px;
 }
 
 .snippetOutput {

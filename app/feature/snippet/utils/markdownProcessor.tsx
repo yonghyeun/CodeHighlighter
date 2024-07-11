@@ -2,8 +2,11 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import remarkRehype from 'remark-rehype';
 
+import { Highlighter } from 'shiki';
+
 import type { SettingInitalState } from '@/feature/setting/settingSlice';
-import type { Theme } from 'rehype-pretty-code';
+import type { BundledTheme } from 'shiki';
+
 const RelativeLineNumber = (
   showLineNumber: SettingInitalState['showLineNumbers'],
   colorLineString: string,
@@ -51,6 +54,12 @@ export const preprocessMarkdown = (
   }${text}\n\`\`\``;
 };
 
+/**
+ * ! processMarkdown 은 테마가 변경되어 실행 될 때 마다 shiki highlighter 인스턴스를 생성한다.
+ * ! 사실은 getSingltoneHighlighter 메소드를 이용하여 하이라이터를 넣어줘야하는데
+ * ! 공식문서를 뒤져봐도 문서가 잘 나오지 않아 그냥 사용하도록 했다.
+ * ! 테마 개수가 20개인데 20개의 인스턴스가 존재한다고 해도 memory leak 문제가 심각하진 않을 것 같다.
+ */
 export const processMarkdown = async (
   markDown: string,
   theme: SettingInitalState['theme'],
@@ -62,7 +71,7 @@ export const processMarkdown = async (
     .use(html)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
-      theme: theme as Theme,
+      theme: theme as BundledTheme,
     })
     .use(rehypeStringify)
     .process(markDown);

@@ -1,11 +1,13 @@
 'use client';
 
+import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
-import { changeSetting } from '../settingSlice';
 import { useSyncronizeLocalStorage } from '@/hooks/synchronize';
 
+import { changeSetting } from '../settingSlice';
+import { debounce } from '@/feature/setting/utils';
+
 import { CodeLanguage, BundleTheme } from '@/constant/markdown';
-import { useEffect } from 'react';
 
 export const Language = () => {
   const { language } = useAppSelector((state) => state.setting);
@@ -117,6 +119,11 @@ export const AddLine = () => {
     dispatch(changeSetting({ key: 'addLineColor', value: storedValue }));
   });
 
+  const buttonRef = useRef<string>('');
+  const handleChange = debounce(() => {
+    dispatch(changeSetting({ key: 'addLineColor', value: buttonRef.current }));
+  }, 100);
+
   return (
     <div className='flex'>
       <div className='flex flex-1 items-center'>
@@ -125,9 +132,8 @@ export const AddLine = () => {
           type='color'
           value={addLineColor}
           onChange={(e) => {
-            dispatch(
-              changeSetting({ key: 'addLineColor', value: e.target.value }),
-            );
+            buttonRef.current = e.target.value;
+            handleChange();
           }}
         />
         <p>{addLineColor}</p>
@@ -164,6 +170,13 @@ export const RemoveLine = () => {
     },
   );
 
+  const buttonRef = useRef<string>('');
+  const handleChange = debounce(() => {
+    dispatch(
+      changeSetting({ key: 'removeLineColor', value: buttonRef.current }),
+    );
+  }, 100);
+
   return (
     <div className='flex'>
       <div className='flex flex-1 items-center'>
@@ -172,9 +185,8 @@ export const RemoveLine = () => {
           type='color'
           value={removeLineColor}
           onChange={(e) => {
-            dispatch(
-              changeSetting({ key: 'removeLineColor', value: e.target.value }),
-            );
+            buttonRef.current = e.target.value;
+            handleChange();
           }}
         />
         <p>{removeLineColor}</p>
@@ -207,6 +219,11 @@ export const PointLine = () => {
     dispatch(changeSetting({ key: 'pointingColor', value: storedValue }));
   });
 
+  const buttonRef = useRef<string>('');
+  const handleChange = debounce(() => {
+    dispatch(changeSetting({ key: 'pointingColor', value: buttonRef.current }));
+  }, 100);
+
   return (
     <div className='flex'>
       <div className='flex flex-1 items-center'>
@@ -215,9 +232,8 @@ export const PointLine = () => {
           type='color'
           value={pointingColor}
           onChange={(e) => {
-            dispatch(
-              changeSetting({ key: 'pointingColor', value: e.target.value }),
-            );
+            buttonRef.current = e.target.value;
+            handleChange();
           }}
         />
         {/* TODO hydration 문제 고치기 */}

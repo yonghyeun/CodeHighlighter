@@ -14,12 +14,32 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       screens: {
-        sm: { max: '640px' },
-        md: { max: '768px' },
-        lg: {
-          max: '1024px',
+        md: { max: '1351px' },
+      },
+      transitionProperty: {
+        transform: 'transform',
+      },
+      transformOrigin: {
+        center: 'center',
+      },
+      keyframes: {
+        grow: {
+          '0%': { transform: 'scale(1)' },
+          '100%': {
+            transform: 'scale(1.2)',
+          },
         },
       },
+      animation: {
+        grow: 'grow 0.3s ease-in-out',
+      },
+    },
+  },
+  variant: {
+    extends: {
+      transform: ['hover'],
+      scale: ['hover'],
+      animation: ['hover'],
     },
   },
   plugins: [],

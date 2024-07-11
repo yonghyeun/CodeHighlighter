@@ -21,7 +21,8 @@ const SnippetOutput = () => {
   }, [snippetInput, snippetSetting]);
 
   useEffect(() => {
-    // ! Actual DOM 조작
+    // ! Actual DOM 조작과 매번 실행 된다는 비효율이 존재함
+    // ! 상당히 스튜핏한 방법인데 어떻게 해결할지 생각해봐야 할듯
     const $codeBlock = document.querySelector('code');
 
     if (!$codeBlock) {
@@ -56,7 +57,6 @@ const SnippetOutput = () => {
     newChildren.forEach((newChild) => {
       $codeBlock.appendChild(newChild);
     });
-
     const $snippetOutput = $codeBlock.parentElement
       ?.parentElement as HTMLElement;
 

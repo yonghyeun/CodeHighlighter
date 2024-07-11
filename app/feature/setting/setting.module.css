@@ -3,7 +3,7 @@
   padding: 1rem;
   border-radius: 8px;
   width: 90%;
-  max-width: 600px;
+  min-width: 390px;
   margin: 0 auto;
   overflow-y: scroll;
 }
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.181);
+  border-bottom: 1px solid #eee;
 }
 
 .container label {
@@ -31,6 +31,7 @@
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  background-color: rgb(30 41 59);
 }
 
 .container input:focus {
@@ -42,6 +43,7 @@
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  background-color: rgb(30 41 59);
 }
 
 .container input[type='color'] {
@@ -50,6 +52,7 @@
   border-radius: 50%;
   border: none;
   padding: 0;
+  background-color: transparent;
 }
 
 .colorsGrid {
