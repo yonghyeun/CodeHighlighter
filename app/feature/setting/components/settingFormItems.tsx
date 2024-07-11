@@ -5,6 +5,7 @@ import { changeSetting } from '../settingSlice';
 import { useSyncronizeLocalStorage } from '@/hooks/synchronize';
 
 import { CodeLanguage, BundleTheme } from '@/constant/markdown';
+import { useEffect } from 'react';
 
 export const Language = () => {
   const { language } = useAppSelector((state) => state.setting);

@@ -5,6 +5,9 @@ import Logo from '@/components/Logo';
 
 import SnippetOutput from '@/feature/snippet/snipptOutput';
 import SettingBox from '@/feature/setting/settingBox';
+
+import { DownLoadButton, CopyButton } from '@/components/Button';
+
 import { Provider } from 'react-redux';
 import store from '@/store';
 
@@ -17,7 +20,13 @@ export default function Home() {
             <h1 className='inline'>
               <Logo />
             </h1>
-            <SnippetOutput />
+            <section className='flex flex-col items-center w-full'>
+              <div className=' flex w-[90%] px-[1.5rem] mb-2 gap-[0.5rem] justify-end'>
+                <CopyButton />
+                <DownLoadButton />
+              </div>
+              <SnippetOutput />
+            </section>
           </div>
         </section>
         <section className='flex-1 bg-gray-100'>
