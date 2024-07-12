@@ -4,9 +4,8 @@ import SnippetInput from '@/feature/snippet/snippetInput';
 import Logo from '@/components/Logo';
 import Introduction from '@/components/Introduce';
 
-import SnippetOutput from '@/feature/snippet/snipptOutput';
 import SettingBox from '@/feature/setting/settingBox';
-
+import SnippetOutput from '@/feature/snippet/snipptOutput';
 import { DownLoadButton, CopyButton } from '@/components/Button';
 
 import { Provider } from 'react-redux';

@@ -12,11 +12,15 @@ const SnippetInput = () => {
   };
 
   return (
-    <textarea
-      className={styles.snippetInput}
-      onChange={handleCodeInput}
-      defaultValue={snippetInput}
-    />
+    <>
+      <label htmlFor='snippetInput'></label>
+      <textarea
+        className={styles.snippetInput}
+        onChange={handleCodeInput}
+        defaultValue={snippetInput}
+        id='sinippetInput'
+      />
+    </>
   );
 };
 

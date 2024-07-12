@@ -35,3 +35,11 @@
 .snippetOutput span[data-highlighted-line-id='pointing'] {
   background-color: var(--pointingColor);
 }
+
+.loading {
+  background-color: transparent;
+  height: 296px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
