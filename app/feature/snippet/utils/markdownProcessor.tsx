@@ -2,8 +2,6 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import remarkRehype from 'remark-rehype';
 
-import { Highlighter } from 'shiki';
-
 import type { SettingInitalState } from '@/feature/setting/settingSlice';
 import type { BundledTheme } from 'shiki';
 
@@ -49,7 +47,7 @@ export const preprocessMarkdown = (
     pointLineNumber,
   );
 
-  return `\`\`\`${language} {${relatvieAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing  showLineNumbers{${showLineNumbers}}\n${
+  return `\`\`\`${language} {${relatvieAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing\n${
     title ? `// ${title}\n` : ''
   }${text}\n\`\`\``;
 };

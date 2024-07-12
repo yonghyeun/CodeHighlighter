@@ -4,6 +4,8 @@ export const CodeLanguage: string[] = [
   'javascript',
   'typescript',
   'java',
+  'html',
+  'css',
   'c#',
   'c++',
   'dart',
