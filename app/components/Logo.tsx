@@ -8,10 +8,12 @@ const Logo = () => (
       textAnchor='middle'
       fontFamily='body-font, sans-serif'
       fontSize='45'
+      fontWeight='700'
+      fontStyle='italic'
       fill='#61dafb'
       style={{ filter: 'drop-shadow(2px 2px 0px #000000)' }}
     >
-      Code Highlighter
+      HighlightCode
     </text>
     <text
       x='50%'
@@ -20,10 +22,12 @@ const Logo = () => (
       textAnchor='middle'
       fontFamily='body-font, sans-serif'
       fontSize='45'
+      fontWeight='700'
+      fontStyle='italic'
       fill='#61dafb'
       style={{ filter: 'drop-shadow(1px 1px 0px #000000)' }}
     >
-      Code Highlighter
+      HighlightCode
     </text>
   </svg>
 );

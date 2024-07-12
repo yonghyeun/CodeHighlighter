@@ -72,6 +72,7 @@ export const Title = () => {
         type='text'
         id='Title'
         placeholder='My Awesome Code'
+        autoComplete='off'
         onChange={(e) => {
           dispatch(
             changeSetting({
@@ -96,6 +97,7 @@ export const ShowLineNumbers = () => {
         type='text'
         id='showLineNumbers'
         defaultValue={showLineNumbers}
+        autoComplete='off'
         onChange={(e) => {
           dispatch(
             changeSetting({
@@ -145,6 +147,7 @@ export const AddLine = () => {
           id='addLineNumber'
           defaultValue={addLineNumber}
           placeholder='ex : 1,2,5-10'
+          autoComplete='off'
           onChange={(e) => {
             dispatch(
               changeSetting({ key: 'addLineNumber', value: e.target.value }),
@@ -198,6 +201,7 @@ export const RemoveLine = () => {
           id='removeLineNumber'
           defaultValue={removeLineNumber}
           placeholder='ex : 1,2,5-10'
+          autoComplete='off'
           onChange={(e) => {
             dispatch(
               changeSetting({ key: 'removeLineNumber', value: e.target.value }),
@@ -246,6 +250,7 @@ export const PointLine = () => {
           id='pointLineNumber'
           defaultValue={pointLineNumber}
           placeholder='ex : 1,2,5-10'
+          autoComplete='off'
           onChange={(e) => {
             dispatch(
               changeSetting({ key: 'pointLineNumber', value: e.target.value }),
