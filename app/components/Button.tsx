@@ -19,7 +19,10 @@ export const CopyButton = () => {
         }
         $codeBlock.style.overflow = 'visible';
 
-        const canvas = await htmlToImage.toCanvas($codeBlock);
+        const canvas = await htmlToImage.toCanvas($codeBlock, {
+          quality: 1,
+          pixelRatio: 2,
+        });
 
         canvas.toBlob(async (blob) => {
           if (blob) {
@@ -70,7 +73,10 @@ export const DownLoadButton = () => {
         }
         $codeBlock.style.overflow = 'visible';
 
-        const dataUrl = await htmlToImage.toPng($codeBlock);
+        const dataUrl = await htmlToImage.toPng($codeBlock, {
+          quality: 1,
+          pixelRatio: 2,
+        });
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'code.png';

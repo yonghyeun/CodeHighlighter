@@ -26,7 +26,7 @@ const initialState = {
   pointLineNumber: '',
   language: 'tsx',
   addLineColor: '#2f502f',
-  removeLineColor: '#331919',
+  removeLineColor: '#644444',
   pointingColor: '#646682',
   theme: 'dracula',
 } satisfies SettingInitalState as SettingInitalState;

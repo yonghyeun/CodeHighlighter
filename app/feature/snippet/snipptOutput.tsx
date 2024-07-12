@@ -1,9 +1,12 @@
 'use client';
 
+import styles from './snippet.module.css';
+
 import { useAppSelector } from '@/hooks/redux-hooks';
 import { useEffect, useState } from 'react';
-import styles from './snippet.module.css';
 import { preprocessMarkdown, processMarkdown } from './utils/markdownProcessor';
+
+import { LoadingIcon } from '@/components/Icons';
 
 const SnippetOutput = () => {
   const { text: snippetInput } = useAppSelector((state) => state.snippet);
@@ -21,13 +24,10 @@ const SnippetOutput = () => {
   }, [snippetInput, snippetSetting]);
 
   useEffect(() => {
-    // ! Actual DOM 조작과 매번 실행 된다는 비효율이 존재함
-    // ! 상당히 스튜핏한 방법인데 어떻게 해결할지 생각해봐야 할듯
-    const $codeBlock = document.querySelector('code');
+    if (!htmlContent) return;
 
-    if (!$codeBlock) {
-      return;
-    }
+    const $codeBlock = document.querySelector('code');
+    if (!$codeBlock) return;
 
     const children = Array.from($codeBlock.children);
 
@@ -50,18 +50,26 @@ const SnippetOutput = () => {
       return $lineWrapper;
     });
 
-    while ($codeBlock.firstChild) {
-      $codeBlock.removeChild($codeBlock.firstChild);
-    }
-
+    $codeBlock.innerHTML = '';
     newChildren.forEach((newChild) => {
       $codeBlock.appendChild(newChild);
     });
+
     const $snippetOutput = $codeBlock.parentElement
       ?.parentElement as HTMLElement;
 
     setHtmlContent($snippetOutput?.outerHTML);
-  });
+  }, [htmlContent, showLineNumbers]);
+
+  if (!htmlContent) {
+    return (
+      <section className={styles.snippetOutputWrapper}>
+        <div className={styles.loading}>
+          <LoadingIcon />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.snippetOutputWrapper}>

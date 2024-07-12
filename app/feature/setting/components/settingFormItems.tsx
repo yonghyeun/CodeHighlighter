@@ -137,6 +137,7 @@ export const AddLine = () => {
             buttonRef.current = e.target.value;
             handleChange();
           }}
+          id='addLineColor'
         />
         <p>{addLineColor}</p>
       </div>
@@ -191,6 +192,7 @@ export const RemoveLine = () => {
             buttonRef.current = e.target.value;
             handleChange();
           }}
+          id='removeLineColor'
         />
         <p>{removeLineColor}</p>
       </div>
@@ -239,6 +241,7 @@ export const PointLine = () => {
             buttonRef.current = e.target.value;
             handleChange();
           }}
+          id='pointingColor'
         />
         {/* TODO hydration 문제 고치기 */}
         <p>{pointingColor}</p>
