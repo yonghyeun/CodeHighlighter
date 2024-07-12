@@ -16,8 +16,8 @@ export default function Home() {
   return (
     <main className='flex md:flex-col h-screen'>
       <Provider store={store}>
-        <section className='flex flex-col flex-1 bg-slate-950 md:bg-black-100 '>
-          <div className='flex flex-col items-center pt-5 h-full gap-5  overflow-y-scroll output'>
+        <section className='flex flex-col flex-1 bg-slate-900 md:bg-black-100 overflow-x-scroll output '>
+          <div className='flex flex-col items-center pt-5 h-full gap-5  overflow-scroll output'>
             <h1 className='inline'>
               <Logo />
             </h1>
@@ -31,7 +31,7 @@ export default function Home() {
             </section>
           </div>
         </section>
-        <section className='flex-1 bg-slate-950'>
+        <section className='flex-1 bg-slate-900'>
           <div className='flex flex-col gap-5 pt-5 h-full justify-center items-center'>
             <SnippetInput />
             <SettingBox />

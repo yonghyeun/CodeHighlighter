@@ -11,11 +11,12 @@ export const CopyButton = () => {
 
       /* 스크롤바 없애기 전 저장 */
       const originalWidth = $codeBlock.style.width;
-      const originalOverflow = $codeBlock.style.overflow;
+      const originalOverflowX = $codeBlock.style.overflowX;
 
       try {
-        /* 스크롤바 없애기  */
-        $codeBlock.style.width = 'fit-content';
+        if ($codeBlock.scrollWidth > $codeBlock.clientWidth) {
+          $codeBlock.style.width = 'fit-content';
+        }
         $codeBlock.style.overflow = 'visible';
 
         const canvas = await htmlToImage.toCanvas($codeBlock);
@@ -34,7 +35,7 @@ export const CopyButton = () => {
       } finally {
         /* 스크롤바 복원  */
         $codeBlock.style.width = originalWidth;
-        $codeBlock.style.overflow = originalOverflow;
+        $codeBlock.style.overflow = originalOverflowX;
       }
     })();
   };
@@ -61,11 +62,12 @@ export const DownLoadButton = () => {
 
       /* 스크롤바 없애기 전 저장 */
       const originalWidth = $codeBlock.style.width;
-      const originalOverflow = $codeBlock.style.overflow;
-
+      const originalOverflowX = $codeBlock.style.overflowX;
       try {
         /* 스크롤바 없애기  */
-        $codeBlock.style.width = 'fit-content';
+        if ($codeBlock.scrollWidth > $codeBlock.clientWidth) {
+          $codeBlock.style.width = 'fit-content';
+        }
         $codeBlock.style.overflow = 'visible';
 
         const dataUrl = await htmlToImage.toPng($codeBlock);
@@ -78,7 +80,7 @@ export const DownLoadButton = () => {
       } finally {
         /* 스크롤바 복원  */
         $codeBlock.style.width = originalWidth;
-        $codeBlock.style.overflow = originalOverflow;
+        $codeBlock.style.overflowX = originalOverflowX;
       }
     })();
   };

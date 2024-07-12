@@ -20,7 +20,6 @@
 }
 
 .container label {
-  font-weight: bold;
   margin-right: 1rem;
   padding-right: 1rem;
   width: 30%;
@@ -29,13 +28,13 @@
 .container input[type='text'] {
   width: 60%;
   padding: 0.5rem;
-  border: 1px solid #ddd;
   border-radius: 4px;
   background-color: rgb(30 41 59);
 }
 
 .container input:focus {
   outline: none;
+  box-shadow: 0 0 10px rgb(145, 182, 230);
 }
 
 .container select {
