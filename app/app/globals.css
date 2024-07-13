@@ -4,23 +4,10 @@
 
 @font-face {
   font-family: 'body-font';
-  src: url('/fonts/Freesentation-4Regular.ttf') format('woff2'),
-    url('/fonts/Freesentation-4Regular.ttf') format('woff'),
-    url('/fonts/Freesentation-4Regular.ttf') format('truetype');
+  src: url('/fonts/Menlo-Regular.ttf') format('woff2'),
+    url('/fonts/Menlo-Regular.ttf') format('woff'),
+    url('/fonts/Menlo-Regular.ttf') format('truetype');
 }
-
-:root {
-  --addLineColor: #2f502f;
-  --removeLineColor: #644444;
-  --pointingColor: #646682;
-}
-
-body {
-  font-family: 'body-font', sans-serif;
-  color: #eee;
-}
-
-/* snippetOutput 관련 CSS 속성 */
 
 @font-face {
   font-family: 'IBM-Medium';
@@ -31,10 +18,28 @@ body {
   font-style: normal;
 }
 
+:root {
+  --addLineColor: #2f502f;
+  --removeLineColor: #644444;
+  --pointingColor: #646682;
+}
+
+body {
+  font-family: body-font, IBM-Medium, sans-serif;
+  color: #eee;
+}
+
+/* snippetOutput 관련 CSS 속성 */
+
 pre {
   overflow-x: scroll;
   padding: 1rem 0rem;
   min-width: 390px;
+}
+
+figure code {
+  font-family: 'body-font', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 pre::-webkit-scrollbar {
@@ -77,7 +82,6 @@ code {
 
 ::-webkit-scrollbar-track {
   background: rgb(30, 41, 59);
-  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
