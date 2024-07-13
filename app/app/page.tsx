@@ -8,13 +8,11 @@ import SettingBox from '@/feature/setting/settingBox';
 import SnippetOutput from '@/feature/snippet/snipptOutput';
 import { DownLoadButton, CopyButton } from '@/components/Button';
 
-import { Provider } from 'react-redux';
-import store from '@/store';
-
+import { StoreProvider } from '@/store';
 export default function Home() {
   return (
     <main className='flex md:flex-col min-h-screen'>
-      <Provider store={store}>
+      <StoreProvider>
         <section className='flex flex-col flex-1 bg-slate-900 md:bg-black-100 overflow-x-scroll output '>
           <div className='flex flex-col items-center pt-5 h-full gap-5  overflow-scroll output'>
             <h1 className='inline'>
@@ -36,7 +34,7 @@ export default function Home() {
             <SettingBox />
           </div>
         </section>
-      </Provider>
+      </StoreProvider>
     </main>
   );
 }
