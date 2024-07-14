@@ -38,21 +38,7 @@ const Introduction = () => {
         </li>
       </ul>
       <p className='text-lg  mt-6'>
-        This project uses{' '}
-        <a
-          href='https://github.com/rehype-pretty/rehype-pretty-code'
-          className='text-blue-500 '
-        >
-          <strong>rehype-pretty-code</strong>
-        </a>{' '}
-        and{' '}
-        <a
-          href='https://github.com/bubkoo/html-to-image'
-          className='text-blue-500 '
-        >
-          <strong>html-to-image</strong>
-        </a>{' '}
-        libraries. You can view the entire code on{' '}
+        You can view the entire code on{' '}
         <a
           href='https://github.com/yonghyeun/CodeHighlighter'
           className='text-blue-500 '

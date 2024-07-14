@@ -48,8 +48,8 @@ export const CopyIcon = () => (
 
 export const LoadingIcon = () => (
   <svg
-    width='5rem'
-    height='5rem'
+    width='5em'
+    height='5em'
     viewBox='0 0 60 60'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'

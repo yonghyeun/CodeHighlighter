@@ -42,6 +42,10 @@ figure code {
     Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
+span[data-line] {
+  font-weight: 600;
+}
+
 pre::-webkit-scrollbar {
   display: none;
 }

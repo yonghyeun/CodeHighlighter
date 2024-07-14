@@ -1,5 +1,7 @@
 import { CopyIcon, SaveIcon } from './Icons';
 import * as htmlToImage from 'html-to-image';
+import { LoadingIcon } from './Icons';
+import { useState } from 'react';
 
 export const CopyButton = () => {
   const handleCopy = () => {
@@ -28,7 +30,6 @@ export const CopyButton = () => {
           if (blob) {
             const clipboardItem = new ClipboardItem({ 'image/png': blob });
             await navigator.clipboard.write([clipboardItem]);
-            alert('Image copied to Clipboard');
           } else {
             throw new Error('faild to create blob');
           }
@@ -46,7 +47,7 @@ export const CopyButton = () => {
   return (
     <button
       className='bg-slate-700 rounded-xl text-xl  flex items-center px-4 py-2  mb-2 transition-transform duration-300 ease-in-out hover:scale-110 
-    '
+    relative'
       onClick={handleCopy}
     >
       <CopyIcon />
