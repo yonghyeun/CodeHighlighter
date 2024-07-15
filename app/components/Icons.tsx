@@ -55,7 +55,7 @@ export const LoadingIcon = () => (
     xmlns='http://www.w3.org/2000/svg'
     className='animate-spin'
   >
-    <g clip-path='url(#clip0_101_2)'>
+    <g clipPath='url(#clip0_101_2)'>
       <path
         fillRule='evenodd'
         clipRule='evenodd'
