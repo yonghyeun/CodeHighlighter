@@ -1,16 +1,20 @@
 import { CopyIcon, SaveIcon } from './Icons';
+import StatusIcon from './Status';
 import * as htmlToImage from 'html-to-image';
-import { LoadingIcon } from './Icons';
 import { useState } from 'react';
 
+/* 로딩 시간이 매우 짧으니 loading 상태는 빼자 */
+export type Status = 'idle' | 'succed' | 'fail';
+
 export const CopyButton = () => {
+  const [status, setStatus] = useState<Status>('idle');
+
   const handleCopy = () => {
     (async function () {
       const $codeBlock = document.querySelector('pre');
       if (!$codeBlock) {
         return;
       }
-
       /* 스크롤바 없애기 전 저장 */
       const originalWidth = $codeBlock.style.width;
       const originalOverflowX = $codeBlock.style.overflowX;
@@ -34,12 +38,18 @@ export const CopyButton = () => {
             throw new Error('faild to create blob');
           }
         }, 'image/png');
+        setStatus('succed');
       } catch (error) {
         console.error(error);
+        setStatus('fail');
       } finally {
         /* 스크롤바 복원  */
         $codeBlock.style.width = originalWidth;
         $codeBlock.style.overflow = originalOverflowX;
+
+        setTimeout(() => {
+          setStatus('idle');
+        }, 1000);
       }
     })();
   };
@@ -50,6 +60,7 @@ export const CopyButton = () => {
     relative'
       onClick={handleCopy}
     >
+      <StatusIcon status={status} />
       <CopyIcon />
       <p className='ml-2 text-sm'>Copy Image</p>
     </button>
