@@ -38,7 +38,13 @@ pre {
 }
 
 figure code {
-  font-family: Jet-Brains, body-font, SFMono-Regular, Menlo, Monaco, Consolas,
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  font-variant-ligatures: none;
+}
+
+textarea {
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   font-variant-ligatures: none;
 }
