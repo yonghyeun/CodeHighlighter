@@ -20,9 +20,7 @@ export const CopyButton = () => {
       const originalOverflowX = $codeBlock.style.overflowX;
 
       try {
-        if ($codeBlock.scrollWidth > $codeBlock.clientWidth) {
-          $codeBlock.style.width = 'fit-content';
-        }
+        $codeBlock.style.width = 'fit-content';
         $codeBlock.style.overflow = 'visible';
 
         const canvas = await htmlToImage.toCanvas($codeBlock, {
@@ -80,9 +78,7 @@ export const DownLoadButton = () => {
       const originalOverflowX = $codeBlock.style.overflowX;
       try {
         /* 스크롤바 없애기  */
-        if ($codeBlock.scrollWidth > $codeBlock.clientWidth) {
-          $codeBlock.style.width = 'fit-content';
-        }
+        $codeBlock.style.width = 'fit-content';
         $codeBlock.style.overflow = 'visible';
 
         const dataUrl = await htmlToImage.toPng($codeBlock, {
