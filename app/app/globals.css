@@ -40,7 +40,7 @@ pre {
 figure code {
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
-  font-variant-ligatures: none;
+  font-variant-ligatures: contextual;
 }
 
 textarea {
