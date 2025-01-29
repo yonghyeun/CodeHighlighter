@@ -9,6 +9,7 @@
   background-color: #252525;
   font-weight: 500;
   color: #eee;
+  border-radius: 12px;
 }
 
 .snippetInput:focus {
@@ -23,6 +24,11 @@
 .snippetOutput {
   white-space: pre-wrap;
   word-wrap: break-word;
+  border-radius: 12px;
+}
+
+.snippetOutput pre {
+  border-radius: 12px;
 }
 
 .snippetOutput span[data-highlighted-line-id="add"] {
