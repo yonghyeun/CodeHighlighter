@@ -2,7 +2,8 @@
   width: 90%;
   min-width: 390px;
   resize: none;
-  height: 300px;
+  min-height: 300px;
+  height: auto;
   padding: 1rem 1rem 1rem 3rem;
   border-radius: 4px;
   background-color: #252525;
@@ -24,15 +25,15 @@
   word-wrap: break-word;
 }
 
-.snippetOutput span[data-highlighted-line-id='add'] {
+.snippetOutput span[data-highlighted-line-id="add"] {
   background-color: var(--addLineColor);
 }
 
-.snippetOutput span[data-highlighted-line-id='remove'] {
+.snippetOutput span[data-highlighted-line-id="remove"] {
   background-color: var(--removeLineColor);
 }
 
-.snippetOutput span[data-highlighted-line-id='pointing'] {
+.snippetOutput span[data-highlighted-line-id="pointing"] {
   background-color: var(--pointingColor);
 }
 
