@@ -29,7 +29,7 @@ const SnippetInput = () => {
         className={styles.snippetInput}
         onChange={handleCodeInput}
         defaultValue={snippetInput}
-        id="sinippetInput"
+        id="snippetInput"
       />
     </>
   );
