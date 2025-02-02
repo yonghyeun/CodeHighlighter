@@ -2,9 +2,7 @@ import { remark } from "remark";
 import html from "remark-html";
 import remarkRehype from "remark-rehype";
 
-// TODO cross import 로 타입 수정 하기
-
-import type { SettingInitialState } from "@/feature/setting/settingSlice";
+import type { SettingInitialState } from "@/setting/model";
 import type { BundledTheme } from "shiki";
 
 const RelativeLineNumber = (
