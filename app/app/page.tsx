@@ -1,14 +1,13 @@
 "use client";
 
-import SnippetInput from "@/feature/snippet/snippetInput";
 import SettingBox from "@/feature/setting/settingBox";
-import SnippetOutput from "@/feature/snippet/snippetOutput";
-
 import { StoreProvider } from "@/store";
 import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
+  SnippetTextArea,
 } from "@/src/features/snippet/ui";
+import { SnippetDisplay } from "@/src/features/snippet/ui/SnippetDisplay";
 
 export default function Home() {
   return (
@@ -24,14 +23,14 @@ export default function Home() {
                 <CopySnippetToClipboardButton />
                 <DownLoadSnippetToSVGButton />
               </div>
-              <SnippetOutput />
+              <SnippetDisplay />
               <IntroduceText />
             </section>
           </div>
         </section>
         <section className="flex-1 bg-slate-900">
           <div className="flex flex-col gap-5  h-full justify-center items-center">
-            <SnippetInput />
+            <SnippetTextArea />
             <SettingBox />
           </div>
         </section>

@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
-import { changeText } from "./snippetSlice";
-import styles from "./snippet.module.css";
+import { changeText } from "../model/snippetSlice";
+import styles from "./styles.module.css";
 import { useEffect, useRef } from "react";
 
-const SnippetInput = () => {
+export const SnippetTextArea = () => {
   const { text: snippetInput } = useAppSelector((state) => state.snippet);
   const dispatch = useAppDispatch();
   const textArea = useRef<HTMLTextAreaElement>(null);
@@ -34,5 +34,3 @@ const SnippetInput = () => {
     </>
   );
 };
-
-export default SnippetInput;
