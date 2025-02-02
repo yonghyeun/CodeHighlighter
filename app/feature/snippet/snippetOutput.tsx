@@ -9,11 +9,14 @@ import { preprocessMarkdown, processMarkdown } from "./utils/markdownProcessor";
 import { LoadingIcon } from "@/components/Icons";
 
 const SnippetOutput = () => {
-  const { text: snippetInput } = useAppSelector((state) => state.snippet);
-  const { showLineNumbers } = useAppSelector((state) => state.setting);
+  const snippetInput = useAppSelector((state) => state.snippet.text);
+  const showLineNumbers = useAppSelector(
+    (state) => state.setting.showLineNumbers
+  );
+  const [backgroundColor, setBackgroundColor] = useState<string>("inherit");
 
   const snippetSetting = useAppSelector((state) => state.setting);
-  const [htmlContent, setHtmlContent] = useState("");
+  const [htmlContent, setHtmlContent] = useState<string>("");
 
   useEffect(() => {
     (async function () {
@@ -27,7 +30,12 @@ const SnippetOutput = () => {
     if (!htmlContent) return;
 
     const $codeBlock = document.querySelector("code");
-    if (!$codeBlock) return;
+    const $codeBlockWrapper = document.querySelector("pre");
+    if (!$codeBlock || !$codeBlockWrapper) return;
+
+    // 백그라운드 테마 색상 설정
+
+    setBackgroundColor(getComputedStyle($codeBlockWrapper).backgroundColor);
 
     const children = Array.from($codeBlock.children);
 
@@ -72,7 +80,12 @@ const SnippetOutput = () => {
   }
 
   return (
-    <section className={styles.snippetOutputWrapper}>
+    <section
+      className={styles.snippetOutputWrapper}
+      style={{
+        backgroundColor,
+      }}
+    >
       <div
         className={styles.snippetOutput}
         dangerouslySetInnerHTML={{ __html: htmlContent }}
