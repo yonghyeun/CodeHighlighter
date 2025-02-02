@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type InitalCode = {
+export type InitialCode = {
   text: string;
 };
 
@@ -16,10 +16,10 @@ const SimpleComponent: React.FC<Props> = ({ message }) => {
 };
 
 export default SimpleComponent;`,
-} satisfies InitalCode as InitalCode;
+} satisfies InitialCode as InitialCode;
 
 const snippetSlice = createSlice({
-  name: 'snippet',
+  name: "snippet",
   initialState,
   reducers: {
     changeText: (state, action: PayloadAction<string>) => {
@@ -29,4 +29,4 @@ const snippetSlice = createSlice({
 });
 
 export const { changeText } = snippetSlice.actions;
-export default snippetSlice.reducer;
+export const snippetReducer = snippetSlice.reducer;

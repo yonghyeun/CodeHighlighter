@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type SettingInitalState = {
+export type SettingInitialState = {
   language: string;
   title: string;
   addLineNumber: string;
@@ -14,35 +14,35 @@ export type SettingInitalState = {
 };
 
 type ChangeSettingPayload = {
-  key: keyof SettingInitalState;
+  key: keyof SettingInitialState;
   value: string;
 };
 
 const initialState = {
-  showLineNumbers: '1',
-  title: '',
-  addLineNumber: '',
-  removeLineNumber: '',
-  pointLineNumber: '',
-  language: 'tsx',
-  addLineColor: '#2f502f',
-  removeLineColor: '#644444',
-  pointingColor: '#646682',
-  theme: 'dracula',
-} satisfies SettingInitalState as SettingInitalState;
+  showLineNumbers: "1",
+  title: "",
+  addLineNumber: "",
+  removeLineNumber: "",
+  pointLineNumber: "",
+  language: "tsx",
+  addLineColor: "#2f502f",
+  removeLineColor: "#644444",
+  pointingColor: "#646682",
+  theme: "dracula",
+} satisfies SettingInitialState as SettingInitialState;
 
 const itemstoStoreLocal = [
-  'language',
-  'addLineColor',
-  'removeLineColor',
-  'pointingColor',
-  'theme',
+  "language",
+  "addLineColor",
+  "removeLineColor",
+  "pointingColor",
+  "theme",
 ];
 
-const cssValue = ['addLineColor', 'removeLineColor', 'pointingColor'];
+const cssValue = ["addLineColor", "removeLineColor", "pointingColor"];
 
 const settingSlice = createSlice({
-  name: 'setting',
+  name: "setting",
   initialState,
   reducers: {
     changeSetting: (state, action: PayloadAction<ChangeSettingPayload>) => {
@@ -62,4 +62,4 @@ const settingSlice = createSlice({
 
 export const { changeSetting } = settingSlice.actions;
 
-export default settingSlice.reducer;
+export const settingReducer = settingSlice.reducer;

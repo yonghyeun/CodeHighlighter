@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export const useSyncronizeLocalStorage = (
+export const useSynchronizeLocalStorage = (
   key: string,
   value: any,
-  callback: (storedValue: any) => void,
+  callback: (storedValue: any) => void
 ) => {
   useEffect(() => {
     const storedValue = localStorage.getItem(key);
