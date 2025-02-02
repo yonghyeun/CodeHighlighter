@@ -69,6 +69,10 @@ export const useSnippetContent = () => {
 };
 
 const getCodeThemeBackground = (html: string) => {
+  if (typeof window === "undefined") {
+    return "inherit";
+  }
+
   const parser = new DOMParser().parseFromString(html, "text/html");
   const backgroundColor = parser.querySelector("pre")?.style.backgroundColor;
   return backgroundColor ?? "inherit";
