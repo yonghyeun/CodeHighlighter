@@ -1,6 +1,16 @@
+export const getLocalStorageValue = (key: string, defaultValue: string) => {
+  if (typeof window === 'undefined') {
+    return defaultValue;
+  }
+
+  const storedValue = localStorage.getItem(key);
+
+  return storedValue ? storedValue : defaultValue;
+};
+
 export const debounce = <T extends (...arg: any[]) => void>(
   callback: T,
-  delay: number
+  delay: number,
 ) => {
   let timerId: ReturnType<typeof setTimeout>;
 
