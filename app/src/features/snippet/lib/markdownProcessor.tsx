@@ -26,7 +26,10 @@ const RelativeLineNumber = (
   return relativeLines.join(",");
 };
 
-const preprocessMarkdown = (text: string, setting: SettingInitialState) => {
+export const preprocessMarkdown = (
+  text: string,
+  setting: SettingInitialState
+) => {
   const {
     showLineNumbers,
     title,
@@ -57,7 +60,7 @@ const preprocessMarkdown = (text: string, setting: SettingInitialState) => {
  * ! 공식문서를 뒤져봐도 문서가 잘 나오지 않아 그냥 사용하도록 했다.
  * ! 테마 개수가 20개인데 20개의 인스턴스가 존재한다고 해도 memory leak 문제가 심각하진 않을 것 같다.
  */
-const processMarkdown = async (
+export const processMarkdown = async (
   markDown: string,
   theme: SettingInitialState["theme"]
 ) => {
@@ -74,9 +77,4 @@ const processMarkdown = async (
     .process(markDown);
 
   return processedContent.toString();
-};
-
-export const markdownProcessor = {
-  processMarkdown,
-  preprocessMarkdown,
 };

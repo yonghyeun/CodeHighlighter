@@ -1,5 +1,3 @@
-import { toCanvas } from "html-to-image";
-import { useState } from "react";
 import { useCopySnippetImage } from "../lib";
 
 export const CopySnippetToClipboardButton = () => {

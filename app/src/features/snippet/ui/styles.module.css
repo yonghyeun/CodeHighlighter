@@ -19,12 +19,12 @@
 .snippetOutputWrapper {
   width: 90%;
   min-width: 390px;
+  border-radius: 12px;
 }
 
 .snippetOutput {
   white-space: pre-wrap;
   word-wrap: break-word;
-  border-radius: 12px;
 }
 
 .snippetOutput pre {
