@@ -6,9 +6,13 @@ import Introduction from "@/components/Introduce";
 
 import SettingBox from "@/feature/setting/settingBox";
 import SnippetOutput from "@/feature/snippet/snippetOutput";
-import { DownLoadButton, CopyButton } from "@/components/Button";
 
 import { StoreProvider } from "@/store";
+import {
+  CopySnippetToClipboardButton,
+  DownLoadSnippetToSVGButton,
+} from "@/src/features/snippet/ui";
+
 export default function Home() {
   return (
     <main className="flex md:flex-col min-h-screen">
@@ -20,8 +24,8 @@ export default function Home() {
             </h1>
             <section className="flex flex-col items-center w-full">
               <div className=" flex w-[90%] px-[1.5rem] mb-2 gap-[0.5rem] justify-end">
-                <CopyButton />
-                <DownLoadButton />
+                <CopySnippetToClipboardButton />
+                <DownLoadSnippetToSVGButton />
               </div>
               <SnippetOutput />
               <Introduction />
