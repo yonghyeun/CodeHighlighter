@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/hooks/redux-hooks";
-import * as markdownProcessor from "../lib/markdownProcessor";
+import { useAppSelector } from "@/redux/lib";
+
+import * as markdownProcessor from "./markdownProcessor";
 
 export const useSnippetContent = () => {
   const snippetInput = useAppSelector((state) => state.snippet.text);

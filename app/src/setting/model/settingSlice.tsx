@@ -62,4 +62,4 @@ const settingSlice = createSlice({
 
 export const { changeSetting } = settingSlice.actions;
 
-export default settingSlice.reducer;
+export const settingReducer = settingSlice.reducer;

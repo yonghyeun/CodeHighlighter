@@ -1,13 +1,13 @@
 "use client";
 
-import SettingBox from "@/feature/setting/settingBox";
-import { StoreProvider } from "@/store";
+import { StoreProvider } from "@/redux/ui";
+import { Setting } from "@/setting/ui";
 import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
   SnippetTextArea,
-} from "@/src/features/snippet/ui";
-import { SnippetDisplay } from "@/src/features/snippet/ui/SnippetDisplay";
+} from "@/snippet/ui";
+import { SnippetDisplay } from "@/snippet/ui/SnippetDisplay";
 
 export default function Home() {
   return (
@@ -31,7 +31,14 @@ export default function Home() {
         <section className="flex-1 bg-slate-900">
           <div className="flex flex-col gap-5  h-full justify-center items-center">
             <SnippetTextArea />
-            <SettingBox />
+            <Setting>
+              <Setting.Language />
+              <Setting.Theme />
+              <Setting.Title />
+              <Setting.ShowLineNumbers />
+              <Setting.AddLine />
+              <Setting.PointLine />
+            </Setting>
           </div>
         </section>
       </StoreProvider>
