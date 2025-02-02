@@ -6,8 +6,8 @@ import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
   SnippetTextArea,
+  SnippetDisplay,
 } from "@/snippet/ui";
-import { SnippetDisplay } from "@/snippet/ui/SnippetDisplay";
 
 export default function Home() {
   return (
@@ -15,9 +15,7 @@ export default function Home() {
       <StoreProvider>
         <section className="flex flex-col flex-1 bg-slate-900 md:bg-black-100 overflow-x-scroll output ">
           <div className="flex flex-col items-center  h-full gap-5  overflow-scroll output">
-            <h1 className="inline">
-              <CodeHighlighterLogo />
-            </h1>
+            <CodeHighlighterLogo />
             <section className="flex flex-col items-center w-full">
               <div className=" flex w-[90%] px-[1.5rem] mb-2 gap-[0.5rem] justify-end">
                 <CopySnippetToClipboardButton />
@@ -100,35 +98,37 @@ const IntroduceText = () => {
 };
 
 const CodeHighlighterLogo = () => (
-  <svg width="400" height="100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100%" height="100%" fill="transparent" />
-    <text
-      x="50%"
-      y="50%"
-      dominantBaseline="middle"
-      textAnchor="middle"
-      fontFamily="body-font, sans-serif"
-      fontSize="45"
-      fontWeight="700"
-      fontStyle="italic"
-      fill="#61dafb"
-      style={{ filter: "drop-shadow(2px 2px 0px #000000)" }}
-    >
-      HighlightCode
-    </text>
-    <text
-      x="50%"
-      y="50%"
-      dominantBaseline="middle"
-      textAnchor="middle"
-      fontFamily="body-font, sans-serif"
-      fontSize="45"
-      fontWeight="700"
-      fontStyle="italic"
-      fill="#61dafb"
-      style={{ filter: "drop-shadow(1px 1px 0px #000000)" }}
-    >
-      HighlightCode
-    </text>
-  </svg>
+  <h1>
+    <svg width="400" height="100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100%" height="100%" fill="transparent" />
+      <text
+        x="50%"
+        y="50%"
+        dominantBaseline="middle"
+        textAnchor="middle"
+        fontFamily="body-font, sans-serif"
+        fontSize="45"
+        fontWeight="700"
+        fontStyle="italic"
+        fill="#61dafb"
+        style={{ filter: "drop-shadow(2px 2px 0px #000000)" }}
+      >
+        HighlightCode
+      </text>
+      <text
+        x="50%"
+        y="50%"
+        dominantBaseline="middle"
+        textAnchor="middle"
+        fontFamily="body-font, sans-serif"
+        fontSize="45"
+        fontWeight="700"
+        fontStyle="italic"
+        fill="#61dafb"
+        style={{ filter: "drop-shadow(1px 1px 0px #000000)" }}
+      >
+        HighlightCode
+      </text>
+    </svg>
+  </h1>
 );
