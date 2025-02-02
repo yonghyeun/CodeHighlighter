@@ -16,7 +16,9 @@ const Language = () => {
   const dispatch = useAppDispatch();
 
   useSynchronizeLocalStorage("language", language, (storedValue) => {
-    dispatch(changeSetting({ key: "language", value: storedValue }));
+    dispatch(
+      changeSetting({ type: "setting", key: "language", value: storedValue })
+    );
   });
 
   return (
@@ -25,7 +27,13 @@ const Language = () => {
       <select
         value={language}
         onChange={(e) => {
-          dispatch(changeSetting({ key: "language", value: e.target.value }));
+          dispatch(
+            changeSetting({
+              type: "setting",
+              key: "language",
+              value: e.target.value,
+            })
+          );
         }}
       >
         {CodeLanguage.map((lang, idx) => (
@@ -43,7 +51,9 @@ const Theme = () => {
   const dispatch = useAppDispatch();
 
   useSynchronizeLocalStorage("theme", theme, (storedValue) => {
-    dispatch(changeSetting({ key: "theme", value: storedValue }));
+    dispatch(
+      changeSetting({ type: "setting", key: "theme", value: storedValue })
+    );
   });
 
   return (
@@ -52,7 +62,13 @@ const Theme = () => {
       <select
         value={theme}
         onChange={(e) => {
-          dispatch(changeSetting({ key: "theme", value: e.target.value }));
+          dispatch(
+            changeSetting({
+              type: "setting",
+              key: "theme",
+              value: e.target.value,
+            })
+          );
         }}
       >
         {BundleTheme.map((bundleTheme, idx) => (
@@ -78,6 +94,7 @@ const Title = () => {
         onChange={(e) => {
           dispatch(
             changeSetting({
+              type: "setting",
               key: "title",
               value: e.target.value,
             })
@@ -103,6 +120,7 @@ const ShowLineNumbers = () => {
         onChange={(e) => {
           dispatch(
             changeSetting({
+              type: "setting",
               key: "showLineNumbers",
               value: e.target.value,
             })
@@ -120,12 +138,24 @@ const AddLine = () => {
   const dispatch = useAppDispatch();
 
   useSynchronizeLocalStorage("addLineColor", addLineColor, (storedValue) => {
-    dispatch(changeSetting({ key: "addLineColor", value: storedValue }));
+    dispatch(
+      changeSetting({
+        type: "setting",
+        key: "addLineColor",
+        value: storedValue,
+      })
+    );
   });
 
   const buttonRef = useRef<string>("");
   const handleChange = debounce(() => {
-    dispatch(changeSetting({ key: "addLineColor", value: buttonRef.current }));
+    dispatch(
+      changeSetting({
+        type: "setting",
+        key: "addLineColor",
+        value: buttonRef.current,
+      })
+    );
   }, 100);
 
   return (
@@ -153,7 +183,11 @@ const AddLine = () => {
           autoComplete="off"
           onChange={(e) => {
             dispatch(
-              changeSetting({ key: "addLineNumber", value: e.target.value })
+              changeSetting({
+                type: "setting",
+                key: "addLineNumber",
+                value: e.target.value,
+              })
             );
           }}
         />

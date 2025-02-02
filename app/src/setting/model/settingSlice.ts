@@ -4,12 +4,12 @@ export type SettingInitialState = {
   language: string;
   title: string;
   addLineNumber: string;
-  removeLineNumber: string;
-  pointLineNumber: string;
+  removedLineNumber: string;
+  pointingLineNumber: string;
   showLineNumbers: string;
   addLineColor: string;
-  removeLineColor: string;
-  pointingColor: string;
+  removedLineColor: string;
+  pointingLineColor: string;
   theme: string;
 };
 
@@ -23,24 +23,24 @@ const initialState = {
   showLineNumbers: "1",
   title: "",
   addLineNumber: "",
-  removeLineNumber: "",
-  pointLineNumber: "",
+  removedLineNumber: "",
+  pointingLineNumber: "",
   language: "tsx",
   addLineColor: "#2f502f",
-  removeLineColor: "#644444",
-  pointingColor: "#646682",
+  removedLineColor: "#644444",
+  pointingLineColor: "#646682",
   theme: "dracula",
 } satisfies SettingInitialState as SettingInitialState;
 
 const itemstoStoreLocal = [
   "language",
   "addLineColor",
-  "removeLineColor",
-  "pointingColor",
+  "removedLineColor",
+  "pointingLineColor",
   "theme",
 ];
 
-const cssValue = ["addLineColor", "removeLineColor", "pointingColor"];
+const cssValue = ["addLineColor", "removedLineColor", "pointingLineColor"];
 
 const settingSlice = createSlice({
   name: "setting",
