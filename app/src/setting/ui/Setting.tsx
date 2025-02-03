@@ -36,11 +36,11 @@ const Language = () => {
       <label htmlFor="language">language</label>
       <select
         value={language}
-        onChange={(e) => {
+        onChange={({ target }) => {
           dispatch(
             changeSetting({
               key: "language",
-              value: e.target.value,
+              value: target.value,
             })
           );
         }}
@@ -64,11 +64,11 @@ const Theme = () => {
       <label htmlFor="theme">Theme</label>
       <select
         value={theme}
-        onChange={(e) => {
+        onChange={({ target }) => {
           dispatch(
             changeSetting({
               key: "theme",
-              value: e.target.value,
+              value: target.value,
             })
           );
         }}
@@ -93,11 +93,11 @@ const Title = () => {
         id="Title"
         placeholder="My Awesome Code"
         autoComplete="off"
-        onChange={(e) => {
+        onChange={({ target }) => {
           dispatch(
             changeSetting({
               key: "title",
-              value: e.target.value,
+              value: target.value,
             })
           );
         }}
@@ -118,11 +118,11 @@ const ShowLineNumbers = () => {
         id="showLineNumbers"
         defaultValue={showLineNumbers}
         autoComplete="off"
-        onChange={(e) => {
+        onChange={({ target }) => {
           dispatch(
             changeSetting({
               key: "showLineNumbers",
-              value: e.target.value,
+              value: target.value,
             })
           );
         }}
