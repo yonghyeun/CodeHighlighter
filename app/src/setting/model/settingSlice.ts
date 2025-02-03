@@ -31,7 +31,7 @@ const initialState = {
   theme: "dracula",
 } satisfies SettingInitialState as SettingInitialState;
 
-const persistStoreKeyArray = [
+export const persistStoreSettingKeys: (keyof SettingInitialState)[] = [
   "language",
   "addLineColor",
   "removedLineColor",
@@ -39,7 +39,7 @@ const persistStoreKeyArray = [
   "theme",
 ];
 
-const cssVariableKeyArray = [
+const cssVariableSettingKeys: (keyof SettingInitialState)[] = [
   "addLineColor",
   "removedLineColor",
   "pointingLineColor",
@@ -52,11 +52,11 @@ const settingSlice = createSlice({
     changeSetting: (state, action: PayloadAction<ChangeSettingPayload>) => {
       const { key, value } = action.payload;
 
-      if (persistStoreKeyArray.includes(key)) {
+      if (persistStoreSettingKeys.includes(key)) {
         localStorage.setItem(key, value);
       }
 
-      if (cssVariableKeyArray.includes(key)) {
+      if (cssVariableSettingKeys.includes(key)) {
         const { key, value } = action.payload;
         document.documentElement.style.setProperty(`--${key}`, value);
       }

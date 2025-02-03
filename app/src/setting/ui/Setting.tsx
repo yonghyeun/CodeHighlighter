@@ -1,14 +1,31 @@
 "use client";
 
-import React, { PropsWithChildren, useRef } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/lib";
-import { changeSetting } from "../model";
+import { changeSetting, persistStoreSettingKeys } from "../model";
 import { CodeLanguage, BundleTheme } from "../config";
 import styles from "./styles.module.css";
 
-const Container: React.FC<PropsWithChildren> = ({ children }) => (
-  <section className={styles.container}>{children}</section>
-);
+const Container: React.FC<PropsWithChildren> = ({ children }) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    persistStoreSettingKeys.forEach((key) => {
+      const value = localStorage.getItem(key);
+
+      if (value) {
+        dispatch(
+          changeSetting({
+            key,
+            value,
+          })
+        );
+      }
+    });
+  }, [dispatch]);
+
+  return <section className={styles.container}>{children}</section>;
+};
 
 const Language = () => {
   const { language } = useAppSelector((state) => state.setting);
