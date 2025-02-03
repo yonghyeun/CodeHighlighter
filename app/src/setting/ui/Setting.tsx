@@ -162,7 +162,9 @@ const AddLine = () => {
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
           onChange={({ target }) => {
-            changeSetting({ key: "addLineNumber", value: target.value });
+            dispatch(
+              changeSetting({ key: "addLineNumber", value: target.value })
+            );
           }}
         />
       </div>
@@ -179,7 +181,7 @@ const RemoveLine = () => {
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
-        <label htmlFor="removedLineColor">Remove Line Color</label>
+        <label htmlFor="removedLineColor">Removed Line Color</label>
         <input
           type="color"
           value={removedLineColor}
@@ -196,7 +198,7 @@ const RemoveLine = () => {
         <p>{removedLineColor}</p>
       </div>
       <div className="flex flex-1">
-        <label htmlFor="removedLineNumber">Remove Line Number</label>
+        <label htmlFor="removedLineNumber">Removed Line Number</label>
         <input
           type="text"
           id="removedLineNumber"
@@ -217,7 +219,7 @@ const RemoveLine = () => {
   );
 };
 
-const PointLine = () => {
+const PointingLine = () => {
   const { pointingLineColor, pointingLineNumber } = useAppSelector(
     (state) => state.setting
   );
@@ -271,5 +273,5 @@ export const Setting = Object.assign(Container, {
   ShowLineNumbers,
   AddLine,
   RemoveLine,
-  PointLine,
+  PointingLine,
 });
