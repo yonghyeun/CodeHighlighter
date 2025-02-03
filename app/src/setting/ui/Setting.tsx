@@ -137,10 +137,6 @@ const AddLine = () => {
   );
   const dispatch = useAppDispatch();
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeSetting({ key: "addLineColor", value: target.value }));
-  };
-
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
@@ -148,7 +144,11 @@ const AddLine = () => {
         <input
           type="color"
           value={addLineColor}
-          onChange={handleChange}
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({ key: "addLineColor", value: target.value })
+            );
+          }}
           id="addLineColor"
         />
         <p>{addLineColor}</p>
@@ -161,7 +161,9 @@ const AddLine = () => {
           defaultValue={addLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={handleChange}
+          onChange={({ target }) => {
+            changeSetting({ key: "addLineNumber", value: target.value });
+          }}
         />
       </div>
     </div>
@@ -174,10 +176,6 @@ const RemoveLine = () => {
   );
   const dispatch = useAppDispatch();
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeSetting({ key: "removedLineColor", value: target.value }));
-  };
-
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
@@ -185,7 +183,14 @@ const RemoveLine = () => {
         <input
           type="color"
           value={removedLineColor}
-          onChange={handleChange}
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({
+                key: "removedLineColor",
+                value: target.value,
+              })
+            );
+          }}
           id="removedLineColor"
         />
         <p>{removedLineColor}</p>
@@ -198,7 +203,14 @@ const RemoveLine = () => {
           defaultValue={removedLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={handleChange}
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({
+                key: "removedLineNumber",
+                value: target.value,
+              })
+            );
+          }}
         />
       </div>
     </div>
@@ -211,10 +223,6 @@ const PointLine = () => {
   );
   const dispatch = useAppDispatch();
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeSetting({ key: "pointingLineColor", value: target.value }));
-  };
-
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
@@ -222,10 +230,16 @@ const PointLine = () => {
         <input
           type="color"
           value={pointingLineColor}
-          onChange={handleChange}
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({
+                key: "pointingLineColor",
+                value: target.value,
+              })
+            );
+          }}
           id="pointingLineColor"
         />
-        {/* TODO hydration 문제 고치기 */}
         <p>{pointingLineColor}</p>
       </div>
       <div className="flex flex-1">
@@ -236,7 +250,14 @@ const PointLine = () => {
           defaultValue={pointingLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={handleChange}
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({
+                key: "pointingLineNumber",
+                value: target.value,
+              })
+            );
+          }}
         />
       </div>
     </div>
