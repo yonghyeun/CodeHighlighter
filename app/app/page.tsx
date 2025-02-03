@@ -35,7 +35,8 @@ export default function Home() {
               <Setting.Title />
               <Setting.ShowLineNumbers />
               <Setting.AddLine />
-              <Setting.PointLine />
+              <Setting.PointingLine />
+              <Setting.RemoveLine />
             </Setting>
           </div>
         </section>
@@ -69,7 +70,7 @@ const IntroduceText = () => {
               <strong>Add:</strong> Highlight added lines with a specific color.
             </li>
             <li>
-              <strong>Remove:</strong> Highlight removed lines with a different
+              <strong>Removed:</strong> Highlight removed lines with a different
               color.
             </li>
             <li>

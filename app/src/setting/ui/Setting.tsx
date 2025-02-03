@@ -1,31 +1,48 @@
 "use client";
 
-import { PropsWithChildren, useRef } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/lib";
-import { changeSetting } from "../model";
-import { debounce, useSynchronizeLocalStorage } from "../lib";
+import { changeSetting, persistStoreSettingKeys } from "../model";
 import { CodeLanguage, BundleTheme } from "../config";
 import styles from "./styles.module.css";
 
-const Container: React.FC<PropsWithChildren> = ({ children }) => (
-  <section className={styles.container}>{children}</section>
-);
+const Container: React.FC<PropsWithChildren> = ({ children }) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    persistStoreSettingKeys.forEach((key) => {
+      const value = localStorage.getItem(key);
+
+      if (value) {
+        dispatch(
+          changeSetting({
+            key,
+            value,
+          })
+        );
+      }
+    });
+  }, [dispatch]);
+
+  return <section className={styles.container}>{children}</section>;
+};
 
 const Language = () => {
   const { language } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
-
-  useSynchronizeLocalStorage("language", language, (storedValue) => {
-    dispatch(changeSetting({ key: "language", value: storedValue }));
-  });
 
   return (
     <div className="flex">
       <label htmlFor="language">language</label>
       <select
         value={language}
-        onChange={(e) => {
-          dispatch(changeSetting({ key: "language", value: e.target.value }));
+        onChange={({ target }) => {
+          dispatch(
+            changeSetting({
+              key: "language",
+              value: target.value,
+            })
+          );
         }}
       >
         {CodeLanguage.map((lang, idx) => (
@@ -42,17 +59,18 @@ const Theme = () => {
   const { theme } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage("theme", theme, (storedValue) => {
-    dispatch(changeSetting({ key: "theme", value: storedValue }));
-  });
-
   return (
     <div className="flex">
       <label htmlFor="theme">Theme</label>
       <select
         value={theme}
-        onChange={(e) => {
-          dispatch(changeSetting({ key: "theme", value: e.target.value }));
+        onChange={({ target }) => {
+          dispatch(
+            changeSetting({
+              key: "theme",
+              value: target.value,
+            })
+          );
         }}
       >
         {BundleTheme.map((bundleTheme, idx) => (
@@ -75,11 +93,11 @@ const Title = () => {
         id="Title"
         placeholder="My Awesome Code"
         autoComplete="off"
-        onChange={(e) => {
+        onChange={({ target }) => {
           dispatch(
             changeSetting({
               key: "title",
-              value: e.target.value,
+              value: target.value,
             })
           );
         }}
@@ -100,11 +118,11 @@ const ShowLineNumbers = () => {
         id="showLineNumbers"
         defaultValue={showLineNumbers}
         autoComplete="off"
-        onChange={(e) => {
+        onChange={({ target }) => {
           dispatch(
             changeSetting({
               key: "showLineNumbers",
-              value: e.target.value,
+              value: target.value,
             })
           );
         }}
@@ -119,15 +137,6 @@ const AddLine = () => {
   );
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage("addLineColor", addLineColor, (storedValue) => {
-    dispatch(changeSetting({ key: "addLineColor", value: storedValue }));
-  });
-
-  const buttonRef = useRef<string>("");
-  const handleChange = debounce(() => {
-    dispatch(changeSetting({ key: "addLineColor", value: buttonRef.current }));
-  }, 100);
-
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
@@ -135,9 +144,10 @@ const AddLine = () => {
         <input
           type="color"
           value={addLineColor}
-          onChange={(e) => {
-            buttonRef.current = e.target.value;
-            handleChange();
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({ key: "addLineColor", value: target.value })
+            );
           }}
           id="addLineColor"
         />
@@ -151,9 +161,9 @@ const AddLine = () => {
           defaultValue={addLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={(e) => {
+          onChange={({ target }) => {
             dispatch(
-              changeSetting({ key: "addLineNumber", value: e.target.value })
+              changeSetting({ key: "addLineNumber", value: target.value })
             );
           }}
         />
@@ -163,52 +173,44 @@ const AddLine = () => {
 };
 
 const RemoveLine = () => {
-  const { removeLineColor, removeLineNumber } = useAppSelector(
+  const { removedLineColor, removedLineNumber } = useAppSelector(
     (state) => state.setting
   );
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage(
-    "removeLineColor",
-    removeLineColor,
-    (storedValue) => {
-      dispatch(changeSetting({ key: "removeLineColor", value: storedValue }));
-    }
-  );
-
-  const buttonRef = useRef<string>("");
-  const handleChange = debounce(() => {
-    dispatch(
-      changeSetting({ key: "removeLineColor", value: buttonRef.current })
-    );
-  }, 100);
-
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
-        <label htmlFor="removeLineColor">Remove Line Color</label>
+        <label htmlFor="removedLineColor">Removed Line Color</label>
         <input
           type="color"
-          value={removeLineColor}
-          onChange={(e) => {
-            buttonRef.current = e.target.value;
-            handleChange();
+          value={removedLineColor}
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({
+                key: "removedLineColor",
+                value: target.value,
+              })
+            );
           }}
-          id="removeLineColor"
+          id="removedLineColor"
         />
-        <p>{removeLineColor}</p>
+        <p>{removedLineColor}</p>
       </div>
       <div className="flex flex-1">
-        <label htmlFor="removeLineNumber">Remove Line Number</label>
+        <label htmlFor="removedLineNumber">Removed Line Number</label>
         <input
           type="text"
-          id="removeLineNumber"
-          defaultValue={removeLineNumber}
+          id="removedLineNumber"
+          defaultValue={removedLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={(e) => {
+          onChange={({ target }) => {
             dispatch(
-              changeSetting({ key: "removeLineNumber", value: e.target.value })
+              changeSetting({
+                key: "removedLineNumber",
+                value: target.value,
+              })
             );
           }}
         />
@@ -217,48 +219,45 @@ const RemoveLine = () => {
   );
 };
 
-const PointLine = () => {
-  const { pointingColor, pointLineNumber } = useAppSelector(
+const PointingLine = () => {
+  const { pointingLineColor, pointingLineNumber } = useAppSelector(
     (state) => state.setting
   );
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage("pointingColor", pointingColor, (storedValue) => {
-    dispatch(changeSetting({ key: "pointingColor", value: storedValue }));
-  });
-
-  const buttonRef = useRef<string>("");
-  const handleChange = debounce(() => {
-    dispatch(changeSetting({ key: "pointingColor", value: buttonRef.current }));
-  }, 100);
-
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
-        <label htmlFor="pointingColor">Point Line Color</label>
+        <label htmlFor="pointingLineColor">Point Line Color</label>
         <input
           type="color"
-          value={pointingColor}
-          onChange={(e) => {
-            buttonRef.current = e.target.value;
-            handleChange();
+          value={pointingLineColor}
+          onChange={({ target }) => {
+            dispatch(
+              changeSetting({
+                key: "pointingLineColor",
+                value: target.value,
+              })
+            );
           }}
-          id="pointingColor"
+          id="pointingLineColor"
         />
-        {/* TODO hydration 문제 고치기 */}
-        <p>{pointingColor}</p>
+        <p>{pointingLineColor}</p>
       </div>
       <div className="flex flex-1">
-        <label htmlFor="pointLineNumber">Point Line Number</label>
+        <label htmlFor="pointingLineNumber">Point Line Number</label>
         <input
           type="text"
-          id="pointLineNumber"
-          defaultValue={pointLineNumber}
+          id="pointingLineNumber"
+          defaultValue={pointingLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={(e) => {
+          onChange={({ target }) => {
             dispatch(
-              changeSetting({ key: "pointLineNumber", value: e.target.value })
+              changeSetting({
+                key: "pointingLineNumber",
+                value: target.value,
+              })
             );
           }}
         />
@@ -274,5 +273,5 @@ export const Setting = Object.assign(Container, {
   ShowLineNumbers,
   AddLine,
   RemoveLine,
-  PointLine,
+  PointingLine,
 });
