@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'body-font';
-  src: url('/fonts/Menlo-Regular.ttf') format('woff2'),
-    url('/fonts/Menlo-Regular.ttf') format('woff'),
-    url('/fonts/Menlo-Regular.ttf') format('truetype');
+  font-family: "body-font";
+  src: url("/fonts/Menlo-Regular.ttf") format("woff2"),
+    url("/fonts/Menlo-Regular.ttf") format("woff"),
+    url("/fonts/Menlo-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Jet-Brains';
-  src: url('/fonts/JetBrainsMono-Medium.ttf') format('woff2'),
-    url('/fonts/JetBrainsMono-Medium.ttf') format('woff'),
-    url('/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+  font-family: "Jet-Brains";
+  src: url("/fonts/JetBrainsMono-Medium.ttf") format("woff2"),
+    url("/fonts/JetBrainsMono-Medium.ttf") format("woff"),
+    url("/fonts/JetBrainsMono-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 :root {
   --addLineColor: #2f502f;
-  --removeLineColor: #644444;
-  --pointingColor: #646682;
+  --removedLineNumber: #644444;
+  --pointingLineColor: #646682;
 }
 
 body {
@@ -39,13 +39,13 @@ pre {
 
 figure code {
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+    "Liberation Mono", "Courier New", monospace;
   font-variant-ligatures: contextual;
 }
 
 textarea {
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+    "Liberation Mono", "Courier New", monospace;
   font-variant-ligatures: none;
 }
 

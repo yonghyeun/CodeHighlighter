@@ -152,33 +152,33 @@ const AddLine = () => {
 };
 
 const RemoveLine = () => {
-  const { removeLineColor, removeLineNumber } = useAppSelector(
+  const { removedLineColor, removedLineNumber } = useAppSelector(
     (state) => state.setting
   );
   const dispatch = useAppDispatch();
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeSetting({ key: "removeLineColor", value: target.value }));
+    dispatch(changeSetting({ key: "removedLineColor", value: target.value }));
   };
 
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
-        <label htmlFor="removeLineColor">Remove Line Color</label>
+        <label htmlFor="removedLineColor">Remove Line Color</label>
         <input
           type="color"
-          value={removeLineColor}
+          value={removedLineColor}
           onChange={handleChange}
-          id="removeLineColor"
+          id="removedLineColor"
         />
-        <p>{removeLineColor}</p>
+        <p>{removedLineColor}</p>
       </div>
       <div className="flex flex-1">
-        <label htmlFor="removeLineNumber">Remove Line Number</label>
+        <label htmlFor="removedLineNumber">Remove Line Number</label>
         <input
           type="text"
-          id="removeLineNumber"
-          defaultValue={removeLineNumber}
+          id="removedLineNumber"
+          defaultValue={removedLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
           onChange={handleChange}
@@ -189,7 +189,7 @@ const RemoveLine = () => {
 };
 
 const PointLine = () => {
-  const { pointingColor, pointLineNumber } = useAppSelector(
+  const { pointingLineColor, pointingLineNumber } = useAppSelector(
     (state) => state.setting
   );
   const dispatch = useAppDispatch();
@@ -201,22 +201,22 @@ const PointLine = () => {
   return (
     <div className="flex">
       <div className="flex flex-1 items-center">
-        <label htmlFor="pointingColor">Point Line Color</label>
+        <label htmlFor="pointingLineColor">Point Line Color</label>
         <input
           type="color"
-          value={pointingColor}
+          value={pointingLineColor}
           onChange={handleChange}
-          id="pointingColor"
+          id="pointingLineColor"
         />
         {/* TODO hydration 문제 고치기 */}
-        <p>{pointingColor}</p>
+        <p>{pointingLineColor}</p>
       </div>
       <div className="flex flex-1">
-        <label htmlFor="pointLineNumber">Point Line Number</label>
+        <label htmlFor="pointingLineNumber">Point Line Number</label>
         <input
           type="text"
-          id="pointLineNumber"
-          defaultValue={pointLineNumber}
+          id="pointingLineNumber"
+          defaultValue={pointingLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
           onChange={handleChange}

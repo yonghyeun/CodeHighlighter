@@ -33,18 +33,18 @@ export const preprocessMarkdown = (
     title,
     language,
     addLineNumber,
-    removeLineNumber,
-    pointLineNumber,
+    removedLineNumber,
+    pointingLineNumber,
   } = setting;
 
   const relativeAdd = RelativeLineNumber(showLineNumbers || "1", addLineNumber);
   const relativeRemove = RelativeLineNumber(
     showLineNumbers || "1",
-    removeLineNumber
+    removedLineNumber
   );
   const relativePointing = RelativeLineNumber(
     showLineNumbers || "1",
-    pointLineNumber
+    pointingLineNumber
   );
 
   return `\`\`\`${language} {${relativeAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing\n${

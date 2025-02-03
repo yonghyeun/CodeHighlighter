@@ -36,11 +36,11 @@
 }
 
 .snippetOutput span[data-highlighted-line-id="remove"] {
-  background-color: var(--removeLineColor);
+  background-color: var(--removedLineNumber);
 }
 
 .snippetOutput span[data-highlighted-line-id="pointing"] {
-  background-color: var(--pointingColor);
+  background-color: var(--pointingLineColor);
 }
 
 .loading {
