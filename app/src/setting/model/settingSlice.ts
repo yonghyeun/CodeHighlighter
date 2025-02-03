@@ -14,7 +14,6 @@ export type SettingInitialState = {
 };
 
 type ChangeSettingPayload = {
-  type: "setting";
   key: keyof SettingInitialState;
   value: string;
 };
@@ -32,7 +31,7 @@ const initialState = {
   theme: "dracula",
 } satisfies SettingInitialState as SettingInitialState;
 
-const itemstoStoreLocal = [
+const persistStoreKeyArray = [
   "language",
   "addLineColor",
   "removedLineColor",
@@ -40,7 +39,11 @@ const itemstoStoreLocal = [
   "theme",
 ];
 
-const cssValue = ["addLineColor", "removedLineColor", "pointingLineColor"];
+const cssVariableKeyArray = [
+  "addLineColor",
+  "removedLineColor",
+  "pointingLineColor",
+];
 
 const settingSlice = createSlice({
   name: "setting",
@@ -48,15 +51,17 @@ const settingSlice = createSlice({
   reducers: {
     changeSetting: (state, action: PayloadAction<ChangeSettingPayload>) => {
       const { key, value } = action.payload;
-      state[key] = value;
 
-      if (itemstoStoreLocal.includes(key)) {
+      if (persistStoreKeyArray.includes(key)) {
         localStorage.setItem(key, value);
       }
 
-      if (cssValue.includes(key)) {
+      if (cssVariableKeyArray.includes(key)) {
+        const { key, value } = action.payload;
         document.documentElement.style.setProperty(`--${key}`, value);
       }
+
+      state[key] = value;
     },
   },
 });

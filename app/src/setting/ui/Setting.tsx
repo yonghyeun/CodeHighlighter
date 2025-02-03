@@ -1,9 +1,8 @@
 "use client";
 
-import { PropsWithChildren, useRef } from "react";
+import React, { PropsWithChildren, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/lib";
 import { changeSetting } from "../model";
-import { debounce, useSynchronizeLocalStorage } from "../lib";
 import { CodeLanguage, BundleTheme } from "../config";
 import styles from "./styles.module.css";
 
@@ -15,12 +14,6 @@ const Language = () => {
   const { language } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage("language", language, (storedValue) => {
-    dispatch(
-      changeSetting({ type: "setting", key: "language", value: storedValue })
-    );
-  });
-
   return (
     <div className="flex">
       <label htmlFor="language">language</label>
@@ -29,7 +22,6 @@ const Language = () => {
         onChange={(e) => {
           dispatch(
             changeSetting({
-              type: "setting",
               key: "language",
               value: e.target.value,
             })
@@ -50,12 +42,6 @@ const Theme = () => {
   const { theme } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage("theme", theme, (storedValue) => {
-    dispatch(
-      changeSetting({ type: "setting", key: "theme", value: storedValue })
-    );
-  });
-
   return (
     <div className="flex">
       <label htmlFor="theme">Theme</label>
@@ -64,7 +50,6 @@ const Theme = () => {
         onChange={(e) => {
           dispatch(
             changeSetting({
-              type: "setting",
               key: "theme",
               value: e.target.value,
             })
@@ -94,7 +79,6 @@ const Title = () => {
         onChange={(e) => {
           dispatch(
             changeSetting({
-              type: "setting",
               key: "title",
               value: e.target.value,
             })
@@ -120,7 +104,6 @@ const ShowLineNumbers = () => {
         onChange={(e) => {
           dispatch(
             changeSetting({
-              type: "setting",
               key: "showLineNumbers",
               value: e.target.value,
             })
@@ -137,26 +120,9 @@ const AddLine = () => {
   );
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage("addLineColor", addLineColor, (storedValue) => {
-    dispatch(
-      changeSetting({
-        type: "setting",
-        key: "addLineColor",
-        value: storedValue,
-      })
-    );
-  });
-
-  const buttonRef = useRef<string>("");
-  const handleChange = debounce(() => {
-    dispatch(
-      changeSetting({
-        type: "setting",
-        key: "addLineColor",
-        value: buttonRef.current,
-      })
-    );
-  }, 100);
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeSetting({ key: "addLineColor", value: target.value }));
+  };
 
   return (
     <div className="flex">
@@ -165,10 +131,7 @@ const AddLine = () => {
         <input
           type="color"
           value={addLineColor}
-          onChange={(e) => {
-            buttonRef.current = e.target.value;
-            handleChange();
-          }}
+          onChange={handleChange}
           id="addLineColor"
         />
         <p>{addLineColor}</p>
@@ -181,15 +144,7 @@ const AddLine = () => {
           defaultValue={addLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={(e) => {
-            dispatch(
-              changeSetting({
-                type: "setting",
-                key: "addLineNumber",
-                value: e.target.value,
-              })
-            );
-          }}
+          onChange={handleChange}
         />
       </div>
     </div>
@@ -202,20 +157,9 @@ const RemoveLine = () => {
   );
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage(
-    "removeLineColor",
-    removeLineColor,
-    (storedValue) => {
-      dispatch(changeSetting({ key: "removeLineColor", value: storedValue }));
-    }
-  );
-
-  const buttonRef = useRef<string>("");
-  const handleChange = debounce(() => {
-    dispatch(
-      changeSetting({ key: "removeLineColor", value: buttonRef.current })
-    );
-  }, 100);
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeSetting({ key: "removeLineColor", value: target.value }));
+  };
 
   return (
     <div className="flex">
@@ -224,10 +168,7 @@ const RemoveLine = () => {
         <input
           type="color"
           value={removeLineColor}
-          onChange={(e) => {
-            buttonRef.current = e.target.value;
-            handleChange();
-          }}
+          onChange={handleChange}
           id="removeLineColor"
         />
         <p>{removeLineColor}</p>
@@ -240,11 +181,7 @@ const RemoveLine = () => {
           defaultValue={removeLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={(e) => {
-            dispatch(
-              changeSetting({ key: "removeLineNumber", value: e.target.value })
-            );
-          }}
+          onChange={handleChange}
         />
       </div>
     </div>
@@ -257,14 +194,9 @@ const PointLine = () => {
   );
   const dispatch = useAppDispatch();
 
-  useSynchronizeLocalStorage("pointingColor", pointingColor, (storedValue) => {
-    dispatch(changeSetting({ key: "pointingColor", value: storedValue }));
-  });
-
-  const buttonRef = useRef<string>("");
-  const handleChange = debounce(() => {
-    dispatch(changeSetting({ key: "pointingColor", value: buttonRef.current }));
-  }, 100);
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeSetting({ key: "pointingLineColor", value: target.value }));
+  };
 
   return (
     <div className="flex">
@@ -273,10 +205,7 @@ const PointLine = () => {
         <input
           type="color"
           value={pointingColor}
-          onChange={(e) => {
-            buttonRef.current = e.target.value;
-            handleChange();
-          }}
+          onChange={handleChange}
           id="pointingColor"
         />
         {/* TODO hydration 문제 고치기 */}
@@ -290,11 +219,7 @@ const PointLine = () => {
           defaultValue={pointLineNumber}
           placeholder="ex : 1,2,5-10"
           autoComplete="off"
-          onChange={(e) => {
-            dispatch(
-              changeSetting({ key: "pointLineNumber", value: e.target.value })
-            );
-          }}
+          onChange={handleChange}
         />
       </div>
     </div>
