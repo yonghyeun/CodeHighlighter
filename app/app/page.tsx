@@ -12,12 +12,12 @@ import {
 export default function Home() {
   return (
     <StoreProvider>
-      <main className="bg-slate-900 overflow-auto">
+      <main className="bg-slate-900">
         <div className="flex justify-center">
           <CodeHighlighterLogo />
         </div>
         <section className="w-full flex flex-col items-center">
-          <div className="max-w-5xl border px-2">
+          <div className="w-full max-w-5xl border px-2">
             <HighlighCodeButtonWidget />
             <SnippetDisplay />
             <SnippetTextArea />

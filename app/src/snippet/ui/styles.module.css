@@ -1,7 +1,5 @@
 .snippetTextAreaWrapper {
   display: flex;
-  width: 90%;
-  min-width: 390px;
   background-color: #252525;
   border-radius: 12px;
   padding: 1rem 0rem;
@@ -9,7 +7,6 @@
 
 .snippetInput {
   width: 100%;
-  min-width: 390px;
   height: auto;
   font-weight: 500;
   color: #eee;
@@ -22,8 +19,6 @@
 }
 
 .snippetOutputWrapper {
-  width: 90%;
-  min-width: 390px;
   border-radius: 12px;
 }
 

@@ -3,7 +3,6 @@
   padding: 1rem;
   border-radius: 8px;
   width: 90%;
-  min-width: 390px;
   margin: 0 auto;
   overflow-y: scroll;
 }
@@ -25,7 +24,7 @@
   width: 30%;
 }
 
-.container input[type='text'] {
+.container input[type="text"] {
   width: 60%;
   padding: 0.5rem;
   border-radius: 4px;
@@ -45,7 +44,7 @@
   background-color: rgb(30 41 59);
 }
 
-.container input[type='color'] {
+.container input[type="color"] {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
