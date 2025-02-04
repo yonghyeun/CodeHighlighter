@@ -32,7 +32,7 @@ export const CodeSnippet = () => {
       {/* footer */}
       <div className={styles.codeSnippetFooter}>
         {["first", "second", "third"].map((lineKey) => (
-          <div>
+          <div key={lineKey}>
             <UnderLineColorInput
               lineKey={lineKey as "first" | "second" | "third"}
             />
