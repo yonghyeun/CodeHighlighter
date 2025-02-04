@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "Jet-Brains";
+  src: url("/fonts/JetBrainsMono-Medium.ttf") format("woff2"),
+    url("/fonts/JetBrainsMono-Medium.ttf") format("woff"),
+    url("/fonts/JetBrainsMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
 .snippetTextAreaWrapper {
   display: flex;
   background-color: #252525;
@@ -20,15 +29,23 @@
 
 .snippetOutputWrapper {
   border-radius: 12px;
+  display: flex;
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-variant-ligatures: contextual;
+  padding: 1rem 0rem;
 }
 
 .snippetOutput {
   white-space: pre-wrap;
   word-wrap: break-word;
+  width: 100%;
 }
 
-.snippetOutput pre {
-  border-radius: 12px;
+.snippetOutput > figure code {
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-variant-ligatures: contextual;
 }
 
 .snippetOutput span[data-highlighted-line-id="add"] {
@@ -41,6 +58,13 @@
 
 .snippetOutput span[data-highlighted-line-id="pointing"] {
   background-color: var(--pointingLineColor);
+}
+
+.lineNumber {
+  display: inline-block;
+  text-align: right;
+  padding-right: 1rem;
+  width: 3rem;
 }
 
 .loading {
