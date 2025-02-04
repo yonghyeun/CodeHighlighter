@@ -1,36 +1,31 @@
-import { useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/lib";
-import { changeText } from "../model/snippetSlice";
 import styles from "./styles.module.css";
+import { useSnippetTextArea } from "../lib";
 
 export const SnippetTextArea = () => {
-  const { text: snippetInput } = useAppSelector((state) => state.snippet);
-  const dispatch = useAppDispatch();
-  const textArea = useRef<HTMLTextAreaElement>(null);
-
-  const handleCodeInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(changeText(event.target.value));
-  };
-
-  useEffect(() => {
-    if (!textArea.current) {
-      return;
-    }
-
-    textArea.current.style.height = "auto";
-    textArea.current.style.height = `${textArea.current.scrollHeight}px`;
-  }, [snippetInput]);
+  const { onChange, textArea, text, textAreaLineNumbers } =
+    useSnippetTextArea();
 
   return (
-    <>
-      <label htmlFor="snippetInput"></label>
+    <section className={styles.snippetTextAreaWrapper}>
+      <label
+        htmlFor="snippetInput"
+        className="
+      sr-only"
+      />
+      <div className="flex flex-col">
+        {textAreaLineNumbers.map((lineNumber) => (
+          <div key={lineNumber} className="lineNumber">
+            {lineNumber}
+          </div>
+        ))}
+      </div>
       <textarea
         ref={textArea}
         className={styles.snippetInput}
-        onChange={handleCodeInput}
-        defaultValue={snippetInput}
+        onChange={onChange}
+        defaultValue={text}
         id="snippetInput"
       />
-    </>
+    </section>
   );
 };
