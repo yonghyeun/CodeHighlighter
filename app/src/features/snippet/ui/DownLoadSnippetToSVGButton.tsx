@@ -1,6 +1,8 @@
+import withTooltip from "@/shared/lib/withTooltip";
 import { toSvg } from "html-to-image";
+import { SNIPPET_TOOLTIP } from "../config";
 
-export const DownLoadSnippetToSVGButton = () => {
+export const DownLoadSnippetToSVGButton = withTooltip(() => {
   const handleDownload = async () => {
     const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
 
@@ -38,4 +40,4 @@ export const DownLoadSnippetToSVGButton = () => {
       Download Image
     </button>
   );
-};
+})(SNIPPET_TOOLTIP.downloadSnippet, 1);

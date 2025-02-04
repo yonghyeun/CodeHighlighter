@@ -18,7 +18,7 @@ const Tooltip: React.FC<PropsWithChildren<TooltipProps>> = ({
 
 export const withTooltip =
   <P extends object>(Component: ComponentType<P>) =>
-  (tooltipText: string, direction: 1 | 0 = 1) => {
+  (tooltipText: string, direction: 1 | 0) => {
     const WrappedComponent: React.FC<P> = (props: P) => {
       const [isMouseEnter, setIsMouseEnter] = useState<boolean>(false);
 

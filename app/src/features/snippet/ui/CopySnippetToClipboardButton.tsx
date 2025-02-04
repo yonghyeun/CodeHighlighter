@@ -1,19 +1,21 @@
+import withTooltip from "@/shared/lib/withTooltip";
 import { useCopySnippetImage } from "../lib";
+import { SNIPPET_TOOLTIP } from "../config";
 
-export const CopySnippetToClipboardButton = () => {
+export const CopySnippetToClipboardButton = withTooltip(() => {
   const { status, handleCopy } = useCopySnippetImage();
 
   return (
     <button
       className="bg-slate-700 rounded-xl text-xl  flex items-center px-4 py-2  mb-2 transition-transform duration-300 ease-in-out hover:scale-110 
-    relative"
+      relative"
       onClick={handleCopy}
     >
       <StatusIcon status={status} />
       <p className="ml-2 text-sm">Copy Image</p>
     </button>
   );
-};
+})(SNIPPET_TOOLTIP.copySnippet, 1);
 
 /* 로딩 시간이 매우 짧으니 loading 상태는 빼자 */
 export type Status = "idle" | "succeed" | "fail";
