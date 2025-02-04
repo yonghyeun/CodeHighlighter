@@ -38,7 +38,7 @@
   padding: 1rem 1rem 1rem 0rem;
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  font-variant-ligatures: contextual;
+  font-variant-ligatures: none;
   overflow: auto;
 }
 
@@ -51,7 +51,7 @@
 .snippetOutput > figure code {
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  font-variant-ligatures: contextual;
+  font-variant-ligatures: none;
 }
 
 .snippetOutput span[data-highlighted-line-id="add"] {

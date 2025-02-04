@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "HighlightCode - Convert Text Code to Highlighted Images",
@@ -23,6 +23,11 @@ export const metadata: Metadata = {
       "Code Highlighter transforms text code into visually appealing images with highlighted lines, perfect for sharing and presenting code snippets.",
     images: "/asset/thumbnail.png",
   },
+};
+
+export const viewPort: Viewport = {
+  width: "device-width",
+  initialScale: 1.25,
 };
 
 export default function RootLayout({
