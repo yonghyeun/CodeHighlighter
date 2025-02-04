@@ -1,36 +1,31 @@
-"use client";
-
-import { StoreProvider } from "@/redux/ui";
 import { CodeSnippet } from "@/widgets/codeSnippet/ui";
 
 export default function Home() {
   return (
-    <StoreProvider>
-      <section className="bg-black min-h-screen flex flex-col items-center">
-        <header className="flex justify-center">
-          <CodeHighlighterLogo />
-        </header>
-        <main className="w-full flex flex-col items-center mt-40">
-          <CodeSnippet />
-        </main>
-        <footer>
-          <p className="text-white text-center mt-12">
-            This project was created using{" "}
-            <a href="https://rehype-pretty.pages.dev/" className="underline">
-              Rehype Pretty
-            </a>{" "}
-            by{" "}
-            <a
-              href="https://github.com/yonghyeun/CodeHighlighter"
-              className="italic underline"
-            >
-              Yonghyeun
-            </a>
-            🎆
-          </p>
-        </footer>
-      </section>
-    </StoreProvider>
+    <section className="bg-black min-h-screen flex flex-col items-center">
+      <header className="flex justify-center">
+        <CodeHighlighterLogo />
+      </header>
+      <main className="w-full flex flex-col items-center mt-40">
+        <CodeSnippet />
+      </main>
+      <footer>
+        <p className="text-white text-center mt-12">
+          This project was created using{" "}
+          <a href="https://rehype-pretty.pages.dev/" className="underline">
+            Rehype Pretty
+          </a>{" "}
+          by{" "}
+          <a
+            href="https://github.com/yonghyeun/CodeHighlighter"
+            className="italic underline"
+          >
+            Yonghyeun
+          </a>
+          🎆
+        </p>
+      </footer>
+    </section>
   );
 }
 
