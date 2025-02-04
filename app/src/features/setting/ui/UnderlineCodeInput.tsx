@@ -3,6 +3,7 @@ export const DrawLineInput = () => {};
 import { useAppDispatch, useAppSelector } from "@/redux/lib";
 import { changeSetting } from "../model";
 import styles from "./styles.module.css";
+import { useEffect } from "react";
 
 interface UnderLienInputProps {
   lineKey: "first" | "second" | "third";
@@ -23,6 +24,18 @@ export const UnderLineColorInput: React.FC<UnderLienInputProps> = ({
       })
     );
   };
+
+  useEffect(() => {
+    const lineColor = localStorage.getItem(lineColorKey);
+    if (lineColor) {
+      dispatch(
+        changeSetting({
+          key: lineColorKey,
+          value: lineColor,
+        })
+      );
+    }
+  }, [dispatch, lineColorKey]);
 
   return (
     <label

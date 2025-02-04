@@ -2,10 +2,24 @@ import { useAppDispatch, useAppSelector } from "@/redux/lib";
 import { changeSetting } from "../model";
 import { BundleTheme } from "../config";
 import styles from "./styles.module.css";
+import { useEffect } from "react";
 
 export const ThemeSelector = () => {
   const { theme } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme) {
+      dispatch(
+        changeSetting({
+          key: "theme",
+          value: theme,
+        })
+      );
+    }
+  }, [dispatch]);
 
   return (
     <div>
