@@ -17,7 +17,7 @@ export default function Home() {
           <CodeHighlighterLogo />
         </div>
         <section className="w-full flex flex-col items-center">
-          <div className="max-w-5xl">
+          <div className="max-w-5xl border">
             <HighlighCodeButtonWidget />
             <SnippetDisplay />
             <SnippetTextArea />
@@ -120,7 +120,7 @@ const CodeHighlighterLogo = () => (
 );
 
 const HighlighCodeButtonWidget = () => (
-  <div className=" flex px-[1.5rem] mb-2 gap-[0.5rem] justify-end">
+  <div className=" flex mb-2 gap-[0.5rem] justify-end">
     <CopySnippetToClipboardButton />
     <DownLoadSnippetToSVGButton />
   </div>
