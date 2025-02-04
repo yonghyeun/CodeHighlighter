@@ -23,26 +23,23 @@ export const ThemeSelector = withTooltip(() => {
   }, [dispatch]);
 
   return (
-    <div>
-      <label htmlFor="theme" />
-      <select
-        className={styles.selector}
-        value={theme}
-        onChange={({ target }) => {
-          dispatch(
-            changeSetting({
-              key: "theme",
-              value: target.value,
-            })
-          );
-        }}
-      >
-        {BundleTheme.map((bundleTheme, idx) => (
-          <option key={idx} value={bundleTheme}>
-            {bundleTheme}
-          </option>
-        ))}
-      </select>
-    </div>
+    <select
+      className={styles.selector}
+      value={theme}
+      onChange={({ target }) => {
+        dispatch(
+          changeSetting({
+            key: "theme",
+            value: target.value,
+          })
+        );
+      }}
+    >
+      {BundleTheme.map((bundleTheme, idx) => (
+        <option key={idx} value={bundleTheme}>
+          {bundleTheme}
+        </option>
+      ))}
+    </select>
   );
 })(SETTING_TOOLTIP.theme, 1);

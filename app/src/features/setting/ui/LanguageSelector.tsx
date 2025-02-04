@@ -23,26 +23,23 @@ export const LanguageSelector = withTooltip(() => {
   }, [dispatch]);
 
   return (
-    <div>
-      <label htmlFor="language" />
-      <select
-        className={styles.selector}
-        value={language}
-        onChange={({ target }) => {
-          dispatch(
-            changeSetting({
-              key: "language",
-              value: target.value,
-            })
-          );
-        }}
-      >
-        {CodeLanguage.map((lang, idx) => (
-          <option key={idx} value={lang}>
-            {lang}
-          </option>
-        ))}
-      </select>
-    </div>
+    <select
+      className={styles.selector}
+      value={language}
+      onChange={({ target }) => {
+        dispatch(
+          changeSetting({
+            key: "language",
+            value: target.value,
+          })
+        );
+      }}
+    >
+      {CodeLanguage.map((lang, idx) => (
+        <option key={idx} value={lang}>
+          {lang}
+        </option>
+      ))}
+    </select>
   );
 })(SETTING_TOOLTIP.language, 1);
