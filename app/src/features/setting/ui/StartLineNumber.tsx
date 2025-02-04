@@ -1,11 +1,8 @@
-import { useAppDispatch, useAppSelector } from "@/redux/lib";
+import { useAppDispatch } from "@/redux/lib";
 import { changeSetting } from "../model";
 import styles from "./styles.module.css";
 
 export const StartLineNumberInput = () => {
-  const showLineNumbers = useAppSelector(
-    (state) => state.setting.showLineNumbers
-  );
   const dispatch = useAppDispatch();
 
   return (
