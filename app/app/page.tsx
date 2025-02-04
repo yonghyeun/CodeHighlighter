@@ -2,10 +2,6 @@
 
 import { StoreProvider } from "@/redux/ui";
 import { Setting } from "@/features/setting/ui";
-import {
-  CopySnippetToClipboardButton,
-  DownLoadSnippetToSVGButton,
-} from "@/features/snippet/ui";
 import { CodeSnippet } from "@/widgets/codeSnippet/ui";
 
 export default function Home() {
@@ -17,7 +13,6 @@ export default function Home() {
         </div>
         <section className="w-full flex flex-col items-center">
           <div className="w-full max-w-5xl px-2">
-            <HighlighCodeButtonWidget />
             <CodeSnippet />
             <HighlighCodeSettingWidget />
             <IntroduceText />
@@ -115,13 +110,6 @@ const CodeHighlighterLogo = () => (
       </text>
     </svg>
   </h1>
-);
-
-const HighlighCodeButtonWidget = () => (
-  <div className=" flex mb-2 gap-[0.5rem] justify-end">
-    <CopySnippetToClipboardButton />
-    <DownLoadSnippetToSVGButton />
-  </div>
 );
 
 const HighlighCodeSettingWidget = () => (

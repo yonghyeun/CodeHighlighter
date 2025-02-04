@@ -2,11 +2,11 @@ import { remark } from "remark";
 import html from "remark-html";
 import remarkRehype from "remark-rehype";
 
-import type { SettingInitialState } from "@/features/setting/model";
+import type { SettingState } from "@/features/setting/model";
 import type { BundledTheme } from "shiki";
 
 const RelativeLineNumber = (
-  showLineNumber: SettingInitialState["showLineNumbers"],
+  showLineNumber: SettingState["showLineNumbers"],
   colorLineString: string
 ) => {
   // 1. colorLineString 을 숫자들로 변경
@@ -24,10 +24,7 @@ const RelativeLineNumber = (
   return relativeLines.join(",");
 };
 
-export const preprocessMarkdown = (
-  text: string,
-  setting: SettingInitialState
-) => {
+export const preprocessMarkdown = (text: string, setting: SettingState) => {
   const {
     showLineNumbers,
     title,
@@ -60,7 +57,7 @@ export const preprocessMarkdown = (
  */
 export const processMarkdown = async (
   markDown: string,
-  theme: SettingInitialState["theme"]
+  theme: SettingState["theme"]
 ) => {
   const { default: rehypePrettyCode } = await import("rehype-pretty-code");
   const { default: rehypeStringify } = await import("rehype-stringify");

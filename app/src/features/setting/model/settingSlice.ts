@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type SettingInitialState = {
+export type SettingState = {
   language: string;
   title: string;
   addLineNumber: string;
@@ -14,7 +14,7 @@ export type SettingInitialState = {
 };
 
 type ChangeSettingPayload = {
-  key: keyof SettingInitialState;
+  key: keyof SettingState;
   value: string;
 };
 
@@ -29,9 +29,9 @@ const initialState = {
   removedLineColor: "#644444",
   pointingLineColor: "#646682",
   theme: "dracula",
-} satisfies SettingInitialState as SettingInitialState;
+} satisfies SettingState as SettingState;
 
-export const persistStoreSettingKeys: (keyof SettingInitialState)[] = [
+export const persistStoreSettingKeys: (keyof SettingState)[] = [
   "language",
   "addLineColor",
   "removedLineColor",
@@ -39,7 +39,7 @@ export const persistStoreSettingKeys: (keyof SettingInitialState)[] = [
   "theme",
 ];
 
-const cssVariableSettingKeys: (keyof SettingInitialState)[] = [
+const cssVariableSettingKeys: (keyof SettingState)[] = [
   "addLineColor",
   "removedLineColor",
   "pointingLineColor",

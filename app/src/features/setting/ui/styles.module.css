@@ -69,10 +69,7 @@
 .selector {
   color: white;
   background: transparent;
-  padding: 0.3rem;
-  border-bottom: 1px solid #ddd;
-  border-top: 1px solid #ddd;
-  border-radius: 4px;
+  height: 100%;
 }
 
 .selector ::webkit-scrollbar {
@@ -82,4 +79,14 @@
 .selector > option {
   color: white;
   background: black;
+}
+
+.lineColorInput {
+  border-radius: 100px;
+  width: 24px;
+  height: 24px;
+}
+
+.lineColorInput > input {
+  visibility: hidden;
 }
