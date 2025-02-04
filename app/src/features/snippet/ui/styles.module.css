@@ -80,6 +80,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: rotate 0.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .codeContentArea {
