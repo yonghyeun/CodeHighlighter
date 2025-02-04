@@ -1,12 +1,12 @@
 "use client";
 
 import { StoreProvider } from "@/redux/ui";
-import { Setting } from "@/setting/ui";
+import { Setting } from "@/features/setting/ui";
 import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
   CodeSnippet,
-} from "@/snippet/ui";
+} from "@/features/snippet/ui";
 
 export default function Home() {
   return (

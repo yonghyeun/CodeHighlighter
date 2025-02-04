@@ -2,7 +2,7 @@ import { remark } from "remark";
 import html from "remark-html";
 import remarkRehype from "remark-rehype";
 
-import type { SettingInitialState } from "@/setting/model";
+import type { SettingInitialState } from "@/features/setting/model";
 import type { BundledTheme } from "shiki";
 
 const RelativeLineNumber = (
