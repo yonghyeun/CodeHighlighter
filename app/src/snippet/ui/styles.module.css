@@ -28,12 +28,17 @@
 }
 
 .snippetOutputWrapper {
-  border-radius: 12px;
+  overflow: hidden;
+}
+
+.codeBlock {
   display: flex;
+  border-radius: 12px;
+  padding: 1rem 1rem 1rem 0rem;
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   font-variant-ligatures: contextual;
-  padding: 1rem 0rem;
+  overflow: auto;
 }
 
 .snippetOutput {

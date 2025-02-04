@@ -18,8 +18,16 @@ export const SnippetDisplay = () => {
         backgroundColor: codeThemeBackgroundColor,
       }}
     >
-      <LineNumbers textAreaLineNumbers={textAreaLineNumbers} />
-      <RehypePrettyCodeBlock htmlContent={htmlContent} />
+      <div
+        id="codeBlock"
+        className={styles.codeBlock}
+        style={{
+          backgroundColor: codeThemeBackgroundColor,
+        }}
+      >
+        <LineNumbers textAreaLineNumbers={textAreaLineNumbers} />
+        <RehypePrettyCodeBlock htmlContent={htmlContent} />
+      </div>
     </section>
   );
 };

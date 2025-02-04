@@ -22,10 +22,6 @@ body {
 
 /* snippetOutput 관련 CSS 속성 */
 
-pre {
-  overflow-x: scroll;
-}
-
 textarea {
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
