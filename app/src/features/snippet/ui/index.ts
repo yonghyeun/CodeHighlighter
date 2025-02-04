@@ -1,3 +1,3 @@
 export * from "./CopySnippetToClipboardButton";
 export * from "./DownLoadSnippetToSVGButton";
-export * from "./CodeSnippet";
+export * from "./CodeBlock";

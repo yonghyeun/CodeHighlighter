@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { snippetReducer } from "@/snippet/model";
-import { settingReducer } from "@/setting/model";
+import { snippetReducer } from "@/features/snippet/model";
+import { settingReducer } from "@/features/setting/model";
 
 export const makeStore = () => {
   return configureStore({

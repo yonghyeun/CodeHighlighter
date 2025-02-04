@@ -1,10 +1,10 @@
 "use client";
 
 import styles from "./styles.module.css";
-import { useSnippetContent, useSnippetTextArea } from "../lib";
-import { InvisibleSnippetTextArea } from "./InvisibleSnippetTextArea";
+import { useSnippetContent } from "../lib";
+import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
 
-export const CodeSnippet = () => {
+export const CodeBlock = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers } =
     useSnippetContent();
 

@@ -38,7 +38,7 @@
   padding: 1rem 1rem 1rem 0rem;
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  font-variant-ligatures: contextual;
+  font-variant-ligatures: none;
   overflow: auto;
 }
 
@@ -51,19 +51,19 @@
 .snippetOutput > figure code {
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  font-variant-ligatures: contextual;
+  font-variant-ligatures: none;
 }
 
 .snippetOutput span[data-highlighted-line-id="add"] {
-  background-color: var(--addLineColor);
+  background-color: var(--firstUnderLineColor);
 }
 
 .snippetOutput span[data-highlighted-line-id="remove"] {
-  background-color: var(--removedLineNumber);
+  background-color: var(--secondUnderLineNumbers);
 }
 
 .snippetOutput span[data-highlighted-line-id="pointing"] {
-  background-color: var(--pointingLineColor);
+  background-color: var(--thirdUnderLineColor);
 }
 
 .lineNumber {
@@ -80,6 +80,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: rotate 0.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .codeContentArea {

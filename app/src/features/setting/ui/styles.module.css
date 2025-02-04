@@ -1,0 +1,31 @@
+.selector {
+  color: white;
+  background: transparent;
+  height: 100%;
+}
+
+.selector ::webkit-scrollbar {
+  width: 1px;
+}
+
+.selector > option {
+  color: white;
+  background: black;
+}
+
+.UnderLineColorInput {
+  display: inline-block;
+  border-radius: 100px;
+  width: 24px;
+  height: 24px;
+}
+
+.UnderLineColorInput > input {
+  visibility: hidden;
+}
+
+.inputs {
+  background: black;
+  color: white;
+  padding: 0.3rem;
+}

@@ -4,20 +4,20 @@
 
 @font-face {
   font-family: "body-font";
-  src: url("/fonts/Menlo-Regular.ttf") format("woff2"),
-    url("/fonts/Menlo-Regular.ttf") format("woff"),
-    url("/fonts/Menlo-Regular.ttf") format("truetype");
+  src: url("/fonts/Freesentation-4Regular.ttf") format("woff2"),
+    url("/fonts/Freesentation-4Regular.ttf") format("woff"),
+    url("/fonts/Freesentation-4Regular.ttf") format("truetype");
 }
 
 :root {
-  --addLineColor: #2f502f;
-  --removedLineNumber: #644444;
-  --pointingLineColor: #646682;
+  --firstUnderLineColor: #2f502f;
+  --secondUnderLineNumbers: #644444;
+  --thirdUnderLineColor: #646682;
 }
 
 body {
   font-family: body-font, IBM-Medium, sans-serif;
-  color: #eee;
+  color: white;
 }
 
 /* snippetOutput 관련 CSS 속성 */
