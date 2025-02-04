@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type SettingState = {
   language: string;
-  title: string;
   addLineNumber: string;
   removedLineNumber: string;
   pointingLineNumber: string;
@@ -20,7 +19,6 @@ type ChangeSettingPayload = {
 
 const initialState = {
   showLineNumbers: "1",
-  title: "",
   addLineNumber: "",
   removedLineNumber: "",
   pointingLineNumber: "",

@@ -83,29 +83,6 @@ const Theme = () => {
   );
 };
 
-const Title = () => {
-  const dispatch = useAppDispatch();
-  return (
-    <div className="flex">
-      <label htmlFor="Title">First Line Comment</label>
-      <input
-        type="text"
-        id="Title"
-        placeholder="My Awesome Code"
-        autoComplete="off"
-        onChange={({ target }) => {
-          dispatch(
-            changeSetting({
-              key: "title",
-              value: target.value,
-            })
-          );
-        }}
-      />
-    </div>
-  );
-};
-
 const ShowLineNumbers = () => {
   const { showLineNumbers } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
@@ -269,7 +246,6 @@ const PointingLine = () => {
 export const Setting = Object.assign(Container, {
   Language,
   Theme,
-  Title,
   ShowLineNumbers,
   AddLine,
   RemoveLine,

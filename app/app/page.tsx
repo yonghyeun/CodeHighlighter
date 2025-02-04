@@ -114,9 +114,6 @@ const CodeHighlighterLogo = () => (
 
 const HighlighCodeSettingWidget = () => (
   <Setting>
-    <Setting.Language />
-    <Setting.Theme />
-    <Setting.Title />
     <Setting.ShowLineNumbers />
     <Setting.AddLine />
     <Setting.PointingLine />

@@ -27,7 +27,6 @@ const RelativeLineNumber = (
 export const preprocessMarkdown = (text: string, setting: SettingState) => {
   const {
     showLineNumbers,
-    title,
     language,
     addLineNumber,
     removedLineNumber,
@@ -44,9 +43,7 @@ export const preprocessMarkdown = (text: string, setting: SettingState) => {
     pointingLineNumber
   );
 
-  return `\`\`\`${language} {${relativeAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing\n${
-    title ? `// ${title}\n` : ""
-  }${text}\n\`\`\``;
+  return `\`\`\`${language} {${relativeAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing\n${""}${text}\n\`\`\``;
 };
 
 /**
