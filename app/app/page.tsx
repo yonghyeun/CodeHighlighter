@@ -3,10 +3,10 @@ import { CodeSnippet } from "@/widgets/codeSnippet/ui";
 export default function Home() {
   return (
     <section className="bg-black min-h-screen flex flex-col items-center">
-      <header className="flex justify-center">
+      <header className="flex justify-center mt-32">
         <CodeHighlighterLogo />
       </header>
-      <main className="w-full flex flex-col items-center mt-40">
+      <main className="w-full flex flex-col items-center">
         <CodeSnippet />
       </main>
       <footer>
