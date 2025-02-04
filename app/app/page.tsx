@@ -12,19 +12,19 @@ import {
 export default function Home() {
   return (
     <StoreProvider>
-      <main className="bg-slate-900">
+      <main className="bg-slate-900 overflow-auto">
         <div className="flex justify-center">
           <CodeHighlighterLogo />
         </div>
         <section className="w-full flex flex-col items-center">
-          <div className="max-w-5xl border">
+          <div className="max-w-5xl border px-2">
             <HighlighCodeButtonWidget />
             <SnippetDisplay />
             <SnippetTextArea />
             <HighlighCodeSettingWidget />
+            <IntroduceText />
           </div>
         </section>
-        <IntroduceText />
       </main>
     </StoreProvider>
   );
@@ -32,7 +32,7 @@ export default function Home() {
 
 const IntroduceText = () => {
   return (
-    <div className="container md:hidden mx-auto px-4 py-8 w-[90%] min-w-[390px]">
+    <section>
       <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
       <ul className="list-disc list-inside space-y-4">
         <li>
@@ -79,7 +79,7 @@ const IntroduceText = () => {
         </a>
         .
       </p>
-    </div>
+    </section>
   );
 };
 
