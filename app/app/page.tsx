@@ -6,7 +6,7 @@ import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
   SnippetTextArea,
-  SnippetDisplay,
+  CodeSnippet,
 } from "@/snippet/ui";
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
         <section className="w-full flex flex-col items-center">
           <div className="w-full max-w-5xl border px-2">
             <HighlighCodeButtonWidget />
-            <SnippetDisplay />
+            <CodeSnippet />
             <SnippetTextArea />
             <HighlighCodeSettingWidget />
             <IntroduceText />

@@ -25,6 +25,10 @@ export const useSnippetContent = () => {
   return {
     htmlContent,
     codeThemeBackgroundColor: getCodeThemeBackground(htmlContent),
+    codeLineNumbers: getCodeLineNumbers(
+      htmlContent,
+      Number(snippetSetting.showLineNumbers)
+    ),
   };
 };
 
@@ -36,4 +40,15 @@ const getCodeThemeBackground = (html: string) => {
   const parser = new DOMParser().parseFromString(html, "text/html");
   const backgroundColor = parser.querySelector("pre")?.style.backgroundColor;
   return backgroundColor ?? "inherit";
+};
+
+const getCodeLineNumbers = (html: string, startNumber: number = 1) => {
+  if (typeof window === "undefined") {
+    return [];
+  }
+
+  const parser = new DOMParser().parseFromString(html, "text/html");
+  const numOfCodeLines = parser.querySelectorAll("span[data-line]").length;
+
+  return Array.from({ length: numOfCodeLines }, (_, i) => i + startNumber);
 };

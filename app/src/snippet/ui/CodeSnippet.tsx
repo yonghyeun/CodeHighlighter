@@ -3,9 +3,9 @@
 import styles from "./styles.module.css";
 import { useSnippetContent, useSnippetTextArea } from "../lib";
 
-export const SnippetDisplay = () => {
-  const { htmlContent, codeThemeBackgroundColor } = useSnippetContent();
-  const { textAreaLineNumbers } = useSnippetTextArea();
+export const CodeSnippet = () => {
+  const { htmlContent, codeThemeBackgroundColor, codeLineNumbers } =
+    useSnippetContent();
 
   if (!htmlContent) {
     return <SnippetDisplayLoading />;
@@ -25,18 +25,18 @@ export const SnippetDisplay = () => {
           backgroundColor: codeThemeBackgroundColor,
         }}
       >
-        <LineNumbers textAreaLineNumbers={textAreaLineNumbers} />
+        <LineNumbers codeLineNumbers={codeLineNumbers} />
         <RehypePrettyCodeBlock htmlContent={htmlContent} />
       </div>
     </section>
   );
 };
 
-const LineNumbers: React.FC<{ textAreaLineNumbers: number[] }> = ({
-  textAreaLineNumbers,
+const LineNumbers: React.FC<{ codeLineNumbers: number[] }> = ({
+  codeLineNumbers,
 }) => (
   <div className="flex flex-col">
-    {textAreaLineNumbers.map((lineNumber) => (
+    {codeLineNumbers.map((lineNumber) => (
       <div key={lineNumber} className={styles.lineNumber}>
         {lineNumber}
       </div>
