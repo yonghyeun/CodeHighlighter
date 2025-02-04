@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type UnderLine = "UnderLine";
-
 export type SettingState = {
   language: string;
   firstUnderLineNumbers: string;

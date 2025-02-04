@@ -53,9 +53,9 @@ export const UnderLineNumbersInput: React.FC<UnderLienInputProps> = ({
 
   return (
     <input
-      className={styles.underLineNumbersInput}
+      className={styles.inputs}
       type="text"
-      id="thirdUnderLineNumbers"
+      id={`${lineKey}UnderLineNumbers`}
       defaultValue={underLineNumbers}
       placeholder="ex : 1,2,5-10"
       autoComplete="off"

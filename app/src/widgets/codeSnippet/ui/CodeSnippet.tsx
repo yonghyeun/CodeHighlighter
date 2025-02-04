@@ -9,6 +9,7 @@ import {
   UnderLineColorInput,
   ThemeSelector,
   UnderLineNumbersInput,
+  StartLineNumberInput,
 } from "@/features/setting/ui";
 
 export const CodeSnippet = () => {
@@ -19,6 +20,7 @@ export const CodeSnippet = () => {
         <div>
           <LanguageSelector />
           <ThemeSelector />
+          <StartLineNumberInput />
         </div>
         <div>
           <CopySnippetToClipboardButton />
