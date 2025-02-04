@@ -5,49 +5,32 @@ import { Setting } from "@/setting/ui";
 import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
-  SnippetTextArea,
-  SnippetDisplay,
+  CodeSnippet,
 } from "@/snippet/ui";
 
 export default function Home() {
   return (
-    <main className="flex md:flex-col min-h-screen">
-      <StoreProvider>
-        <section className="flex flex-col flex-1 bg-slate-900 md:bg-black-100 overflow-x-scroll output ">
-          <div className="flex flex-col items-center  h-full gap-5  overflow-scroll output">
-            <CodeHighlighterLogo />
-            <section className="flex flex-col items-center w-full">
-              <div className=" flex w-[90%] px-[1.5rem] mb-2 gap-[0.5rem] justify-end">
-                <CopySnippetToClipboardButton />
-                <DownLoadSnippetToSVGButton />
-              </div>
-              <SnippetDisplay />
-              <IntroduceText />
-            </section>
+    <StoreProvider>
+      <main className="bg-slate-900">
+        <div className="flex justify-center">
+          <CodeHighlighterLogo />
+        </div>
+        <section className="w-full flex flex-col items-center">
+          <div className="w-full max-w-5xl px-2">
+            <HighlighCodeButtonWidget />
+            <CodeSnippet />
+            <HighlighCodeSettingWidget />
+            <IntroduceText />
           </div>
         </section>
-        <section className="flex-1 bg-slate-900">
-          <div className="flex flex-col gap-5  h-full justify-center items-center">
-            <SnippetTextArea />
-            <Setting>
-              <Setting.Language />
-              <Setting.Theme />
-              <Setting.Title />
-              <Setting.ShowLineNumbers />
-              <Setting.AddLine />
-              <Setting.PointingLine />
-              <Setting.RemoveLine />
-            </Setting>
-          </div>
-        </section>
-      </StoreProvider>
-    </main>
+      </main>
+    </StoreProvider>
   );
 }
 
 const IntroduceText = () => {
   return (
-    <div className="container md:hidden mx-auto px-4 py-8 w-[90%] min-w-[390px]">
+    <section>
       <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
       <ul className="list-disc list-inside space-y-4">
         <li>
@@ -94,7 +77,7 @@ const IntroduceText = () => {
         </a>
         .
       </p>
-    </div>
+    </section>
   );
 };
 
@@ -132,4 +115,23 @@ const CodeHighlighterLogo = () => (
       </text>
     </svg>
   </h1>
+);
+
+const HighlighCodeButtonWidget = () => (
+  <div className=" flex mb-2 gap-[0.5rem] justify-end">
+    <CopySnippetToClipboardButton />
+    <DownLoadSnippetToSVGButton />
+  </div>
+);
+
+const HighlighCodeSettingWidget = () => (
+  <Setting>
+    <Setting.Language />
+    <Setting.Theme />
+    <Setting.Title />
+    <Setting.ShowLineNumbers />
+    <Setting.AddLine />
+    <Setting.PointingLine />
+    <Setting.RemoveLine />
+  </Setting>
 );

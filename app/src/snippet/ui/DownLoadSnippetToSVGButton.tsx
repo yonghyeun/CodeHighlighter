@@ -2,10 +2,7 @@ import { toSvg } from "html-to-image";
 
 export const DownLoadSnippetToSVGButton = () => {
   const handleDownload = async () => {
-    const $codeBlock = document.querySelector("pre");
-    if (!$codeBlock) {
-      return;
-    }
+    const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
 
     /* 스크롤바 없애기 전 저장 */
     const originalWidth = $codeBlock.style.width;

@@ -1,7 +1,14 @@
+@font-face {
+  font-family: "Jet-Brains";
+  src: url("/fonts/JetBrainsMono-Medium.ttf") format("woff2"),
+    url("/fonts/JetBrainsMono-Medium.ttf") format("woff"),
+    url("/fonts/JetBrainsMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
 .snippetTextAreaWrapper {
   display: flex;
-  width: 90%;
-  min-width: 390px;
   background-color: #252525;
   border-radius: 12px;
   padding: 1rem 0rem;
@@ -9,7 +16,6 @@
 
 .snippetInput {
   width: 100%;
-  min-width: 390px;
   height: auto;
   font-weight: 500;
   color: #eee;
@@ -22,18 +28,30 @@
 }
 
 .snippetOutputWrapper {
-  width: 90%;
-  min-width: 390px;
+  overflow: hidden;
   border-radius: 12px;
+}
+
+.codeBlock {
+  display: flex;
+  border-radius: 12px;
+  padding: 1rem 1rem 1rem 0rem;
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-variant-ligatures: contextual;
+  overflow: auto;
 }
 
 .snippetOutput {
   white-space: pre-wrap;
   word-wrap: break-word;
+  width: 100%;
 }
 
-.snippetOutput pre {
-  border-radius: 12px;
+.snippetOutput > figure code {
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-variant-ligatures: contextual;
 }
 
 .snippetOutput span[data-highlighted-line-id="add"] {
@@ -48,10 +66,44 @@
   background-color: var(--pointingLineColor);
 }
 
+.lineNumber {
+  display: inline-block;
+  text-align: right;
+  padding-right: 1rem;
+  width: 3rem;
+  color: gray;
+}
+
 .loading {
   background-color: transparent;
   height: 296px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.codeContentArea {
+  position: relative;
+  width: 100%;
+}
+
+.invisibleTextAreaWrapper {
+  position: absolute;
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-variant-ligatures: contextual;
+  width: 100%;
+}
+
+.invisibleTextAreaWrapper > textarea {
+  width: 100%;
+  color: transparent;
+  background: transparent;
+  caret-color: gray;
+  resize: none;
+  overflow: hidden;
+}
+
+.invisibleTextAreaWrapper > textarea:focus {
+  outline: none;
 }

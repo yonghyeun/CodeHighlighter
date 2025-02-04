@@ -9,15 +9,6 @@
     url("/fonts/Menlo-Regular.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "Jet-Brains";
-  src: url("/fonts/JetBrainsMono-Medium.ttf") format("woff2"),
-    url("/fonts/JetBrainsMono-Medium.ttf") format("woff"),
-    url("/fonts/JetBrainsMono-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
 :root {
   --addLineColor: #2f502f;
   --removedLineNumber: #644444;
@@ -30,24 +21,6 @@ body {
 }
 
 /* snippetOutput 관련 CSS 속성 */
-
-pre {
-  overflow-x: scroll;
-  padding: 1rem 1rem 1rem 0rem;
-  min-width: 390px;
-}
-
-figure code {
-  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  font-variant-ligatures: contextual;
-}
-
-textarea {
-  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  font-variant-ligatures: contextual;
-}
 
 span[data-line] {
   font-weight: 500;
@@ -64,26 +37,6 @@ figcaption {
 
 code {
   display: block;
-}
-
-.lineWrapper {
-  display: flex;
-}
-
-.lineNumber {
-  display: inline-block;
-  text-align: right;
-  margin-right: 1rem;
-  width: 3rem;
-}
-
-.lineWrapper > span[data-line] {
-  display: flex;
-  flex-grow: 1;
-}
-
-.output::-webkit-scrollbar {
-  display: none;
 }
 
 ::-webkit-scrollbar {
