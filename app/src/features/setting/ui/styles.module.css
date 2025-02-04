@@ -65,3 +65,21 @@
 .input:focus {
   outline: none;
 }
+
+.selector {
+  color: white;
+  background: transparent;
+  padding: 0.3rem;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.selector ::webkit-scrollbar {
+  width: 1px;
+}
+
+.selector > option {
+  color: white;
+  background: black;
+}

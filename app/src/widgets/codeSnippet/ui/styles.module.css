@@ -1,0 +1,10 @@
+.codeSnippetHeader {
+  display: flex;
+  justify-content: between;
+  margin-bottom: 0.5rem;
+}
+
+.codeSnippetHeader > div {
+  display: flex;
+  gap: 4px;
+}
