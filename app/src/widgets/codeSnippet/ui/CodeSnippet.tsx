@@ -6,23 +6,19 @@ import {
 import styles from "./styles.module.css";
 import {
   LanguageSelector,
-  LineColorInput,
+  UnderLineColorInput,
   ThemeSelector,
+  UnderLineNumbersInput,
 } from "@/features/setting/ui";
 
 export const CodeSnippet = () => {
   return (
-    <section>
+    <section className={styles.codeSnippet}>
       {/* header */}
       <div className={styles.codeSnippetHeader}>
         <div>
           <LanguageSelector />
           <ThemeSelector />
-          <div className={styles.lineColorInputContainer}>
-            <LineColorInput lineKey="addLineColor" />
-            <LineColorInput lineKey="removedLineColor" />
-            <LineColorInput lineKey="pointingLineColor" />
-          </div>
         </div>
         <div>
           <CopySnippetToClipboardButton />
@@ -31,6 +27,19 @@ export const CodeSnippet = () => {
       </div>
       {/* content */}
       <CodeBlock />
+      {/* footer */}
+      <div className={styles.codeSnippetFooter}>
+        {["first", "second", "third"].map((lineKey) => (
+          <div>
+            <UnderLineColorInput
+              lineKey={lineKey as "first" | "second" | "third"}
+            />
+            <UnderLineNumbersInput
+              lineKey={lineKey as "first" | "second" | "third"}
+            />
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

@@ -10,9 +10,9 @@
 }
 
 :root {
-  --addLineColor: #2f502f;
-  --removedLineNumber: #644444;
-  --pointingLineColor: #646682;
+  --firstUnderLineColor: #2f502f;
+  --secondUnderLineNumbers: #644444;
+  --thirdUnderLineColor: #646682;
 }
 
 body {

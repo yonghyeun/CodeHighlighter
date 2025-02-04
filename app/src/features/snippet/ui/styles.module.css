@@ -55,15 +55,15 @@
 }
 
 .snippetOutput span[data-highlighted-line-id="add"] {
-  background-color: var(--addLineColor);
+  background-color: var(--firstUnderLineColor);
 }
 
 .snippetOutput span[data-highlighted-line-id="remove"] {
-  background-color: var(--removedLineNumber);
+  background-color: var(--secondUnderLineNumbers);
 }
 
 .snippetOutput span[data-highlighted-line-id="pointing"] {
-  background-color: var(--pointingLineColor);
+  background-color: var(--thirdUnderLineColor);
 }
 
 .lineNumber {

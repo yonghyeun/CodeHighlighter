@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type UnderLine = "UnderLine";
+
 export type SettingState = {
   language: string;
-  addLineNumber: string;
-  removedLineNumber: string;
-  pointingLineNumber: string;
+  firstUnderLineNumbers: string;
+  secondUnderLineNumbers: string;
+  thirdUnderLineNumbers: string;
+
+  firstUnderLineColor: string;
+  secondUnderLineColor: string;
+  thirdUnderLineColor: string;
+
   showLineNumbers: string;
-  addLineColor: string;
-  removedLineColor: string;
-  pointingLineColor: string;
+
   theme: string;
 };
 
@@ -19,28 +24,28 @@ type ChangeSettingPayload = {
 
 const initialState = {
   showLineNumbers: "1",
-  addLineNumber: "",
-  removedLineNumber: "",
-  pointingLineNumber: "",
+  firstUnderLineNumbers: "",
+  secondUnderLineNumbers: "",
+  thirdUnderLineNumbers: "",
   language: "tsx",
-  addLineColor: "#2f502f",
-  removedLineColor: "#644444",
-  pointingLineColor: "#646682",
+  firstUnderLineColor: "#2f502f",
+  secondUnderLineColor: "#644444",
+  thirdUnderLineColor: "#646682",
   theme: "dracula",
 } satisfies SettingState as SettingState;
 
 export const persistStoreSettingKeys: (keyof SettingState)[] = [
   "language",
-  "addLineColor",
-  "removedLineColor",
-  "pointingLineColor",
+  "firstUnderLineColor",
+  "secondUnderLineColor",
+  "thirdUnderLineColor",
   "theme",
 ];
 
 const cssVariableSettingKeys: (keyof SettingState)[] = [
-  "addLineColor",
-  "removedLineColor",
-  "pointingLineColor",
+  "firstUnderLineColor",
+  "secondUnderLineColor",
+  "thirdUnderLineColor",
 ];
 
 const settingSlice = createSlice({

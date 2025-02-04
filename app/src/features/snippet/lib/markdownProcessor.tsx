@@ -28,19 +28,22 @@ export const preprocessMarkdown = (text: string, setting: SettingState) => {
   const {
     showLineNumbers,
     language,
-    addLineNumber,
-    removedLineNumber,
-    pointingLineNumber,
+    firstUnderLineNumbers,
+    secondUnderLineNumbers,
+    thirdUnderLineNumbers,
   } = setting;
 
-  const relativeAdd = RelativeLineNumber(showLineNumbers || "1", addLineNumber);
+  const relativeAdd = RelativeLineNumber(
+    showLineNumbers || "1",
+    firstUnderLineNumbers
+  );
   const relativeRemove = RelativeLineNumber(
     showLineNumbers || "1",
-    removedLineNumber
+    secondUnderLineNumbers
   );
   const relativePointing = RelativeLineNumber(
     showLineNumbers || "1",
-    pointingLineNumber
+    thirdUnderLineNumbers
   );
 
   return `\`\`\`${language} {${relativeAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing\n${""}${text}\n\`\`\``;

@@ -1,3 +1,9 @@
+.codeSnippet {
+  width: 100%;
+  max-width: 64rem;
+  padding: 0rem 0.5re;
+}
+
 .codeSnippetHeader {
   display: flex;
   justify-content: space-between;
@@ -19,4 +25,25 @@
   display: flex;
   gap: 0.3rem;
   font-size: 0.8rem;
+}
+
+.codeSnippetFooter {
+  display: flex;
+  justify-content: start;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.codeSnippetFooter > div {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.3rem;
 }
