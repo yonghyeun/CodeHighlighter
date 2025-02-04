@@ -10,7 +10,7 @@ export default function Home() {
         <header className="flex justify-center">
           <CodeHighlighterLogo />
         </header>
-        <main className="w-full flex flex-col items-center mt-12">
+        <main className="w-full flex flex-col items-center mt-40">
           <CodeSnippet />
         </main>
         <footer>
