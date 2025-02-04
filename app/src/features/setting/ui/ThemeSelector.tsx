@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@/redux/lib";
 import { changeSetting } from "../model";
-import { BundleTheme } from "../config";
+import { BundleTheme, SETTING_TOOLTIP } from "../config";
 import styles from "./styles.module.css";
 import { useEffect } from "react";
+import { withTooltip } from "@/shared/lib/withTooltip";
 
-export const ThemeSelector = () => {
+export const ThemeSelector = withTooltip(() => {
   const { theme } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
 
@@ -44,4 +45,4 @@ export const ThemeSelector = () => {
       </select>
     </div>
   );
-};
+})(SETTING_TOOLTIP.theme, 1);
