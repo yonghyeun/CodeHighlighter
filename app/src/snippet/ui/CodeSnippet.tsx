@@ -2,6 +2,7 @@
 
 import styles from "./styles.module.css";
 import { useSnippetContent, useSnippetTextArea } from "../lib";
+import { InvisibleSnippetTextArea } from "./InvisibleSnippetTextArea";
 
 export const CodeSnippet = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers } =
@@ -26,7 +27,10 @@ export const CodeSnippet = () => {
         }}
       >
         <LineNumbers codeLineNumbers={codeLineNumbers} />
-        <RehypePrettyCodeBlock htmlContent={htmlContent} />
+        <div className={styles.codeContentArea}>
+          <InvisibleSnippetTextArea />
+          <RehypePrettyCodeBlock htmlContent={htmlContent} />
+        </div>
       </div>
     </section>
   );

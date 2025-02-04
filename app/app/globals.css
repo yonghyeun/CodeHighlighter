@@ -22,12 +22,6 @@ body {
 
 /* snippetOutput 관련 CSS 속성 */
 
-textarea {
-  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  font-variant-ligatures: contextual;
-}
-
 span[data-line] {
   font-weight: 500;
 }

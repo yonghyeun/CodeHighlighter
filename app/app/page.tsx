@@ -5,7 +5,6 @@ import { Setting } from "@/setting/ui";
 import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
-  SnippetTextArea,
   CodeSnippet,
 } from "@/snippet/ui";
 
@@ -17,10 +16,9 @@ export default function Home() {
           <CodeHighlighterLogo />
         </div>
         <section className="w-full flex flex-col items-center">
-          <div className="w-full max-w-5xl border px-2">
+          <div className="w-full max-w-5xl px-2">
             <HighlighCodeButtonWidget />
             <CodeSnippet />
-            <SnippetTextArea />
             <HighlighCodeSettingWidget />
             <IntroduceText />
           </div>

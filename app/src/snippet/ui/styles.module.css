@@ -81,3 +81,29 @@
   justify-content: center;
   align-items: center;
 }
+
+.codeContentArea {
+  position: relative;
+  width: 100%;
+}
+
+.invisibleTextAreaWrapper {
+  position: absolute;
+  font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-variant-ligatures: contextual;
+  width: 100%;
+}
+
+.invisibleTextAreaWrapper > textarea {
+  width: 100%;
+  color: transparent;
+  background: transparent;
+  caret-color: gray;
+  resize: none;
+  overflow: hidden;
+}
+
+.invisibleTextAreaWrapper > textarea:focus {
+  outline: none;
+}
