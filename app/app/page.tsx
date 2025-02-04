@@ -11,7 +11,7 @@ import {
 export default function Home() {
   return (
     <StoreProvider>
-      <main className="bg-slate-900">
+      <main className="bg-black">
         <div className="flex justify-center">
           <CodeHighlighterLogo />
         </div>
