@@ -5,8 +5,8 @@ import { Setting } from "@/features/setting/ui";
 import {
   CopySnippetToClipboardButton,
   DownLoadSnippetToSVGButton,
-  CodeSnippet,
 } from "@/features/snippet/ui";
+import { CodeSnippet } from "@/widgets/codeSnippet/ui";
 
 export default function Home() {
   return (
