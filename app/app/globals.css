@@ -82,10 +82,6 @@ code {
   flex-grow: 1;
 }
 
-.output::-webkit-scrollbar {
-  display: none;
-}
-
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;

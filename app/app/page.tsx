@@ -11,37 +11,22 @@ import {
 
 export default function Home() {
   return (
-    <main className="flex md:flex-col min-h-screen">
-      <StoreProvider>
-        <section className="flex flex-col flex-1 bg-slate-900 md:bg-black-100 overflow-x-scroll output ">
-          <div className="flex flex-col items-center  h-full gap-5  overflow-scroll output">
-            <CodeHighlighterLogo />
-            <section className="flex flex-col items-center w-full">
-              <div className=" flex w-[90%] px-[1.5rem] mb-2 gap-[0.5rem] justify-end">
-                <CopySnippetToClipboardButton />
-                <DownLoadSnippetToSVGButton />
-              </div>
-              <SnippetDisplay />
-              <IntroduceText />
-            </section>
-          </div>
-        </section>
-        <section className="flex-1 bg-slate-900">
-          <div className="flex flex-col gap-5  h-full justify-center items-center">
+    <StoreProvider>
+      <main className="bg-slate-900">
+        <div className="flex justify-center">
+          <CodeHighlighterLogo />
+        </div>
+        <section className="w-full flex flex-col items-center">
+          <div className="max-w-5xl">
+            <HighlighCodeButtonWidget />
+            <SnippetDisplay />
             <SnippetTextArea />
-            <Setting>
-              <Setting.Language />
-              <Setting.Theme />
-              <Setting.Title />
-              <Setting.ShowLineNumbers />
-              <Setting.AddLine />
-              <Setting.PointingLine />
-              <Setting.RemoveLine />
-            </Setting>
+            <HighlighCodeSettingWidget />
           </div>
         </section>
-      </StoreProvider>
-    </main>
+        <IntroduceText />
+      </main>
+    </StoreProvider>
   );
 }
 
@@ -132,4 +117,23 @@ const CodeHighlighterLogo = () => (
       </text>
     </svg>
   </h1>
+);
+
+const HighlighCodeButtonWidget = () => (
+  <div className=" flex px-[1.5rem] mb-2 gap-[0.5rem] justify-end">
+    <CopySnippetToClipboardButton />
+    <DownLoadSnippetToSVGButton />
+  </div>
+);
+
+const HighlighCodeSettingWidget = () => (
+  <Setting>
+    <Setting.Language />
+    <Setting.Theme />
+    <Setting.Title />
+    <Setting.ShowLineNumbers />
+    <Setting.AddLine />
+    <Setting.PointingLine />
+    <Setting.RemoveLine />
+  </Setting>
 );
