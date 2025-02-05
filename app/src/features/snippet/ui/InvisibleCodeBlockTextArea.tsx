@@ -6,7 +6,7 @@ export const InvisibleSnippetTextArea: React.FC = () => {
 
   return (
     <div className={styles.invisibleTextAreaWrapper}>
-      <textarea {...textAreaAttributes} />
+      <textarea {...textAreaAttributes} spellCheck="false" />
     </div>
   );
 };
