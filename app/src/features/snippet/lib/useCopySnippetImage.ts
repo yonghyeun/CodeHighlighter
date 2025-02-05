@@ -23,7 +23,7 @@ export const useCopySnippetImage = () => {
       $codeBlock.style.overflow = "visible";
 
       const canvas = await toCanvas($codeBlock, {
-        quality: 1,
+        pixelRatio: 5,
       });
 
       canvas.toBlob(async (blob) => {
