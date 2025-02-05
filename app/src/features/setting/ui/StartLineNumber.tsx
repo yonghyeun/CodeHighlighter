@@ -1,10 +1,9 @@
 import { useAppDispatch } from "@/redux/lib";
 import { changeSetting } from "../model";
 import styles from "./styles.module.css";
-import { withTooltip } from "@/shared/lib/withTooltip";
-import { SETTING_TOOLTIP } from "../config";
+import React from "react";
 
-export const StartLineNumberInput = withTooltip(() => {
+export const StartLineNumberInput: React.FC = () => {
   const dispatch = useAppDispatch();
 
   return (
@@ -28,4 +27,4 @@ export const StartLineNumberInput = withTooltip(() => {
       }}
     />
   );
-})(SETTING_TOOLTIP.startLineNumber, 1);
+};

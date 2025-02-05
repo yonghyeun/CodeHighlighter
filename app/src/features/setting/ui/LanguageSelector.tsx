@@ -1,11 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@/redux/lib";
 import { changeSetting } from "../model";
-import { CodeLanguage, SETTING_TOOLTIP } from "../config";
+import { CodeLanguage } from "../config";
 import styles from "./styles.module.css";
 import { useEffect } from "react";
-import { withTooltip } from "@/shared/lib/withTooltip";
 
-export const LanguageSelector = withTooltip(() => {
+export const LanguageSelector = () => {
   const { language } = useAppSelector((state) => state.setting);
   const dispatch = useAppDispatch();
 
@@ -42,4 +41,4 @@ export const LanguageSelector = withTooltip(() => {
       ))}
     </select>
   );
-})(SETTING_TOOLTIP.language, 1);
+};
