@@ -6,7 +6,6 @@ export const InvisibleSnippetTextArea: React.FC = () => {
 
   return (
     <div className={styles.invisibleTextAreaWrapper}>
-      <label className="sr-only" htmlFor="snippetTextArea" />
       <textarea {...textAreaAttributes} />
     </div>
   );

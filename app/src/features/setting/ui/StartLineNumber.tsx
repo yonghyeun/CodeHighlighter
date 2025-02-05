@@ -1,8 +1,10 @@
 import { useAppDispatch } from "@/redux/lib";
 import { changeSetting } from "../model";
 import styles from "./styles.module.css";
+import { withTooltip } from "@/shared/lib/withTooltip";
+import { SETTING_TOOLTIP } from "../config";
 
-export const StartLineNumberInput = () => {
+export const StartLineNumberInput = withTooltip(() => {
   const dispatch = useAppDispatch();
 
   return (
@@ -26,4 +28,4 @@ export const StartLineNumberInput = () => {
       }}
     />
   );
-};
+})(SETTING_TOOLTIP.startLineNumber, 1);

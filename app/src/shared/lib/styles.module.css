@@ -1,0 +1,36 @@
+.relative {
+  position: relative;
+}
+
+.tooltip {
+  min-width: 128px;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-in-out;
+  border: 1px solid black;
+  color: #eee;
+  background: #141414;
+  padding: 1rem 0.5rem;
+  border-radius: 12px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.top {
+  position: absolute;
+  top: -100%;
+  transform: translateY(-80%);
+}
+
+.bottom {
+  position: absolute;
+  bottom: -100%;
+  transform: translateY(80%);
+}
