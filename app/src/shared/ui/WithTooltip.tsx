@@ -3,7 +3,7 @@ import tooltipStyles from "./styles.module.css";
 
 interface TooltipProps {
   tooltipText: string;
-  direction: 1 | 0;
+  direction: "top" | "bottom";
 }
 
 export const WithTooltip: React.FC<React.PropsWithChildren<TooltipProps>> = ({
@@ -16,6 +16,8 @@ export const WithTooltip: React.FC<React.PropsWithChildren<TooltipProps>> = ({
     <div
       onMouseEnter={() => setIsMouseEnter(true)}
       onMouseLeave={() => setIsMouseEnter(false)}
+      className={tooltipStyles.relative}
+      aria-label={isMouseEnter ? tooltipProps.tooltipText : undefined}
     >
       {isMouseEnter && <DefaultTooltip {...tooltipProps} />}
       {children}
@@ -25,7 +27,7 @@ export const WithTooltip: React.FC<React.PropsWithChildren<TooltipProps>> = ({
 
 const DefaultTooltip: React.FC<TooltipProps> = ({ direction, tooltipText }) => {
   const className = `${tooltipStyles.tooltip} ${
-    direction === 1 ? tooltipStyles.top : tooltipStyles.bottom
+    direction === "top" ? tooltipStyles.top : tooltipStyles.bottom
   }`;
 
   return <div className={className}>{tooltipText}</div>;
