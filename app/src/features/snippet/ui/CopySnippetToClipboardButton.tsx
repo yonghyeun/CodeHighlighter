@@ -1,8 +1,6 @@
-import withTooltip from "@/shared/lib/withTooltip";
 import { useCopySnippetImage } from "../lib";
-import { SNIPPET_TOOLTIP } from "../config";
 
-export const CopySnippetToClipboardButton = withTooltip(() => {
+export const CopySnippetToClipboardButton = () => {
   const { status, handleCopy } = useCopySnippetImage();
 
   return (
@@ -15,7 +13,7 @@ export const CopySnippetToClipboardButton = withTooltip(() => {
       <p className="ml-2 text-sm">Copy Image</p>
     </button>
   );
-})(SNIPPET_TOOLTIP.copySnippet, 1);
+};
 
 /* 로딩 시간이 매우 짧으니 loading 상태는 빼자 */
 export type Status = "idle" | "succeed" | "fail";
