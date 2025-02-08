@@ -7,12 +7,12 @@ import rehypeStringify from "rehype-stringify";
 import type { SettingState } from "@/features/setting/model";
 import type { BundledTheme } from "shiki";
 
-const RelativeLineNumber = (
-  showLineNumber: SettingState["showLineNumbers"],
-  colorLineString: string
+const getRelativeLineNumbers = (
+  startLineNumber: number,
+  lineNumberExpressions: string
 ) => {
-  // 1. colorLineString 을 숫자들로 변경
-  const lines = colorLineString.split(",").flatMap((str) => {
+  // 1. lineNumberExpressions를 숫자들로 변경
+  const lineNumbersArray = lineNumberExpressions.split(",").flatMap((str) => {
     if (str.includes("-")) {
       const [start, end] = str.split("-").map(Number);
       return Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
@@ -20,8 +20,9 @@ const RelativeLineNumber = (
       return Number(str);
     }
   });
-  // 2. colorLineNumber - showLineNumber + 1 로 변경하기
-  const relativeLines = lines.map((line) => line - Number(showLineNumber) + 1);
+  const relativeLines = lineNumbersArray.map(
+    (lineNumber) => lineNumber - startLineNumber + 1
+  );
   // 3. 문자열 형태로 변경
   return relativeLines.join(",");
 };
@@ -35,16 +36,21 @@ export const preprocessMarkdown = (text: string, setting: SettingState) => {
     thirdUnderLineNumbers,
   } = setting;
 
-  const relativeAdd = RelativeLineNumber(
-    showLineNumbers || "1",
+  const startLineNumber =
+    isNaN(Number(showLineNumbers)) || Number(showLineNumbers) < 1
+      ? 1
+      : Number(showLineNumbers);
+
+  const relativeAdd = getRelativeLineNumbers(
+    startLineNumber,
     firstUnderLineNumbers
   );
-  const relativeRemove = RelativeLineNumber(
-    showLineNumbers || "1",
+  const relativeRemove = getRelativeLineNumbers(
+    startLineNumber,
     secondUnderLineNumbers
   );
-  const relativePointing = RelativeLineNumber(
-    showLineNumbers || "1",
+  const relativePointing = getRelativeLineNumbers(
+    startLineNumber,
     thirdUnderLineNumbers
   );
 
