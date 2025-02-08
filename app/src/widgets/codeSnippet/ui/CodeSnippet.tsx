@@ -3,7 +3,7 @@
 import {
   CodeBlock,
   CopySnippetToClipboardButton,
-  DownLoadSnippetToSVGButton,
+  DownloadSnippetButton,
 } from "@/features/snippet/ui";
 import styles from "./styles.module.css";
 import {
@@ -52,7 +52,7 @@ export const CodeSnippet = () => {
               tooltipText={SNIPPET_TOOLTIP.downloadSnippet}
               direction="top"
             >
-              <DownLoadSnippetToSVGButton />
+              <DownloadSnippetButton />
             </WithTooltip>
           </div>
         </div>
