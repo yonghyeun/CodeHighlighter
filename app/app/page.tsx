@@ -2,7 +2,7 @@ import { CodeSnippet } from "@/widgets/codeSnippet/ui";
 
 export default function Home() {
   return (
-    <section className="bg-black min-h-screen flex flex-col items-center">
+    <section className="bg-black min-h-screen flex flex-col items-center px-4">
       <header className="flex justify-center mt-32">
         <CodeHighlighterLogo />
       </header>
