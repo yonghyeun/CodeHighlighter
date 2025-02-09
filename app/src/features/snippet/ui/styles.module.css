@@ -33,13 +33,32 @@
 }
 
 .codeBlock {
-  display: flex;
   border-radius: 12px;
-  padding: 1rem 1rem 1rem 0rem;
+  padding: 0.5rem 1rem 1rem 0rem;
+  overflow: auto;
+}
+
+.codeBlockContent {
+  display: flex;
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   font-variant-ligatures: none;
-  overflow: auto;
+}
+
+/* CodeBlockHeader */
+.codeBlockHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0.5rem 0.5rem 2rem;
+  color: gray;
+  font-style: italic;
+}
+
+.codeBlockHeader > input {
+  flex: 1;
+  background-color: transparent;
+  font-style: inherit;
 }
 
 .snippetOutput {
