@@ -1,7 +1,9 @@
 import { toCanvas } from "html-to-image";
-import { useInteractionStatusStore } from "../model";
 import { useRef } from "react";
+import { useInteractionStatusStore } from "../model";
 import { useSnippetContent } from "./useSnippetContent";
+import { canvasToBlob, createCodeBlockEditor } from "./utils";
+import { PIXEL_RATIO } from "./config";
 
 export const useSaveSnippetImage = () => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -15,64 +17,40 @@ export const useSaveSnippetImage = () => {
       clearTimeout(timerRef.current);
     }
 
-    setStatus({ status: "loading" });
     const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
 
-    /* 스크롤바 없애기 전 저장 */
-    const originalWidth = $codeBlock.style.width;
-    const originalOverflowX = $codeBlock.style.overflowX;
-    /* 스크롤바 없애기  */
-    $codeBlock.style.width = "fit-content";
-    $codeBlock.style.overflow = "visible";
+    const codeBlockEditor = createCodeBlockEditor(
+      $codeBlock,
+      document.querySelector("#codeBlockTitle") as HTMLInputElement
+    );
 
-    const $codeBlockTitle = document.querySelector(
-      "#codeBlockTitle"
-    ) as HTMLInputElement;
+    try {
+      setStatus({ status: "loading" });
 
-    /* 타이틀이 존재하지 않는다면 placeHolder가 나타나지 않도록 visibility 조절 */
+      codeBlockEditor.resizing();
 
-    if ($codeBlockTitle.value.length < 1) {
-      $codeBlockTitle.style.visibility = "hidden";
+      const canvas = await toCanvas($codeBlock, {
+        pixelRatio: PIXEL_RATIO,
+      });
+
+      const blob = await canvasToBlob(canvas);
+
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = IMAGE_NAME;
+      link.click();
+
+      setStatus({ status: "succeed" });
+    } catch (error) {
+      console.error(error);
+      setStatus({ status: "fail" });
+    } finally {
+      codeBlockEditor.restore();
+
+      timerRef.current = setTimeout(() => {
+        setStatus({ status: "idle" });
+      }, 1000);
     }
-
-    const canvas = await toCanvas($codeBlock, {
-      pixelRatio: 5,
-    });
-
-    canvas.toBlob((blob) => {
-      if (!blob) {
-        /* 스크롤바 복원  */
-        $codeBlock.style.width = originalWidth;
-        $codeBlock.style.overflowX = originalOverflowX;
-
-        if ($codeBlockTitle.value.length < 1) {
-          $codeBlockTitle.style.visibility = "visible";
-        }
-
-        setStatus({ status: "fail" });
-        timerRef.current = setTimeout(() => {
-          setStatus({ status: "idle" });
-        }, 1000);
-      } else {
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = IMAGE_NAME;
-        link.click();
-
-        setStatus({ status: "succeed" });
-        timerRef.current = setTimeout(() => {
-          setStatus({ status: "idle" });
-        }, 1000);
-
-        /* 스크롤바 복원  */
-        $codeBlock.style.width = originalWidth;
-        $codeBlock.style.overflowX = originalOverflowX;
-
-        if ($codeBlockTitle.value.length < 1) {
-          $codeBlockTitle.style.visibility = "visible";
-        }
-      }
-    }, "code/png");
   };
 
   return { status, handleDownload };
