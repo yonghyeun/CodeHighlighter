@@ -1,7 +1,17 @@
 import { toCanvas } from "html-to-image";
+import { useInteractionStatusStore } from "../model";
+import { useRef } from "react";
 
 export const DownloadSnippetButton = () => {
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const setStatus = useInteractionStatusStore.setState;
+
   const handleDownload = async () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    setStatus({ status: "loading" });
     const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
 
     /* 스크롤바 없애기 전 저장 */
@@ -34,11 +44,21 @@ export const DownloadSnippetButton = () => {
         if ($codeBlockTitle.value.length < 1) {
           $codeBlockTitle.style.visibility = "visible";
         }
+
+        setStatus({ status: "fail" });
+        timerRef.current = setTimeout(() => {
+          setStatus({ status: "idle" });
+        }, 1000);
       } else {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = "code.png";
         link.click();
+
+        setStatus({ status: "succeed" });
+        timerRef.current = setTimeout(() => {
+          setStatus({ status: "idle" });
+        }, 1000);
 
         /* 스크롤바 복원  */
         $codeBlock.style.width = originalWidth;
