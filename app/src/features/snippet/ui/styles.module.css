@@ -33,19 +33,68 @@
 }
 
 .codeBlock {
-  display: flex;
   border-radius: 12px;
-  padding: 1rem 1rem 1rem 0rem;
+  padding: 0.5rem 1rem 1rem 0rem;
+  overflow: auto;
+}
+
+.codeBlockContent {
+  display: flex;
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   font-variant-ligatures: none;
-  overflow: auto;
+}
+
+/* codeBlockHeader */
+
+.codeBlockHeader {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem 0.5rem 1rem;
+}
+
+.codeBlockLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: gray;
+  flex-grow: 1;
+}
+
+.codeBlockLabel input {
+  background-color: transparent;
+  width: 80%;
+  padding-right: 1rem;
+}
+
+.codeBlockIconWrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.codeBlockHeaderIcon {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
+.codeBlockHeaderIcon:nth-child(1) {
+  background-color: #ff605c;
+}
+
+.codeBlockHeaderIcon:nth-child(2) {
+  background-color: #ffbd44;
+}
+
+.codeBlockHeaderIcon:nth-child(3) {
+  background-color: #00ca56;
 }
 
 .snippetOutput {
   white-space: pre-wrap;
   word-wrap: break-word;
-  width: 100%;
 }
 
 .snippetOutput > figure code {

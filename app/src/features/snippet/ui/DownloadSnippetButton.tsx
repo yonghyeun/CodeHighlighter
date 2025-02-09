@@ -11,6 +11,16 @@ export const DownloadSnippetButton = () => {
     $codeBlock.style.width = "fit-content";
     $codeBlock.style.overflow = "visible";
 
+    const $codeBlockTitle = document.querySelector(
+      "#codeBlockTitle"
+    ) as HTMLInputElement;
+
+    /* 타이틀이 존재하지 않는다면 placeHolder가 나타나지 않도록 visibility 조절 */
+
+    if ($codeBlockTitle.value.length < 1) {
+      $codeBlockTitle.style.visibility = "hidden";
+    }
+
     const canvas = await toCanvas($codeBlock, {
       pixelRatio: 5,
     });
@@ -26,6 +36,10 @@ export const DownloadSnippetButton = () => {
     /* 스크롤바 복원  */
     $codeBlock.style.width = originalWidth;
     $codeBlock.style.overflowX = originalOverflowX;
+
+    if ($codeBlockTitle.value.length < 1) {
+      $codeBlockTitle.style.visibility = "visible";
+    }
   };
 
   return (

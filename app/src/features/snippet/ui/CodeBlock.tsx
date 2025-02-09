@@ -5,7 +5,7 @@ import { useSnippetContent } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
 
 export const CodeBlock = () => {
-  const { htmlContent, codeThemeBackgroundColor, codeLineNumbers } =
+  const { htmlContent, codeThemeBackgroundColor, codeLineNumbers, language } =
     useSnippetContent();
 
   if (!htmlContent) {
@@ -19,19 +19,19 @@ export const CodeBlock = () => {
         backgroundColor: codeThemeBackgroundColor,
       }}
     >
-      <div
+      <section
         id="codeBlock"
         className={styles.codeBlock}
         style={{
           backgroundColor: codeThemeBackgroundColor,
         }}
       >
-        <LineNumbers codeLineNumbers={codeLineNumbers} />
-        <div className={styles.codeContentArea}>
-          <InvisibleSnippetTextArea />
-          <RehypePrettyCodeBlock htmlContent={htmlContent} />
-        </div>
-      </div>
+        <CodeBlockHeader language={language} />
+        <CodeBlockContent
+          htmlContent={htmlContent}
+          codeLineNumbers={codeLineNumbers}
+        />
+      </section>
     </section>
   );
 };
@@ -46,15 +46,6 @@ const LineNumbers: React.FC<{ codeLineNumbers: number[] }> = ({
       </div>
     ))}
   </div>
-);
-
-const RehypePrettyCodeBlock: React.FC<{ htmlContent: string }> = ({
-  htmlContent,
-}) => (
-  <div
-    className={styles.snippetOutput}
-    dangerouslySetInnerHTML={{ __html: htmlContent }}
-  />
 );
 
 const SnippetDisplayLoading = () => (
@@ -84,4 +75,45 @@ const SnippetDisplayLoading = () => (
       </svg>
     </div>
   </section>
+);
+
+const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
+  return (
+    <header className={styles.codeBlockHeader}>
+      <CodeBlockIcons />
+      <label className={styles.codeBlockLabel} htmlFor="codeBlockTitle">
+        <input type="text" placeholder="Enter the title" id="codeBlockTitle" />
+        <span>{language}</span>
+      </label>
+    </header>
+  );
+};
+
+interface CodeBlockContentProps {
+  htmlContent: string;
+  codeLineNumbers: number[];
+}
+
+const CodeBlockContent: React.FC<CodeBlockContentProps> = ({
+  htmlContent,
+  codeLineNumbers,
+}) => (
+  <section className={styles.codeBlockContent}>
+    <LineNumbers codeLineNumbers={codeLineNumbers} />
+    <div className={styles.codeContentArea}>
+      <InvisibleSnippetTextArea />
+      <div
+        className={styles.snippetOutput}
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
+    </div>
+  </section>
+);
+
+const CodeBlockIcons = () => (
+  <div className={styles.codeBlockIconWrapper}>
+    <span className={styles.codeBlockHeaderIcon} />
+    <span className={styles.codeBlockHeaderIcon} />
+    <span className={styles.codeBlockHeaderIcon} />
+  </div>
 );
