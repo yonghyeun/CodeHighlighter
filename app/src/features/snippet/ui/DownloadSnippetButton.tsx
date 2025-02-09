@@ -26,20 +26,29 @@ export const DownloadSnippetButton = () => {
     });
 
     canvas.toBlob((blob) => {
-      if (blob) {
+      if (!blob) {
+        /* 스크롤바 복원  */
+        $codeBlock.style.width = originalWidth;
+        $codeBlock.style.overflowX = originalOverflowX;
+
+        if ($codeBlockTitle.value.length < 1) {
+          $codeBlockTitle.style.visibility = "visible";
+        }
+      } else {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = "code.png";
         link.click();
+
+        /* 스크롤바 복원  */
+        $codeBlock.style.width = originalWidth;
+        $codeBlock.style.overflowX = originalOverflowX;
+
+        if ($codeBlockTitle.value.length < 1) {
+          $codeBlockTitle.style.visibility = "visible";
+        }
       }
     }, "code/png");
-    /* 스크롤바 복원  */
-    $codeBlock.style.width = originalWidth;
-    $codeBlock.style.overflowX = originalOverflowX;
-
-    if ($codeBlockTitle.value.length < 1) {
-      $codeBlockTitle.style.visibility = "visible";
-    }
   };
 
   return (
