@@ -56,15 +56,14 @@
 }
 
 .codeBlockHeader > input {
-  flex: 1;
   background-color: transparent;
   font-style: inherit;
+  max-width: 80%;
 }
 
 .snippetOutput {
   white-space: pre-wrap;
   word-wrap: break-word;
-  width: 100%;
 }
 
 .snippetOutput > figure code {

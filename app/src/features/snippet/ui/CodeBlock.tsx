@@ -3,6 +3,7 @@
 import styles from "./styles.module.css";
 import { useSnippetContent } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
+import { useEffect, useRef, useState } from "react";
 
 export const CodeBlock = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers, language } =
@@ -78,11 +79,30 @@ const SnippetDisplayLoading = () => (
 );
 
 const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
+  const [text, setText] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!inputRef.current) {
+      return;
+    }
+
+    inputRef.current.style.width = "auto";
+    inputRef.current.style.width = `${inputRef.current.scrollWidth}px`;
+  }, [text]);
+
   return (
-    <header className={styles.codeBlockHeader}>
-      <input type="text" placeholder="Enter the title" id="codeBlockTitle" />
+    <label className={styles.codeBlockHeader} htmlFor="codeBlockTitle">
+      <input
+        type="text"
+        placeholder="Enter the title"
+        id="codeBlockTitle"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        ref={inputRef}
+      />
       <span>{language}</span>
-    </header>
+    </label>
   );
 };
 
