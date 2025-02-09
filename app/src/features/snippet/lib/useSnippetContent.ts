@@ -30,6 +30,7 @@ export const useSnippetContent = () => {
       Number(snippetSetting.showLineNumbers)
     ),
     language: snippetSetting.language,
+    title: snippetSetting.title,
   };
 };
 
