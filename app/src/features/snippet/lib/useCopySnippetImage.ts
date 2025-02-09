@@ -1,19 +1,20 @@
 import { toCanvas } from "html-to-image";
-import { useRef, useState } from "react";
-
-export type Status = "idle" | "succeed" | "fail";
+import { useRef } from "react";
+import { useInteractionStatusStore } from "../model";
 
 export const useCopySnippetImage = () => {
-  const [status, setStatus] = useState<Status>("idle");
+  const status = useInteractionStatusStore((state) => state.status);
+  const setStatus = useInteractionStatusStore.setState;
+
   const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleCopy = async () => {
+    setStatus({ status: "loading" });
     if (statusTimerRef.current) {
       clearTimeout(statusTimerRef.current);
     }
 
     const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
-
     const $codeBlockTitle = document.querySelector(
       "#codeBlockTitle"
     ) as HTMLInputElement;
@@ -22,33 +23,31 @@ export const useCopySnippetImage = () => {
     const originalWidth = $codeBlock.style.width;
     const originalOverflowX = $codeBlock.style.overflowX;
 
-    try {
-      /* 타이틀이 존재하지 않는다면 placeHolder가 나타나지 않도록 visibility 조절 */
-      if ($codeBlockTitle.value.length < 1) {
-        $codeBlockTitle.style.visibility = "hidden";
+    /* 타이틀이 존재하지 않는다면 placeHolder가 나타나지 않도록 visibility 조절 */
+    if ($codeBlockTitle.value.length < 1) {
+      $codeBlockTitle.style.visibility = "hidden";
+    }
+
+    $codeBlock.style.width = "fit-content";
+    $codeBlock.style.overflow = "visible";
+
+    const canvas = await toCanvas($codeBlock, {
+      pixelRatio: 5,
+    });
+
+    canvas.toBlob(async (blob) => {
+      if (!blob) {
+        setStatus({ status: "fail" });
+        statusTimerRef.current = setTimeout(() => {
+          setStatus({ status: "idle" });
+        }, 1000);
+        return;
       }
 
-      $codeBlock.style.width = "fit-content";
-      $codeBlock.style.overflow = "visible";
+      const clipboardItem = new ClipboardItem({ "image/png": blob });
+      await navigator.clipboard.write([clipboardItem]);
+      setStatus({ status: "succeed" });
 
-      const canvas = await toCanvas($codeBlock, {
-        pixelRatio: 5,
-      });
-
-      canvas.toBlob(async (blob) => {
-        if (blob) {
-          const clipboardItem = new ClipboardItem({ "image/png": blob });
-          await navigator.clipboard.write([clipboardItem]);
-        } else {
-          throw new Error("failed to create blob");
-        }
-      }, "image/png");
-
-      setStatus("succeed");
-    } catch (error) {
-      console.error("Failed to copy SVG to clipboard:", error);
-      setStatus("fail");
-    } finally {
       $codeBlock.style.width = originalWidth;
       $codeBlock.style.overflowX = originalOverflowX;
 
@@ -57,9 +56,9 @@ export const useCopySnippetImage = () => {
       }
 
       statusTimerRef.current = setTimeout(() => {
-        setStatus("idle");
+        setStatus({ status: "idle" });
       }, 1000);
-    }
+    }, "image/png");
   };
 
   return { status, handleCopy };
