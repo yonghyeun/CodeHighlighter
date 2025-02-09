@@ -29,6 +29,7 @@ export const useSnippetContent = () => {
       htmlContent,
       Number(snippetSetting.showLineNumbers)
     ),
+    language: snippetSetting.language,
   };
 };
 
