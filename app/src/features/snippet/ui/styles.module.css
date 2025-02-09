@@ -30,6 +30,7 @@
 .snippetOutputWrapper {
   overflow: hidden;
   border-radius: 12px;
+  position: relative;
 }
 
 .codeBlock {
@@ -165,4 +166,12 @@
 
 .invisibleTextAreaWrapper > textarea:focus {
   outline: none;
+}
+
+.absoluteLoading {
+  height: 100%;
+  width: 100%;
+  z-index: 999999;
+  position: absolute;
+  background: inherit;
 }
