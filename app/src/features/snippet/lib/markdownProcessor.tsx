@@ -1,8 +1,6 @@
 import { remark } from "remark";
 import html from "remark-html";
 import remarkRehype from "remark-rehype";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeStringify from "rehype-stringify";
 
 import type { SettingState } from "@/features/setting/model";
 import type { BundledTheme } from "shiki";
@@ -67,6 +65,9 @@ export const processMarkdown = async (
   markDown: string,
   theme: SettingState["theme"]
 ) => {
+  const { default: rehypePrettyCode } = await import("rehype-pretty-code");
+  const { default: rehypeStringify } = await import("rehype-stringify");
+
   const processedContent = await remark()
     .use(html)
     .use(remarkRehype)
