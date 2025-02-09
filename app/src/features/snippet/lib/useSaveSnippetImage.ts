@@ -1,11 +1,14 @@
 import { toCanvas } from "html-to-image";
 import { useInteractionStatusStore } from "../model";
 import { useRef } from "react";
+import { useSnippetContent } from "./useSnippetContent";
 
 export const useSaveSnippetImage = () => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { title } = useSnippetContent();
   const status = useInteractionStatusStore((state) => state.status);
   const setStatus = useInteractionStatusStore.setState;
+  const IMAGE_NAME = title ? `${title}.png` : "code.png";
 
   const handleDownload = async () => {
     if (timerRef.current) {
@@ -53,7 +56,7 @@ export const useSaveSnippetImage = () => {
       } else {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = "code.png";
+        link.download = IMAGE_NAME;
         link.click();
 
         setStatus({ status: "succeed" });

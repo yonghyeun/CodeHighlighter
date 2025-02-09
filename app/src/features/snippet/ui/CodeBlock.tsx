@@ -4,6 +4,8 @@ import styles from "./styles.module.css";
 import { useSnippetContent } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
 import { useInteractionStatusStore } from "../model";
+import { useDispatch } from "react-redux";
+import { changeSetting } from "@/features/setting/model";
 
 export const CodeBlock = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers, language } =
@@ -84,11 +86,20 @@ const SnippetDisplayLoading = () => (
 );
 
 const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
+  const dispatch = useDispatch();
+
   return (
     <header className={styles.codeBlockHeader}>
       <CodeBlockIcons />
       <label className={styles.codeBlockLabel} htmlFor="codeBlockTitle">
-        <input type="text" placeholder="Enter the title" id="codeBlockTitle" />
+        <input
+          type="text"
+          placeholder="Enter the title"
+          id="codeBlockTitle"
+          onChange={({ target }) => {
+            dispatch(changeSetting({ key: "title", value: target.value }));
+          }}
+        />
         <span>{language}</span>
       </label>
     </header>
