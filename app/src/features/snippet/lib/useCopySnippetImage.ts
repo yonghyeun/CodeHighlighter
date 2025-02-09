@@ -1,19 +1,20 @@
 import { toCanvas } from "html-to-image";
-import { useRef, useState } from "react";
-
-export type Status = "idle" | "succeed" | "fail";
+import { useRef } from "react";
+import { useInteractionStatusStore } from "../model";
 
 export const useCopySnippetImage = () => {
-  const [status, setStatus] = useState<Status>("idle");
+  const status = useInteractionStatusStore((state) => state.status);
+  const setStatus = useInteractionStatusStore.setState;
+
   const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleCopy = async () => {
+    setStatus({ status: "loading" });
     if (statusTimerRef.current) {
       clearTimeout(statusTimerRef.current);
     }
 
     const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
-
     const $codeBlockTitle = document.querySelector(
       "#codeBlockTitle"
     ) as HTMLInputElement;
@@ -36,16 +37,16 @@ export const useCopySnippetImage = () => {
 
     canvas.toBlob(async (blob) => {
       if (!blob) {
-        setStatus("fail");
+        setStatus({ status: "fail" });
         statusTimerRef.current = setTimeout(() => {
-          setStatus("idle");
+          setStatus({ status: "idle" });
         }, 1000);
         return;
       }
 
       const clipboardItem = new ClipboardItem({ "image/png": blob });
       await navigator.clipboard.write([clipboardItem]);
-      setStatus("succeed");
+      setStatus({ status: "succeed" });
 
       $codeBlock.style.width = originalWidth;
       $codeBlock.style.overflowX = originalOverflowX;
@@ -55,7 +56,7 @@ export const useCopySnippetImage = () => {
       }
 
       statusTimerRef.current = setTimeout(() => {
-        setStatus("idle");
+        setStatus({ status: "idle" });
       }, 1000);
     }, "image/png");
   };
