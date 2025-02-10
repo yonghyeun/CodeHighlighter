@@ -63,10 +63,11 @@
   flex-grow: 1;
 }
 
-.codeBlockLabel input {
+.codeBlockLabel textarea {
   background-color: transparent;
   width: 80%;
   padding-right: 1rem;
+  resize: none;
 }
 
 .codeBlockIconWrapper {

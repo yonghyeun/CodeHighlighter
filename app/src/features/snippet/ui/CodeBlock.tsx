@@ -5,6 +5,7 @@ import { useSnippetContent } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
 import { useSettingStore } from "@/features/setting/model";
 import { useSnippetStore } from "../model";
+import { useEffect, useRef } from "react";
 
 export const CodeBlock = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers, language } =
@@ -85,17 +86,31 @@ const SnippetDisplayLoading = () => (
 );
 
 const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const title = useSettingStore((state) => state.title);
+  useEffect(() => {
+    const textarea = textAreaRef.current;
+    if (!textarea) {
+      return;
+    }
+
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, [title]);
+
   return (
     <header className={styles.codeBlockHeader}>
       <CodeBlockIcons />
       <label className={styles.codeBlockLabel} htmlFor="codeBlockTitle">
-        <input
-          type="text"
+        <textarea
+          ref={textAreaRef}
+          value={title}
           placeholder="Enter the title"
           id="codeBlockTitle"
           onChange={({ target }) => {
             useSettingStore.setState({ title: target.value });
           }}
+          rows={1}
         />
         <span>{language}</span>
       </label>
