@@ -1,12 +1,15 @@
 import { useEffect, useRef } from "react";
-import { useSnippetStore } from "../model";
+import { useSnippetStore, SnippetState } from "../model";
+import { insertTabSpace } from "./utils/insertTabSpace";
 
-export const useSnippetTextArea = () => {
-  const text = useSnippetStore((state) => state.text);
+export const useSnippetTextArea = (
+  key: Extract<keyof SnippetState, "text" | "title">
+) => {
+  const state = useSnippetStore((state) => state[key]);
   const textArea = useRef<HTMLTextAreaElement>(null);
 
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    useSnippetStore.setState({ text: event.target.value });
+    useSnippetStore.setState({ [key]: event.target.value });
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -17,12 +20,12 @@ export const useSnippetTextArea = () => {
         return;
       }
 
-      const { newTextAreaValue, newCursorPosition } = insertTabSpaces(
+      const { newTextAreaValue, newCursorPosition } = insertTabSpace(
         textArea.current,
         2
       );
 
-      useSnippetStore.setState({ text: newTextAreaValue });
+      useSnippetStore.setState({ [key]: newTextAreaValue });
 
       textArea.current.value = newTextAreaValue;
       textArea.current.setSelectionRange(newCursorPosition, newCursorPosition);
@@ -36,30 +39,13 @@ export const useSnippetTextArea = () => {
     }
     textArea.current.style.height = "auto";
     textArea.current.style.height = `${textArea.current.scrollHeight}px`;
-  }, [text]);
+  }, [state]);
 
   return {
     ref: textArea,
-    defaultValue: text,
+    defaultValue: state,
     onChange,
     onKeyDown,
-  };
-};
-
-const insertTabSpaces = (
-  { selectionStart, selectionEnd, value }: HTMLTextAreaElement,
-  tabSize: number
-) => {
-  const beforeSelection = value.slice(0, selectionStart);
-  const afterSelection = value.slice(selectionEnd);
-  const newTextAreaValue = `${beforeSelection}${" ".repeat(
-    tabSize
-  )}${afterSelection}`;
-
-  const newCursorPosition = selectionStart + tabSize;
-
-  return {
-    newTextAreaValue,
-    newCursorPosition,
+    state,
   };
 };

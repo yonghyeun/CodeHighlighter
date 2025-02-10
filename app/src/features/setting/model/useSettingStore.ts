@@ -20,8 +20,7 @@ export type SettingState = {
   thirdUnderLineColor: string;
   // startLineNumbers
   startLineNumber: number;
-  // Code title
-  title: string;
+
   // Code theme
   theme: string;
 };
@@ -36,7 +35,6 @@ const SETTING_INITIAL_STATE: SettingState = {
   secondUnderLineColor: "#644444",
   thirdUnderLineColor: "#646682",
   theme: "material-theme",
-  title: "",
 };
 
 const PERSIST_STATE_KEYS: (keyof SettingState)[] = [

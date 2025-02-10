@@ -1,7 +1,13 @@
 import { createStore } from "@/shared/lib/store";
 type Status = "loading" | "idle" | "succeed" | "fail";
 
-const SNIPPET_INITIAL_STATE: { text: string; status: Status } = {
+export interface SnippetState {
+  text: string;
+  status: Status;
+  title: string;
+}
+
+const SNIPPET_INITIAL_STATE: SnippetState = {
   text: `import React from 'react';
 
 type Props = {
@@ -15,6 +21,7 @@ const SimpleComponent: React.FC<Props> = ({ message }) => {
 export default SimpleComponent;`,
 
   status: "idle",
+  title: "",
 };
 
 export const useSnippetStore = createStore(SNIPPET_INITIAL_STATE);

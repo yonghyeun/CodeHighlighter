@@ -1,11 +1,9 @@
 "use client";
 
 import styles from "./styles.module.css";
-import { useSnippetContent } from "../lib";
+import { useSnippetContent, useSnippetTextArea } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
-import { useSettingStore } from "@/features/setting/model";
 import { useSnippetStore } from "../model";
-import { useEffect, useRef } from "react";
 
 export const CodeBlock = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers, language } =
@@ -86,34 +84,22 @@ const SnippetDisplayLoading = () => (
 );
 
 const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const title = useSettingStore((state) => state.title);
-  useEffect(() => {
-    const textarea = textAreaRef.current;
-    if (!textarea) {
-      return;
-    }
-
-    textarea.style.height = "auto";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-  }, [title]);
+  const { state, ...textAreaProps } = useSnippetTextArea("title");
 
   return (
     <header className={styles.codeBlockHeader}>
       <CodeBlockIcons />
-      <label className={styles.codeBlockLabel} htmlFor="codeBlockTitle">
+      <div className={styles.codeBlockTitleWrapper}>
+        {state}
         <textarea
-          ref={textAreaRef}
-          value={title}
           placeholder="Enter the title"
           id="codeBlockTitle"
-          onChange={({ target }) => {
-            useSettingStore.setState({ title: target.value });
-          }}
           rows={1}
+          className={styles.invisibleTitleTextArea}
+          {...textAreaProps}
         />
-        <span>{language}</span>
-      </label>
+      </div>
+      <span>{language}</span>
     </header>
   );
 };
