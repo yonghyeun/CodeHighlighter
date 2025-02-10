@@ -5,7 +5,7 @@ export const createStore = <S>(
   initialState: S,
   options?: Partial<Options<S>>
 ) => {
-  let store = Object.assign({}, initialState);
+  let store = { ...initialState };
   const callbacks = new Set<() => void>();
   const { middlewares, initializers } = options || {};
 
