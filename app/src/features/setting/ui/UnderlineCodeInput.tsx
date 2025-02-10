@@ -1,9 +1,7 @@
-export const DrawLineInput = () => {};
-
 import { useAppDispatch, useAppSelector } from "@/redux/lib";
-import { changeSetting } from "../model";
+import { useSettingStore } from "../model";
 import styles from "./styles.module.css";
-import React, { useEffect } from "react";
+import React from "react";
 
 interface UnderLienInputProps {
   lineKey: "first" | "second" | "third";
@@ -13,29 +11,15 @@ export const UnderLineColorInput: React.FC<UnderLienInputProps> = ({
   lineKey,
 }) => {
   const lineColorKey = `${lineKey}UnderLineColor` as const;
+  const lineColor = useSettingStore(
+    (state) => state[`${lineKey}UnderLineColor`]
+  );
 
-  const lineColor = useAppSelector((state) => state.setting[lineColorKey]);
-  const dispatch = useAppDispatch();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(
-      changeSetting({
-        key: lineColorKey,
-        value: event.target.value,
-      })
-    );
+    useSettingStore.setState({
+      [lineColorKey]: event.target.value,
+    });
   };
-
-  useEffect(() => {
-    const lineColor = localStorage.getItem(lineColorKey);
-    if (lineColor) {
-      dispatch(
-        changeSetting({
-          key: lineColorKey,
-          value: lineColor,
-        })
-      );
-    }
-  }, [dispatch, lineColorKey]);
 
   return (
     <label
@@ -59,10 +43,7 @@ export const UnderLineNumbersInput: React.FC<UnderLienInputProps> = ({
   lineKey,
 }) => {
   const lineNumbersKey = `${lineKey}UnderLineNumbers` as const;
-  const underLineNumbers = useAppSelector(
-    (state) => state.setting[lineNumbersKey]
-  );
-  const dispatch = useAppDispatch();
+  const underLineNumbers = useSettingStore((state) => state[lineNumbersKey]);
 
   return (
     <input
@@ -73,12 +54,9 @@ export const UnderLineNumbersInput: React.FC<UnderLienInputProps> = ({
       placeholder="ex : 1,2,5-10"
       autoComplete="off"
       onChange={({ target }) => {
-        dispatch(
-          changeSetting({
-            key: lineNumbersKey,
-            value: target.value,
-          })
-        );
+        useSettingStore.setState({
+          [lineNumbersKey]: target.value,
+        });
       }}
     />
   );

@@ -1,1 +1,1 @@
-export * from "./settingSlice";
+export * from "./useSettingStore";

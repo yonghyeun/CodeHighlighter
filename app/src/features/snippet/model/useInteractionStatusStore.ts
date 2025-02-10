@@ -1,4 +1,4 @@
-import { createStore } from "@/shared/lib";
+import { createStore } from "@/shared/lib/store";
 
 type Status = "loading" | "idle" | "succeed" | "fail";
 interface InteractionStatusStore {

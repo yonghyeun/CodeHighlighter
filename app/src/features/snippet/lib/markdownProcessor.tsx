@@ -25,30 +25,37 @@ const getRelativeLineNumbers = (
   return relativeLines.join(",");
 };
 
-export const preprocessMarkdown = (text: string, setting: SettingState) => {
+type RehypePrettyCodeBlockSetting = Pick<
+  SettingState,
+  | "startLineNumber"
+  | "firstUnderLineNumbers"
+  | "secondUnderLineNumbers"
+  | "thirdUnderLineNumbers"
+  | "language"
+>;
+
+export const preprocessMarkdown = (
+  text: string,
+  setting: RehypePrettyCodeBlockSetting
+) => {
   const {
-    showLineNumbers,
+    startLineNumber,
     language,
     firstUnderLineNumbers,
     secondUnderLineNumbers,
     thirdUnderLineNumbers,
   } = setting;
 
-  const startLineNumber =
-    isNaN(Number(showLineNumbers)) || Number(showLineNumbers) < 1
-      ? 1
-      : Number(showLineNumbers);
-
   const relativeAdd = getRelativeLineNumbers(
-    startLineNumber,
+    Number(startLineNumber),
     firstUnderLineNumbers
   );
   const relativeRemove = getRelativeLineNumbers(
-    startLineNumber,
+    Number(startLineNumber),
     secondUnderLineNumbers
   );
   const relativePointing = getRelativeLineNumbers(
-    startLineNumber,
+    Number(startLineNumber),
     thirdUnderLineNumbers
   );
 
