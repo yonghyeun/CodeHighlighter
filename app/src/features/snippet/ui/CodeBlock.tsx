@@ -4,7 +4,6 @@ import styles from "./styles.module.css";
 import { useSnippetContent, useSnippetTextArea } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
 import { useSnippetStore } from "../model";
-import { useEffect, useRef } from "react";
 
 export const CodeBlock = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers, language } =
@@ -85,20 +84,22 @@ const SnippetDisplayLoading = () => (
 );
 
 const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
-  const textAreaProps = useSnippetTextArea("title");
+  const { state, ...textAreaProps } = useSnippetTextArea("title");
 
   return (
     <header className={styles.codeBlockHeader}>
       <CodeBlockIcons />
-      <label className={styles.codeBlockLabel} htmlFor="codeBlockTitle">
+      <div className={styles.codeBlockTitleWrapper}>
+        {state}
         <textarea
           placeholder="Enter the title"
           id="codeBlockTitle"
           rows={1}
+          className={styles.invisibleTitleTextArea}
           {...textAreaProps}
         />
-        <span>{language}</span>
-      </label>
+      </div>
+      <span>{language}</span>
     </header>
   );
 };

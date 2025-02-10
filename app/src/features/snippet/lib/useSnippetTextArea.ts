@@ -46,5 +46,6 @@ export const useSnippetTextArea = (
     defaultValue: state,
     onChange,
     onKeyDown,
+    state,
   };
 };

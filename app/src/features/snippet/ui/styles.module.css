@@ -55,21 +55,24 @@
   width: 100%;
   gap: 0.5rem;
   padding: 0.3rem 0.5rem 0.5rem 1rem;
-}
-
-.codeBlockLabel {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
   color: gray;
-  flex-grow: 1;
 }
 
-.codeBlockLabel textarea {
+.codeBlockTitleWrapper {
+  flex-grow: 1;
+  position: relative;
+  white-space: pre-wrap;
+}
+
+.invisibleTitleTextArea {
   background-color: transparent;
-  width: 80%;
-  padding-right: 1rem;
+  color: transparent;
+  width: 100%;
   resize: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  caret-color: gray;
 }
 
 .codeBlockIconWrapper {

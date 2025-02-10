@@ -6,9 +6,7 @@ export const createCodeBlockEditor = (
   const originalOverflowX = codeBlock.style.overflowX;
 
   const resizing = () => {
-    if (title.value.length < 1) {
-      title.style.visibility = "hidden";
-    }
+    title.style.visibility = "hidden";
 
     codeBlock.style.width = "fit-content";
     codeBlock.style.overflow = "visible";
@@ -18,9 +16,7 @@ export const createCodeBlockEditor = (
     codeBlock.style.width = originalWidth;
     codeBlock.style.overflowX = originalOverflowX;
 
-    if (title.value.length < 1) {
-      title.style.visibility = "visible";
-    }
+    title.style.visibility = "visible";
   };
 
   return {
