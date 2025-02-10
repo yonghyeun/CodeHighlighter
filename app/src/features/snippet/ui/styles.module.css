@@ -21,6 +21,7 @@
   color: #eee;
   background-color: #252525;
   resize: none;
+  border-radius: 12px;
 }
 
 .snippetInput:focus {
@@ -44,6 +45,7 @@
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   font-variant-ligatures: none;
+  border-radius: 12px;
 }
 
 /* codeBlockHeader */
@@ -68,7 +70,6 @@
   width: 80%;
   padding-right: 1rem;
   resize: none;
-  border-radius: 12px;
 }
 
 .codeBlockIconWrapper {
