@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react";
+import type { Options } from "./types";
 
-export const createStore = <S>(initialState: S) => {
+export const createStore = <S>(
+  initialState: S,
+  options?: Partial<Options<S>>
+) => {
   const store = Object.assign({}, initialState);
   const callbacks = new Set<() => void>();
+  const { middlewares } = options || {};
 
   const setState = (newState: Partial<S>) => {
-    Object.assign(store, newState);
+    const middleWareState =
+      middlewares?.reduce((acc, middleware) => {
+        return { ...acc, ...middleware(acc) };
+      }, newState) || newState;
+
+    Object.assign(store, middleWareState);
     callbacks.forEach((callback) => callback());
   };
 
