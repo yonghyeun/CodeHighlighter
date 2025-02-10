@@ -68,6 +68,7 @@
   width: 80%;
   padding-right: 1rem;
   resize: none;
+  border-radius: 12px;
 }
 
 .codeBlockIconWrapper {
