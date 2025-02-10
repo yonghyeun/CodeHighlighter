@@ -5,7 +5,7 @@ export const createStore = <S>(
   initialState: S,
   options?: Partial<Options<S>>
 ) => {
-  const store = Object.assign({}, initialState);
+  let store = Object.assign({}, initialState);
   const callbacks = new Set<() => void>();
   const { middlewares, initializers } = options || {};
 
@@ -15,7 +15,7 @@ export const createStore = <S>(
         return { ...acc, ...middleware(acc) };
       }, newState) || newState;
 
-    Object.assign(store, middleWareState);
+    store = { ...store, ...middleWareState };
     callbacks.forEach((callback) => callback());
   };
 
@@ -31,7 +31,7 @@ export const createStore = <S>(
       return () => {
         callbacks.delete(callback);
       };
-    }, [selector]);
+    }, []);
 
     return state;
   };
