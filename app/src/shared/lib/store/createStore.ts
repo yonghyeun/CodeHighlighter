@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { Options } from "./types";
+import type { Options, SetStateAction } from "./types";
 
 export const createStore = <S>(
   initialState: S,
@@ -7,9 +7,9 @@ export const createStore = <S>(
 ) => {
   const store = Object.assign({}, initialState);
   const callbacks = new Set<() => void>();
-  const { middlewares } = options || {};
+  const { middlewares, initializers } = options || {};
 
-  const setState = (newState: Partial<S>) => {
+  const setStore: SetStateAction<S> = (newState) => {
     const middleWareState =
       middlewares?.reduce((acc, middleware) => {
         return { ...acc, ...middleware(acc) };
@@ -26,6 +26,8 @@ export const createStore = <S>(
       const callback = () => setState(selector(store));
       callbacks.add(callback);
 
+      initializers?.forEach((initializer) => initializer(store, setStore));
+
       return () => {
         callbacks.delete(callback);
       };
@@ -34,7 +36,7 @@ export const createStore = <S>(
     return state;
   };
 
-  useStore.setState = setState;
+  useStore.setState = setStore;
 
   return useStore;
 };
