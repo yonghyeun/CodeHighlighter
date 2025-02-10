@@ -3,7 +3,6 @@
 import styles from "./styles.module.css";
 import { useSnippetContent } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
-import { useSettingStore } from "@/features/setting/model";
 import { useSnippetStore } from "../model";
 import { useEffect, useRef } from "react";
 
@@ -87,7 +86,7 @@ const SnippetDisplayLoading = () => (
 
 const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const title = useSettingStore((state) => state.title);
+  const title = useSnippetStore((state) => state.title);
   useEffect(() => {
     const textarea = textAreaRef.current;
     if (!textarea) {
@@ -108,7 +107,7 @@ const CodeBlockHeader: React.FC<{ language: string }> = ({ language }) => {
           placeholder="Enter the title"
           id="codeBlockTitle"
           onChange={({ target }) => {
-            useSettingStore.setState({ title: target.value });
+            useSnippetStore.setState({ title: target.value });
           }}
           rows={1}
         />

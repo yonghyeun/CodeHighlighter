@@ -5,6 +5,7 @@ import { useSnippetStore } from "../model";
 
 export const useSnippetContent = () => {
   const text = useSnippetStore((state) => state.text);
+  const title = useSnippetStore((state) => state.title);
   const { theme, ...snippetSetting } = useSettingStore((state) => state);
 
   const [htmlContent, setHtmlContent] = useState<string>("");
@@ -31,7 +32,7 @@ export const useSnippetContent = () => {
       Number(snippetSetting.startLineNumber)
     ),
     language: snippetSetting.language,
-    title: snippetSetting.title,
+    title,
   };
 };
 
