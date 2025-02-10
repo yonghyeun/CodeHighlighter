@@ -1,8 +1,10 @@
-import { toCanvas } from "html-to-image";
 import { useRef } from "react";
 import { useSnippetStore } from "../model";
-import { canvasToBlob, createCodeBlockEditor } from "./utils";
-import { PIXEL_RATIO } from "./config";
+import {
+  canvasToBlob,
+  createCanvasElement,
+  createCodeBlockEditor,
+} from "./utils";
 
 export const useCopySnippetImage = () => {
   const status = useSnippetStore((state) => state.status);
@@ -26,10 +28,7 @@ export const useCopySnippetImage = () => {
     try {
       codeBlockEditor.resizing();
 
-      const canvas = await toCanvas($codeBlock, {
-        pixelRatio: PIXEL_RATIO,
-      });
-
+      const canvas = await createCanvasElement($codeBlock);
       const blob = await canvasToBlob(canvas);
 
       const clipboardItem = new ClipboardItem({ "image/png": blob });

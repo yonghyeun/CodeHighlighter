@@ -1,8 +1,10 @@
-import { toCanvas } from "html-to-image";
 import { useRef } from "react";
 import { useSnippetContent } from "./useSnippetContent";
-import { canvasToBlob, createCodeBlockEditor } from "./utils";
-import { PIXEL_RATIO } from "./config";
+import {
+  canvasToBlob,
+  createCanvasElement,
+  createCodeBlockEditor,
+} from "./utils";
 import { useSnippetStore } from "../model";
 
 export const useSaveSnippetImage = () => {
@@ -29,9 +31,7 @@ export const useSaveSnippetImage = () => {
 
       codeBlockEditor.resizing();
 
-      const canvas = await toCanvas($codeBlock, {
-        pixelRatio: PIXEL_RATIO,
-      });
+      const canvas = await createCanvasElement($codeBlock, 5);
 
       const blob = await canvasToBlob(canvas);
 
