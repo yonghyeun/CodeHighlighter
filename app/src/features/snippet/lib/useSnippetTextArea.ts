@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSnippetStore } from "../model";
+import { insertTabSpace } from "./utils/insertTabSpace";
 
 export const useSnippetTextArea = () => {
   const text = useSnippetStore((state) => state.text);
@@ -17,7 +18,7 @@ export const useSnippetTextArea = () => {
         return;
       }
 
-      const { newTextAreaValue, newCursorPosition } = insertTabSpaces(
+      const { newTextAreaValue, newCursorPosition } = insertTabSpace(
         textArea.current,
         2
       );
@@ -43,23 +44,5 @@ export const useSnippetTextArea = () => {
     defaultValue: text,
     onChange,
     onKeyDown,
-  };
-};
-
-const insertTabSpaces = (
-  { selectionStart, selectionEnd, value }: HTMLTextAreaElement,
-  tabSize: number
-) => {
-  const beforeSelection = value.slice(0, selectionStart);
-  const afterSelection = value.slice(selectionEnd);
-  const newTextAreaValue = `${beforeSelection}${" ".repeat(
-    tabSize
-  )}${afterSelection}`;
-
-  const newCursorPosition = selectionStart + tabSize;
-
-  return {
-    newTextAreaValue,
-    newCursorPosition,
   };
 };
