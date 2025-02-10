@@ -1,12 +1,12 @@
 import { toCanvas } from "html-to-image";
 import { useRef } from "react";
-import { useInteractionStatusStore } from "../model";
+import { useSnippetStore } from "../model";
 import { canvasToBlob, createCodeBlockEditor } from "./utils";
 import { PIXEL_RATIO } from "./config";
 
 export const useCopySnippetImage = () => {
-  const status = useInteractionStatusStore((state) => state.status);
-  const setStatus = useInteractionStatusStore.setState;
+  const status = useSnippetStore((state) => state.status);
+  const setStatus = useSnippetStore.setState;
 
   const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 

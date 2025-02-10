@@ -1,15 +1,15 @@
 import { toCanvas } from "html-to-image";
 import { useRef } from "react";
-import { useInteractionStatusStore } from "../model";
 import { useSnippetContent } from "./useSnippetContent";
 import { canvasToBlob, createCodeBlockEditor } from "./utils";
 import { PIXEL_RATIO } from "./config";
+import { useSnippetStore } from "../model";
 
 export const useSaveSnippetImage = () => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { title } = useSnippetContent();
-  const status = useInteractionStatusStore((state) => state.status);
-  const setStatus = useInteractionStatusStore.setState;
+  const status = useSnippetStore((state) => state.status);
+  const setStatus = useSnippetStore.setState;
   const IMAGE_NAME = title ? `${title}.png` : "code.png";
 
   const handleDownload = async () => {

@@ -1,2 +1,1 @@
-export * from "./snippetSlice";
-export * from "./useInteractionStatusStore";
+export * from "./useSnippetStore";

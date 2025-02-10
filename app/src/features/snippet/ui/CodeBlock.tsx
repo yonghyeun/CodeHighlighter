@@ -3,13 +3,13 @@
 import styles from "./styles.module.css";
 import { useSnippetContent } from "../lib";
 import { InvisibleSnippetTextArea } from "./InvisibleCodeBlockTextArea";
-import { useInteractionStatusStore } from "../model";
 import { useSettingStore } from "@/features/setting/model";
+import { useSnippetStore } from "../model";
 
 export const CodeBlock = () => {
   const { htmlContent, codeThemeBackgroundColor, codeLineNumbers, language } =
     useSnippetContent();
-  const status = useInteractionStatusStore((state) => state.status);
+  const status = useSnippetStore((state) => state.status);
 
   if (!htmlContent) {
     return (

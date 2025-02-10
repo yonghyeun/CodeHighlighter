@@ -1,15 +1,12 @@
-import { useAppDispatch, useAppSelector } from "@/redux/lib";
 import { useEffect, useRef } from "react";
-import { changeText } from "../model";
+import { useSnippetStore } from "../model";
 
 export const useSnippetTextArea = () => {
-  const text = useAppSelector((state) => state.snippet.text);
-
-  const dispatch = useAppDispatch();
+  const text = useSnippetStore((state) => state.text);
   const textArea = useRef<HTMLTextAreaElement>(null);
 
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(changeText(event.target.value));
+    useSnippetStore.setState({ text: event.target.value });
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -25,7 +22,7 @@ export const useSnippetTextArea = () => {
         2
       );
 
-      dispatch(changeText(newTextAreaValue));
+      useSnippetStore.setState({ text: newTextAreaValue });
 
       textArea.current.value = newTextAreaValue;
       textArea.current.setSelectionRange(newCursorPosition, newCursorPosition);

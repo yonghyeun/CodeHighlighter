@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/redux/lib";
 import { useSettingStore } from "@/features/setting/model";
 import * as markdownProcessor from "./markdownProcessor";
+import { useSnippetStore } from "../model";
 
 export const useSnippetContent = () => {
-  const snippetInput = useAppSelector((state) => state.snippet.text);
+  const text = useSnippetStore((state) => state.text);
   const { theme, ...snippetSetting } = useSettingStore((state) => state);
 
   const [htmlContent, setHtmlContent] = useState<string>("");
@@ -12,13 +12,13 @@ export const useSnippetContent = () => {
   useEffect(() => {
     (async function () {
       const markdown = markdownProcessor.preprocessMarkdown(
-        snippetInput,
+        text,
         snippetSetting
       );
       const result = await markdownProcessor.processMarkdown(markdown, theme);
       setHtmlContent(result);
     })();
-  }, [snippetInput, snippetSetting, theme]);
+  }, [text, snippetSetting, theme]);
 
   return {
     htmlContent,
