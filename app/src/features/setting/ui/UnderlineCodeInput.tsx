@@ -1,4 +1,3 @@
-import { useAppDispatch, useAppSelector } from "@/redux/lib";
 import { useSettingStore } from "../model";
 import styles from "./styles.module.css";
 import React from "react";
