@@ -11,11 +11,14 @@ export const useSnippetContent = () => {
 
   useEffect(() => {
     (async function () {
-      const markdown = markdownProcessor.preprocessMarkdown(
+      const markdown = markdownProcessor.getRehypePrettyMarkdown(
         text,
         snippetSetting
       );
-      const result = await markdownProcessor.processMarkdown(markdown, theme);
+      const result = await markdownProcessor.convertMarkdownToHtml(
+        markdown,
+        theme
+      );
       setHtmlContent(result);
     })();
   }, [text, snippetSetting, theme]);
