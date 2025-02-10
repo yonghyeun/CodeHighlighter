@@ -1,37 +1,16 @@
-import { useAppDispatch, useAppSelector } from "@/redux/lib";
-import { changeSetting } from "../model";
+import { useSettingStore } from "../model";
 import { CodeLanguage } from "../config";
 import styles from "./styles.module.css";
-import { useEffect } from "react";
 
 export const LanguageSelector = () => {
-  const { language } = useAppSelector((state) => state.setting);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const language = localStorage.getItem("language");
-
-    if (language) {
-      dispatch(
-        changeSetting({
-          key: "language",
-          value: language,
-        })
-      );
-    }
-  }, [dispatch]);
+  const language = useSettingStore((state) => state.language);
 
   return (
     <select
       className={styles.selector}
       value={language}
       onChange={({ target }) => {
-        dispatch(
-          changeSetting({
-            key: "language",
-            value: target.value,
-          })
-        );
+        useSettingStore.setState({ language: target.value });
       }}
     >
       {CodeLanguage.map((lang, idx) => (

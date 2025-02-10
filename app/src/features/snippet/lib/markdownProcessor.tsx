@@ -25,43 +25,50 @@ const getRelativeLineNumbers = (
   return relativeLines.join(",");
 };
 
-export const preprocessMarkdown = (text: string, setting: SettingState) => {
+type RehypePrettyCodeBlockSetting = Pick<
+  SettingState,
+  | "startLineNumber"
+  | "firstUnderLineNumbersExpressions"
+  | "secondUnderLineNumbersExpressions"
+  | "thirdUnderLineNumbersExpressions"
+  | "language"
+>;
+
+export const getRehypePrettyMarkdown = (
+  text: string,
+  setting: RehypePrettyCodeBlockSetting
+) => {
   const {
-    showLineNumbers,
+    startLineNumber,
     language,
-    firstUnderLineNumbers,
-    secondUnderLineNumbers,
-    thirdUnderLineNumbers,
+    firstUnderLineNumbersExpressions,
+    secondUnderLineNumbersExpressions,
+    thirdUnderLineNumbersExpressions,
   } = setting;
 
-  const startLineNumber =
-    isNaN(Number(showLineNumbers)) || Number(showLineNumbers) < 1
-      ? 1
-      : Number(showLineNumbers);
-
   const relativeAdd = getRelativeLineNumbers(
-    startLineNumber,
-    firstUnderLineNumbers
+    Number(startLineNumber),
+    firstUnderLineNumbersExpressions
   );
   const relativeRemove = getRelativeLineNumbers(
-    startLineNumber,
-    secondUnderLineNumbers
+    Number(startLineNumber),
+    secondUnderLineNumbersExpressions
   );
   const relativePointing = getRelativeLineNumbers(
-    startLineNumber,
-    thirdUnderLineNumbers
+    Number(startLineNumber),
+    thirdUnderLineNumbersExpressions
   );
 
   return `\`\`\`${language} {${relativeAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing\n${""}${text}\n\`\`\``;
 };
 
 /**
- * ! processMarkdown 은 테마가 변경되어 실행 될 때 마다 shiki highlighter 인스턴스를 생성한다.
+ * ! convertMarkdownToHtml 은 테마가 변경되어 실행 될 때 마다 shiki highlighter 인스턴스를 생성한다.
  * ! 사실은 getSingltoneHighlighter 메소드를 이용하여 하이라이터를 넣어줘야하는데
  * ! 공식문서를 뒤져봐도 문서가 잘 나오지 않아 그냥 사용하도록 했다.
  * ! 테마 개수가 20개인데 20개의 인스턴스가 존재한다고 해도 memory leak 문제가 심각하진 않을 것 같다.
  */
-export const processMarkdown = async (
+export const convertMarkdownToHtml = async (
   markDown: string,
   theme: SettingState["theme"]
 ) => {

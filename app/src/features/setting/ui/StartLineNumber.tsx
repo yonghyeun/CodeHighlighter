@@ -1,11 +1,8 @@
-import { useAppDispatch } from "@/redux/lib";
-import { changeSetting } from "../model";
+import { useSettingStore } from "../model";
 import styles from "./styles.module.css";
 import React from "react";
 
 export const StartLineNumberInput: React.FC = () => {
-  const dispatch = useAppDispatch();
-
   return (
     <input
       className={styles.inputs}
@@ -17,13 +14,9 @@ export const StartLineNumberInput: React.FC = () => {
         const value = target.value;
         const lineNumber = parseInt(value);
 
-        dispatch(
-          changeSetting({
-            key: "showLineNumbers",
-            value:
-              isNaN(lineNumber) || lineNumber < 1 ? "1" : String(lineNumber),
-          })
-        );
+        useSettingStore.setState({
+          startLineNumber: isNaN(lineNumber) || lineNumber < 1 ? 1 : lineNumber,
+        });
       }}
     />
   );

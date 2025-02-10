@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/redux/lib";
-
+import { useSettingStore } from "@/features/setting/model";
 import * as markdownProcessor from "./markdownProcessor";
+import { useSnippetStore } from "../model";
 
 export const useSnippetContent = () => {
-  const snippetInput = useAppSelector((state) => state.snippet.text);
-  const snippetSetting = useAppSelector((state) => state.setting);
+  const text = useSnippetStore((state) => state.text);
+  const { theme, ...snippetSetting } = useSettingStore((state) => state);
+
   const [htmlContent, setHtmlContent] = useState<string>("");
 
   useEffect(() => {
     (async function () {
-      const markdown = markdownProcessor.preprocessMarkdown(
-        snippetInput,
+      const markdown = markdownProcessor.getRehypePrettyMarkdown(
+        text,
         snippetSetting
       );
-      const result = await markdownProcessor.processMarkdown(
+      const result = await markdownProcessor.convertMarkdownToHtml(
         markdown,
-        snippetSetting.theme
+        theme
       );
       setHtmlContent(result);
     })();
-  }, [snippetInput, snippetSetting]);
+  }, [text, snippetSetting, theme]);
 
   return {
     htmlContent,
     codeThemeBackgroundColor: getCodeThemeBackground(htmlContent),
     codeLineNumbers: getCodeLineNumbers(
       htmlContent,
-      Number(snippetSetting.showLineNumbers)
+      Number(snippetSetting.startLineNumber)
     ),
     language: snippetSetting.language,
     title: snippetSetting.title,
