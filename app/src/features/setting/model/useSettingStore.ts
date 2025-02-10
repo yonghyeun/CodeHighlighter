@@ -10,16 +10,16 @@ export type SettingState = {
   language: string;
   // Underline numbers
   // ex "1,2,3-10"
-  firstUnderLineNumbers: string;
-  secondUnderLineNumbers: string;
-  thirdUnderLineNumbers: string;
+  firstUnderLineNumbersExpressions: string;
+  secondUnderLineNumbersExpressions: string;
+  thirdUnderLineNumbersExpressions: string;
   // Underline colors
   // ex "#2f502f" , 'rgb(0,0,0)'
   firstUnderLineColor: string;
   secondUnderLineColor: string;
   thirdUnderLineColor: string;
   // startLineNumbers
-  startLineNumber: string;
+  startLineNumber: number;
   // Code title
   title: string;
   // Code theme
@@ -27,10 +27,10 @@ export type SettingState = {
 };
 
 const SETTING_INITIAL_STATE: SettingState = {
-  startLineNumber: "1",
-  firstUnderLineNumbers: "",
-  secondUnderLineNumbers: "",
-  thirdUnderLineNumbers: "",
+  startLineNumber: 1,
+  firstUnderLineNumbersExpressions: "",
+  secondUnderLineNumbersExpressions: "",
+  thirdUnderLineNumbersExpressions: "",
   language: "tsx",
   firstUnderLineColor: "#2f502f",
   secondUnderLineColor: "#644444",

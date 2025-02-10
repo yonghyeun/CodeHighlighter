@@ -41,7 +41,7 @@ export const UnderLineColorInput: React.FC<UnderLienInputProps> = ({
 export const UnderLineNumbersInput: React.FC<UnderLienInputProps> = ({
   lineKey,
 }) => {
-  const lineNumbersKey = `${lineKey}UnderLineNumbers` as const;
+  const lineNumbersKey = `${lineKey}UnderLineNumbersExpressions` as const;
   const underLineNumbers = useSettingStore((state) => state[lineNumbersKey]);
 
   return (

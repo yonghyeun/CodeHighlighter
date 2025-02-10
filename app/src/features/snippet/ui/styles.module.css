@@ -109,7 +109,7 @@
 }
 
 .snippetOutput span[data-highlighted-line-id="remove"] {
-  background-color: var(--secondUnderLineNumbers);
+  background-color: var(--secondUnderLineColor);
 }
 
 .snippetOutput span[data-highlighted-line-id="pointing"] {

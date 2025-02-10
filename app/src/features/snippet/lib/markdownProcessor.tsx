@@ -28,9 +28,9 @@ const getRelativeLineNumbers = (
 type RehypePrettyCodeBlockSetting = Pick<
   SettingState,
   | "startLineNumber"
-  | "firstUnderLineNumbers"
-  | "secondUnderLineNumbers"
-  | "thirdUnderLineNumbers"
+  | "firstUnderLineNumbersExpressions"
+  | "secondUnderLineNumbersExpressions"
+  | "thirdUnderLineNumbersExpressions"
   | "language"
 >;
 
@@ -41,22 +41,22 @@ export const getRehypePrettyMarkdown = (
   const {
     startLineNumber,
     language,
-    firstUnderLineNumbers,
-    secondUnderLineNumbers,
-    thirdUnderLineNumbers,
+    firstUnderLineNumbersExpressions,
+    secondUnderLineNumbersExpressions,
+    thirdUnderLineNumbersExpressions,
   } = setting;
 
   const relativeAdd = getRelativeLineNumbers(
     Number(startLineNumber),
-    firstUnderLineNumbers
+    firstUnderLineNumbersExpressions
   );
   const relativeRemove = getRelativeLineNumbers(
     Number(startLineNumber),
-    secondUnderLineNumbers
+    secondUnderLineNumbersExpressions
   );
   const relativePointing = getRelativeLineNumbers(
     Number(startLineNumber),
-    thirdUnderLineNumbers
+    thirdUnderLineNumbersExpressions
   );
 
   return `\`\`\`${language} {${relativeAdd}}#add {${relativeRemove}}#remove {${relativePointing}}#pointing\n${""}${text}\n\`\`\``;

@@ -15,8 +15,7 @@ export const StartLineNumberInput: React.FC = () => {
         const lineNumber = parseInt(value);
 
         useSettingStore.setState({
-          startLineNumber:
-            isNaN(lineNumber) || lineNumber < 1 ? "1" : String(lineNumber),
+          startLineNumber: isNaN(lineNumber) || lineNumber < 1 ? 1 : lineNumber,
         });
       }}
     />
