@@ -20,11 +20,7 @@ export const useSaveSnippetImage = () => {
     }
 
     const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
-
-    const codeBlockEditor = createCodeBlockEditor(
-      $codeBlock,
-      document.querySelector("#codeBlockTitle") as HTMLInputElement
-    );
+    const codeBlockEditor = createCodeBlockEditor($codeBlock);
 
     try {
       setStatus({ status: "loading" });

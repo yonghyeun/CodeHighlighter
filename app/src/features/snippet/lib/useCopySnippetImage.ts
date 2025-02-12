@@ -20,10 +20,7 @@ export const useCopySnippetImage = () => {
 
     const $codeBlock = document.querySelector("#codeBlock") as HTMLDivElement;
 
-    const codeBlockEditor = createCodeBlockEditor(
-      $codeBlock,
-      document.querySelector("#codeBlockTitle") as HTMLInputElement
-    );
+    const codeBlockEditor = createCodeBlockEditor($codeBlock);
 
     try {
       codeBlockEditor.resizing();
