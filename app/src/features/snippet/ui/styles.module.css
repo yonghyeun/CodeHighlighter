@@ -10,7 +10,7 @@
 .snippetTextAreaWrapper {
   display: flex;
   background-color: #252525;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   padding: 1rem 0rem;
 }
 
@@ -21,7 +21,7 @@
   color: #eee;
   background-color: #252525;
   resize: none;
-  border-radius: 12px;
+  border-radius: 0.75rem;
 }
 
 .snippetInput:focus {
@@ -30,12 +30,12 @@
 
 .snippetOutputWrapper {
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   position: relative;
 }
 
 .codeBlock {
-  border-radius: 12px;
+  border-radius: 0.75rem;
   padding: 0.5rem 1rem 1rem 0rem;
   overflow: auto;
   min-width: 32rem;
@@ -46,7 +46,7 @@
   font-family: Jet-Brains, body-font, Menlo, SFMono-Regular, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   font-variant-ligatures: none;
-  border-radius: 12px;
+  border-radius: 0.75rem;
 }
 
 /* codeBlockHeader */
@@ -138,7 +138,7 @@
 
 .loading {
   background-color: transparent;
-  height: 296px;
+  height: 18.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
