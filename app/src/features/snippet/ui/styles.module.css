@@ -38,6 +38,7 @@
   border-radius: 12px;
   padding: 0.5rem 1rem 1rem 0rem;
   overflow: auto;
+  min-width: 32rem;
 }
 
 .codeBlockContent {
